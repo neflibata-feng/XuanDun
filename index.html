@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玄盾OpenAPI开发者门户</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --border: #e2e8f0;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: #f9fafb;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 5%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* 主内容区 */
+        .hero {
+            padding: 80px 5% 50px;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 700;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-box button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* 文档分类 */
+        .categories {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+            border-color: rgba(37, 99, 235, 0.3);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #dbeafe, #eff6ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .category-icon i {
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .category-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .category-card p {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* 快速开始 */
+        .quick-start {
+            background: var(--light);
+            padding: 80px 5%;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .quick-start-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .quick-start h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .step-content h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .step-content p {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            background: #f1f5f9;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+        }
+
+        /* 页脚 */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 5% 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .categories-grid {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 50px 5% 30px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="/favicon.ico" alt="玄盾图标">
+                </div>
+                <div class="logo-text">玄盾 | OpenAPI门户</div>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">文档</a>
+                <a href="#">API参考</a>
+                <a href="#">SDK下载</a>
+                <a href="community.html">社区</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主横幅区域 -->
+    <section class="hero">
+        <h1>OpenAPI</h1>
+        <p>从这里开始，集成玄盾金融系统</p>
+        <div class="search-box">
+            <input type="text" placeholder="搜索文档、API、示例...">
+            <button><i class="fas fa-search"></i> 搜索</button>
+        </div>
+    </section>
+
+    <!-- 文档分类 -->
+    <section class="categories">
+        <div class="section-title">
+            <h2>文档分类</h2>
+            <p>按需查阅各类技术文档，快速找到所需资源</p>
+        </div>
+
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h3>入门指南</h3>
+                <p>从零开始学习平台集成，了解基本概念和流程</p>
+                <a href="#" class="btn">开始阅读</a>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>API参考</h3>
+                <p>详细的API接口文档，包含参数说明和示例</p>
+                <a href="#" class="btn">查看API</a>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>SDK文档</h3>
+                <p>多语言SDK使用指南，简化集成开发流程</p>
+                <a href="#" class="btn">下载SDK</a>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>工具指南</h3>
+                <p>开发工具、调试工具和测试工具使用说明</p>
+                <a href="#" class="btn">查看工具</a>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>安全指南</h3>
+                <p>安全最佳实践、认证授权和权限管理</p>
+                <a href="#" class="btn">安全实践</a>
+            </div>
+
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h3>常见问题</h3>
+                <p>开发过程中常见问题解答和解决方案</p>
+                <a href="#" class="btn">查看FAQ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 快速开始 -->
+    <section class="quick-start">
+        <div class="quick-start-content">
+            <h2>快速开始</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>创建开发者账号</h3>
+                        <p>注册开放平台账号并创建应用获取API密钥</p>
+                        <div class="code-block">
+                            $ curl -X POST https://api.openplatform.com/apps<br>
+                            -H "Content-Type: application/json"<br>
+                            -d '{"name": "MyApp", "description": "My Application"}'
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>安装SDK</h3>
+                        <p>选择适合您开发语言的SDK并安装</p>
+                        <div class="code-block">
+                            # 使用npm安装JavaScript SDK<br>
+                            npm install openplatform-sdk
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>调用API</h3>
+                        <p>使用您的API密钥进行身份验证并调用API</p>
+                        <div class="code-block">
+                            const OpenPlatform = require('openplatform-sdk');<br>
+                            const client = new OpenPlatform({ apiKey: 'YOUR_API_KEY' });<br><br>
+                            client.getUserData()<br>
+                              .then(data => console.log(data))<br>
+                              .catch(error => console.error(error));
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>开放平台</h3>
+                <ul class="footer-links">
+                    <li><a href="#">产品介绍</a></li>
+                    <li><a href="#">解决方案</a></li>
+                    <li><a href="#">定价</a></li>
+                    <li><a href="#">状态</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>开发者</h3>
+                <ul class="footer-links">
+                    <li><a href="#">文档</a></li>
+                    <li><a href="#">API参考</a></li>
+                    <li><a href="#">SDK下载</a></li>
+                    <li><a href="#">示例代码</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>资源</h3>
+                <ul class="footer-links">
+                    <li><a href="community.html">社区</a></li>
+                    <li><a href="#">教程</a></li>
+                    <li><a href="#">活动</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>支持</h3>
+                <ul class="footer-links">
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="SLA.md">服务协议</a></li>
+                    <li><a href="privacyPolicy.md">隐私政策</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2025-2026 玄盾OpenAPI | 提供专业开发者支持</p>
+        </div>
+    </footer>
+</body>
+</html>

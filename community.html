@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发者社区 - 玄盾OpenAPI</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --error: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f9fafb;
+            color: #334155;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* 头部导航 */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 5%;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        /* 社区内容 */
+        .community-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            flex: 1;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            height: fit-content;
+        }
+        
+        .community-header {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .community-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .community-header p {
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .create-post-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .create-post-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .posts-container {
+            padding: 30px;
+        }
+        
+        .post-card {
+            padding: 25px;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .post-card:hover {
+            background-color: #f8fafc;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dbeafe, #eff6ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .post-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .post-info .post-meta {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .post-content h2 {
+            font-size: 1.4rem;
+            margin: 10px 0;
+            color: var(--dark);
+        }
+        
+        .post-content p {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .post-footer {
+            display: flex;
+            gap: 20px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .post-footer span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .post-footer i {
+            font-size: 14px;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .sidebar-links {
+            list-style: none;
+        }
+        
+        .sidebar-links li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sidebar-links a:hover {
+            color: var(--primary);
+        }
+        
+        .sidebar-links i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .tag {
+            background: #e0f2fe;
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        
+        .tag:hover {
+            background: #dbeafe;
+            cursor: pointer;
+        }
+        
+        /* 加载状态 */
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: var(--secondary);
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* 帖子详情模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .post-detail-container {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+            transition: all 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary);
+        }
+        
+        .post-detail-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .post-detail-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 15px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .post-content {
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        
+        .post-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .comments-section {
+            margin-top: 30px;
+        }
+        
+        .comments-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .comment {
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8fafc;
+            margin-bottom: 15px;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .comment-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+        
+        .comment-user img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+        
+        .comment-date {
+            color: var(--secondary);
+            font-size: 0.85rem;
+        }
+        
+        .comment-content {
+            padding-left: 40px;
+            line-height: 1.6;
+        }
+        
+        .reply-form {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+        
+        .reply-form h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .success-message {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .error-message {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        /* 新增样式 - 优化回复体验 */
+        .github-reply-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #333;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .github-reply-link:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
+        
+        .github-reply-link i {
+            margin-right: 8px;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 5% 20px;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .community-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: block;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="/favicon.ico" alt="玄盾图标">
+                </div>
+                <div class="logo-text">玄盾|OpenAPI门户</div>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="#">文档</a>
+                <a href="#">API参考</a>
+                <a href="#">SDK下载</a>
+                <a href="community.html" class="active">社区</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 社区内容 -->
+    <div class="community-container">
+        <div class="main-content">
+            <div class="community-header">
+                <h1>开发者社区</h1>
+                <p>与开发者交流经验，分享知识，解决问题</p>
+                <a href="https://github.com/neflibata-feng/neflibata-feng.github.io/issues/new" class="create-post-btn" target="_blank">
+                    <i class="fas fa-plus"></i> 创建新帖子
+                </a>
+            </div>
+            
+            <div class="posts-container" id="postsContainer">
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    <p>正在加载帖子...</p>
+                </div>
+            </div>
+        </div>
+        
+     
+            <div class="sidebar-section">
+                <h3>社区指南</h3>
+                <ul class="sidebar-links">
+                    <li><a href="communityRules.md"><i class="fas fa-book"></i> 社区规则</a></li>
+                    <li><a href="commonQuestions.md"><i class="fas fa-question-circle"></i> 常见问题</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>统计信息</h3>
+                <ul class="sidebar-links">
+                    <li><i class="fas fa-users"></i> 社区成员: <span id="memberCount">加载中...</span></li>
+                    <li><i class="fas fa-comments"></i> 帖子总数: <span id="postCount">加载中...</span></li>
+                    <li><i class="fas fa-reply"></i> 回复总数: <span id="replyCount">加载中...</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 帖子详情模态框 -->
+    <div id="postDetailModal" class="modal">
+        <div class="post-detail-container">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <div id="postDetailContent">
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    <p>正在加载帖子详情...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>开放平台</h3>
+                <ul class="footer-links">
+                    <li><a href="#">产品介绍</a></li>
+                    <li><a href="#">解决方案</a></li>
+                    <li><a href="#">定价</a></li>
+                    <li><a href="#">状态</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>开发者</h3>
+                <ul class="footer-links">
+                    <li><a href="#">文档</a></li>
+                    <li><a href="#">API参考</a></li>
+                    <li><a href="#">SDK下载</a></li>
+                    <li><a href="#">示例代码</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>资源</h3>
+                <ul class="footer-links">
+                    <li><a href="community.html">社区</a></li>
+                    <li><a href="#">教程</a></li>
+                    <li><a href="#">活动</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>支持</h3>
+                <ul class="footer-links">
+                    <li><a href="#">帮助中心</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="SLA.md">服务协议</a></li>
+                    <li><a href="privacyPolicy.md">隐私政策</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2025-2026 玄盾OpenAPI | 提供专业开发者支持</p>
+        </div>
+    </footer>
+
+    <script>
+        // 配置信息 - 替换为您的GitHub仓库信息
+        const REPO_OWNER = 'neflibata-feng';
+        const REPO_NAME = 'neflibata-feng.github.io';
+        
+        // DOM元素
+        const postsContainer = document.getElementById('postsContainer');
+        const postDetailModal = document.getElementById('postDetailModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        // 加载帖子列表
+        async function loadPosts() {
+            try {
+                postsContainer.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-spinner"></i>
+                        <p>正在加载帖子...</p>
+                    </div>
+                `;
+                
+                const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues`);
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API错误: ${response.status}`);
+                }
+                
+                const issues = await response.json();
+                
+                if (issues.length === 0) {
+                    postsContainer.innerHTML = `
+                        <div class="loading">
+                            <i class="fas fa-inbox"></i>
+                            <p>暂无帖子，成为第一个发帖者吧！</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let postsHTML = '';
+                
+                issues.forEach(issue => {
+                    const createdAt = new Date(issue.created_at).toLocaleString();
+                    const labels = issue.labels.map(label => 
+                        `<span class="tag">${label.name}</span>`
+                    ).join('');
+                    
+                    postsHTML += `
+                        <div class="post-card" data-id="${issue.number}">
+                            <div class="post-header">
+                                <div class="user-avatar">
+                                    <img src="https://cravatar.cn/avatar/${issue.user.id}?d=retro" alt="${issue.user.login}" width="40" height="40">
+                                </div>
+                                <div class="post-info">
+                                    <h3>${issue.user.login}</h3>
+                                    <div class="post-meta">发布于 ${createdAt}</div>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <h2>${issue.title}</h2>
+                                <p>${issue.body.substring(0, 200)}...</p>
+                                <div class="tag-list">${labels}</div>
+                            </div>
+                            <div class="post-footer">
+                                <span><i class="fas fa-comment"></i> ${issue.comments} 回复</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                postsContainer.innerHTML = postsHTML;
+                
+                // 添加点击事件
+                document.querySelectorAll('.post-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const issueId = card.getAttribute('data-id');
+                        showPostDetail(issueId);
+                    });
+                });
+                
+                // 更新统计信息
+                document.getElementById('postCount').textContent = issues.length;
+                const totalComments = issues.reduce((sum, issue) => sum + issue.comments, 0);
+                document.getElementById('replyCount').textContent = totalComments;
+                document.getElementById('memberCount').textContent = new Set(issues.map(issue => issue.user.id)).size;
+                
+            } catch (error) {
+                console.error('加载帖子失败:', error);
+                postsContainer.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>加载帖子失败: ${error.message}</p>
+                        <p>请稍后再试</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // 显示帖子详情
+        async function showPostDetail(issueId) {
+            try {
+                postDetailModal.style.display = 'flex';
+                const postDetailContent = document.getElementById('postDetailContent');
+                
+                postDetailContent.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-spinner"></i>
+                        <p>正在加载帖子详情...</p>
+                    </div>
+                `;
+                
+                const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues/${issueId}`);
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API错误: ${response.status}`);
+                }
+                
+                const issue = await response.json();
+                const createdAt = new Date(issue.created_at).toLocaleString();
+                const labels = issue.labels.map(label => 
+                    `<span class="tag">${label.name}</span>`
+                ).join('');
+                
+                // 获取评论
+                const commentsResponse = await fetch(issue.comments_url);
+                
+                if (!commentsResponse.ok) {
+                    throw new Error(`GitHub API错误: ${commentsResponse.status}`);
+                }
+                
+                const comments = await commentsResponse.json();
+                
+                let commentsHTML = '';
+                
+                comments.forEach(comment => {
+                    const commentDate = new Date(comment.created_at).toLocaleString();
+                    commentsHTML += `
+                        <div class="comment">
+                            <div class="comment-header">
+                                <div class="comment-user">
+                                    <img src="https://cravatar.cn/avatar/${comment.user.id}?d=retro" alt="${comment.user.login}" width="30" height="30" style="border-radius: 50%;">
+                                    ${comment.user.login}
+                                </div>
+                                <div class="comment-date">${commentDate}</div>
+                            </div>
+                            <div class="comment-content">
+                                ${comment.body}
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // 添加回复表单
+                const replyFormHTML = `
+                    <div class="reply-form">
+                        <h3>添加评论</h3>
+                        <p>评论千万条，等你发一条</p>
+                        <a href="https://github.com/${REPO_OWNER}/${REPO_NAME}/issues/${issueId}" class="github-reply-link" target="_blank">
+                            <i class="fab fa-github"></i> 发表评论
+                        </a>
+                    </div>
+                `;
+                
+                postDetailContent.innerHTML = `
+                    <div class="post-detail-header">
+                        <div class="user-avatar" style="width: 60px; height: 60px; margin-right: 15px;">
+                            <img src="https://cravatar.cn/avatar/${issue.user.id}?d=retro" alt="${issue.user.login}" width="60" height="60">
+                        </div>
+                        <div>
+                            <h1>${issue.title}</h1>
+                            <div class="post-meta">
+                                <span>作者: ${issue.user.login}</span>
+                                <span>发布于: ${createdAt}</span>
+                            </div>
+                            <div class="tag-list">${labels}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="post-content">
+                        ${issue.body}
+                    </div>
+                    
+                    <div class="comments-section">
+                        <h2>评论区 (${issue.comments})</h2>
+                        ${commentsHTML || '<p>暂无评论</p>'}
+                    </div>
+                    
+                    ${replyFormHTML}
+                `;
+                
+            } catch (error) {
+                console.error('加载帖子详情失败:', error);
+                postDetailContent.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>加载帖子详情失败: ${error.message}</p>
+                        <p>请稍后再试</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // 点击模态框外部关闭
+        window.addEventListener('click', (event) => {
+            if (event.target === postDetailModal) {
+                postDetailModal.style.display = 'none';
+            }
+        });
+        
+        // 点击关闭按钮关闭模态框
+        closeModal.addEventListener('click', () => {
+            postDetailModal.style.display = 'none';
+        });
+        
+        // 初始化加载帖子
+        loadPosts();
+    </script>
+</body>
+</html>
