@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Export</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: 600;
+        }
+        p { margin: 0.5em 0; }
+        ul, ol { margin: 0.5em 0; padding-left: 2em; }
+        blockquote {
+            margin: 1em 0;
+            padding-left: 1em;
+            border-left: 3px solid #ddd;
+            color: #666;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th { background: #f9f9f9; font-weight: 600; }
+        img { max-width: 100%; height: auto; }
+        a { color: #0066cc; }
+        hr { border: none; border-top: 1px solid #ddd; margin: 2em 0; }
+    </style>
+</head>
+<body>
+<h1>多数据源融合的互联网个人贷款及全流程风控系统</h1>
+<h2>1.文档信息</h2>
+<ul>
+<li>项目名称：多数据源融合的互联网个人贷款及全流程风控系统API文档。    </li>
+<li>版本：v1.0.0</li>
+<li>描述：本文档定义了个人贷款系统前后端交互的接口规范，所有接口遵循RESTful设计原则。</li>
+</ul>
+<h2>2.通用约定</h2>
+<h3>基础信息</h3>
+<ul>
+<li>Base URL：<a href="https://www.xxxxxx.com/v1">https://www.xxxxxx.com/v1</a></li>
+<li>数据格式：请求与响应主体均使用 application/json。</li>
+<li>字符编码：UTF-8</li>
+</ul>
+<h3>受保护的接口需在 HTTP Header中携带通过OAuth 2.0获取的访问令牌（Token）</h3>
+<pre><code class="hljs language-http"> Authorization: Bearer &lt;token&gt;
+</code></pre>
+<h3>返回码</h3>
+<ul>
+<li>若请求失败，API会返回如下JSON格式的返回码及说明</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;error&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;****&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;*****&quot;</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3>标准HTTP状态码</h3>
+<table>
+<thead>
+<tr>
+<th align="left">状态码</th>
+<th align="left">含义</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">200</td>
+<td align="left">OK</td>
+<td align="left">请求成功</td>
+</tr>
+<tr>
+<td align="left">201</td>
+<td align="left">Created</td>
+<td align="left">资源创建成功（如注册等）</td>
+</tr>
+<tr>
+<td align="left">400</td>
+<td align="left">Bad Request</td>
+<td align="left">请求参数错误</td>
+</tr>
+<tr>
+<td align="left">401</td>
+<td align="left">Unauthorized</td>
+<td align="left">未认证或Token无效</td>
+</tr>
+<tr>
+<td align="left">403</td>
+<td align="left">Forbidden</td>
+<td align="left">权限不足</td>
+</tr>
+<tr>
+<td align="left">404</td>
+<td align="left">Not Found</td>
+<td align="left">请求的资源不存在</td>
+</tr>
+<tr>
+<td align="left">500</td>
+<td align="left">Internal Server Error</td>
+<td align="left">服务器内部错误</td>
+</tr>
+</tbody></table>
+<h3>分页与列表查询</h3>
+<ul>
+<li>对于返回列表的接口，支持分页查询</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">请求参数</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">page</td>
+<td align="left">int</td>
+<td align="left">页码（从1开始）</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">int</td>
+<td align="left">每页大小（默认为10）</td>
+</tr>
+</tbody></table>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Success&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span> <span class="hljs-punctuation">,</span><span class="hljs-comment">//当前返回的数据列表</span>
+        <span class="hljs-attr">&quot;totalPages&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">5</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;totalElements&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">15</span>
+        <span class="hljs-attr">&quot;size&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;page&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th align="left">返回参数</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">totalPages</td>
+<td align="left">int</td>
+<td align="left">总页数</td>
+</tr>
+<tr>
+<td align="left">totalElements</td>
+<td align="left">int</td>
+<td align="left">总记录数</td>
+</tr>
+</tbody></table>
+<h2>3.接口详述</h2>
+<h3>3.1 用户注册登录</h3>
+<h4>3.1.1 用户注册</h4>
+<ul>
+<li>功能说明：用户输入手机号和验证码注册账号 </li>
+<li>功能需求：FR-01</li>
+<li>Endpoint: <code>POST https://www.xxxxxx.com/v1/users</code> (Basse URL以下皆省略，即省略“<a href="https://www.xxxxxx.com/v1%E2%80%9D">https://www.xxxxxx.com/v1”</a>)</li>
+<li>请求体：</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;mobile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;13607385337&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;sjm123456&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;smsCode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;554442&quot;</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>请求参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">mobile</td>
+<td align="left">String</td>
+<td align="left">用户手机号码</td>
+</tr>
+<tr>
+<td align="left">password</td>
+<td align="left">String</td>
+<td align="left">账号密码</td>
+</tr>
+<tr>
+<td align="left">smsCode</td>
+<td align="left">String</td>
+<td align="left">6位验证码</td>
+</tr>
+</tbody></table>
+<ul>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">201</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;User registered successfully&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;userID&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;10001&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1719832845000</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>响应参数<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">code</td>
+<td align="left">int</td>
+<td align="left">返回码</td>
+</tr>
+<tr>
+<td align="left">message</td>
+<td align="left">string</td>
+<td align="left">响应说明</td>
+</tr>
+<tr>
+<td align="left">userID</td>
+<td align="left">string</td>
+<td align="left">系统为用户定义的账户ID</td>
+</tr>
+<tr>
+<td align="left">timestamp</td>
+<td align="left">long</td>
+<td align="left">时间戳</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4>3.1.2 用户登录</h4>
+<ul>
+<li>功能说明：用户使用手机号和密码进行登录，获取访问令牌。</li>
+<li>功能需求：FR-01</li>
+<li>Endpoint: <code>POST /users/login</code></li>
+<li>请求体</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;mobile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;13607385337&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;password&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;sjm123456&quot;</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>请求参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">mobile</td>
+<td align="left">String</td>
+<td align="left">用户手机号码</td>
+</tr>
+<tr>
+<td align="left">password</td>
+<td align="left">String</td>
+<td align="left">账号密码</td>
+</tr>
+</tbody></table>
+<ul>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Login successfully&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;accessToken&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;...........&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;tokenType&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Bearer&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">accessToken</td>
+<td align="left">string</td>
+<td align="left">访问令牌</td>
+</tr>
+<tr>
+<td align="left">tokenType</td>
+<td align="left">string</td>
+<td align="left">令牌类型说明</td>
+</tr>
+</tbody></table>
+<h3>3.2 用户身份认证</h3>
+<ul>
+<li>功能说明：用户上传证件并进行人脸识别。</li>
+<li>功能需求：FR-02</li>
+<li>Endpoint:<code>POST /users/kyc</code></li>
+<li>Headers: <code>Authorization: bearer &lt;token&gt;</code></li>
+<li>请求体</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;realName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;牢大&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;idCardNumber&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xxxxxxxxxxxxxxxx&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;idCardFront&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://oss.example.com/id_front_123.jpg&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-comment">// 证件正面</span>
+  <span class="hljs-attr">&quot;idCardBack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://oss.example.com/id_back_123.jpg&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-comment">// 证件反面</span>
+  <span class="hljs-attr">&quot;faceRecognitionToken&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;fr_token_abc123&quot;</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>请求参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">realName</td>
+<td align="left">string</td>
+<td align="left">用户真实姓名</td>
+</tr>
+<tr>
+<td align="left">idCardNumber</td>
+<td align="left">string</td>
+<td align="left">用户证件号</td>
+</tr>
+<tr>
+<td align="left">faceRecognitionToken</td>
+<td align="left">string</td>
+<td align="left">人脸识别返回的令牌</td>
+</tr>
+</tbody></table>
+<ul>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;KYC submittedc successfully&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;kycStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;PENDING&quot;</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">kycStatus</td>
+<td align="left">string</td>
+<td align="left">证件状态</td>
+</tr>
+</tbody></table>
+<h3>3.3 贷款申请</h3>
+<h4>3.3.1 获取贷款产品列表</h4>
+<ul>
+<li>功能说明：用户申请贷款前，需查看可申请的贷款产品。</li>
+<li>功能需求：FR-03</li>
+<li>Endpoint: <code>GET /loan/products</code></li>
+<li>Headers: <code>Authorization: bearer &lt;token&gt;</code></li>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Success&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;productId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;productName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;急速贷&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;minAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1000.00</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;maxAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">50000.00</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;minTerm&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;maxTerm&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">12</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;annualInterestRate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">0.12</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;快速审批，急速到账&quot;</span>
+    <span class="hljs-punctuation">}</span>
+    <span class="hljs-comment">// 其他产品</span>
+  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">productId</td>
+<td align="left">int</td>
+<td align="left">产品编号</td>
+</tr>
+<tr>
+<td align="left">productName</td>
+<td align="left">string</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">minAmount</td>
+<td align="left">decimal</td>
+<td align="left">最低金额</td>
+</tr>
+<tr>
+<td align="left">maxAmount</td>
+<td align="left">decimal</td>
+<td align="left">最大金额</td>
+</tr>
+<tr>
+<td align="left">minTerm</td>
+<td align="left">int</td>
+<td align="left">最短还款日期</td>
+</tr>
+<tr>
+<td align="left">maxTerm</td>
+<td align="left">int</td>
+<td align="left">最大还款日期</td>
+</tr>
+<tr>
+<td align="left">annualInterestRate</td>
+<td align="left">decimal</td>
+<td align="left">利息</td>
+</tr>
+<tr>
+<td align="left">description</td>
+<td align="left">string</td>
+<td align="left">产品描述</td>
+</tr>
+</tbody></table>
+<h4>3.3.2 提交贷款申请</h4>
+<ul>
+<li>功能说明：用户选择产品，提交贷款申请。</li>
+<li>功能需求：FR-03</li>
+<li>Endpoint: <code>POST /loan/applications</code></li>
+<li>Header: <code>Authorization: bearer &lt;token&gt;</code></li>
+<li>请求体</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;productId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;applyAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10000.00</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;loanTerm&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>请求参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">applyAmount</td>
+<td align="left">decimal</td>
+<td align="left">申请金额</td>
+</tr>
+<tr>
+<td align="left">loanTerm</td>
+<td align="left">int</td>
+<td align="left">贷款期限</td>
+</tr>
+</tbody></table>
+<ul>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">201</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Loan application submitted successfully&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;applicationId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;AUTO_REVIEWING&quot;</span><span class="hljs-punctuation">,</span> 
+    <span class="hljs-attr">&quot;nextAction&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;WAIT_FOR_REVIEW&quot;</span> 
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">applycationId</td>
+<td align="left">string</td>
+<td align="left">账单编号</td>
+</tr>
+<tr>
+<td align="left">status</td>
+<td align="left">string</td>
+<td align="left">申请状态</td>
+</tr>
+<tr>
+<td align="left">nextAction</td>
+<td align="left">string</td>
+<td align="left">下一步操作提示</td>
+</tr>
+</tbody></table>
+<h4>3.3.3 查询申请状态</h4>
+<ul>
+<li><p>功能说明：用户查询某笔贷款申请状态。</p>
+</li>
+<li><p>功能需求：FR-03</p>
+</li>
+<li><p>Endpoint: <code>GET /loan/applications/{applicationId}</code></p>
+</li>
+<li><p>Header: <code>Authorization: bearer &lt;token&gt;</code></p>
+</li>
+<li><p>成功响应</p>
+</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Success&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;applicationId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;productName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;急速贷&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;applyAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10000.00</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APPROVED&quot;</span><span class="hljs-punctuation">,</span> 
+    <span class="hljs-attr">&quot;contractUrl&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://oss.example.com/contract_APP202411080001.pdf&quot;</span> <span class="hljs-comment">// 电子合同地址</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3>3.4 签署合同与绑卡</h3>
+<ul>
+<li>功能说明：用户在线阅读并确认电子合同，绑定银行卡用于还款。</li>
+<li>功能需求：FR-05</li>
+<li>Endpoint: <code>POST /loan/applications/{applicationId}/sign</code></li>
+<li>Header: <code>Authorization: bearer &lt;token&gt;</code></li>
+<li>请求体</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;agreed&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 用户已阅读并同意合同条款</span>
+  <span class="hljs-attr">&quot;bankCardNumber&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;6228480402564890018&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;bankName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;中国农业银行&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;branchName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;北京分行朝阳支行&quot;</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>请求参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">bankCardNumber</td>
+<td align="left">string</td>
+<td align="left">银行卡号</td>
+</tr>
+<tr>
+<td align="left">bankName</td>
+<td align="left">string</td>
+<td align="left">银行卡所属银行</td>
+</tr>
+<tr>
+<td align="left">branchName</td>
+<td align="left">string</td>
+<td align="left">办理支行</td>
+</tr>
+</tbody></table>
+<ul>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Contract signed and bank card bound successfully&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;applicationId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;SIGNED&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 状态变为已签署</span>
+    <span class="hljs-attr">&quot;nextAction&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;WAIT_FOR_DISBURSEMENT&quot;</span> <span class="hljs-comment">// 等待放款</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3>3.5 用户还款</h3>
+<h4>3.5.1 用户查询还款计划</h4>
+<ul>
+<li>功能说明：获取用户某一笔贷款的还款计划。</li>
+<li>功能需求：FR-06</li>
+<li>Endpoint: <code>GET /loan/repayment/{applicationId}/plans</code></li>
+<li>Header: <code>Authorization: bearer &lt;token&gt;</code></li>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Success&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;applicationId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;totalPeriods&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">12</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;repaidPeriods&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">3</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;repaymentPlans&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;periodNumber&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;dueDate&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1722504000000</span><span class="hljs-punctuation">,</span> 
+        <span class="hljs-attr">&quot;principalAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">833.33</span><span class="hljs-punctuation">,</span> 
+        <span class="hljs-attr">&quot;interestAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">100.00</span><span class="hljs-punctuation">,</span>  
+        <span class="hljs-attr">&quot;totalAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">933.33</span><span class="hljs-punctuation">,</span>   
+        <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;DUE&quot;</span><span class="hljs-punctuation">,</span>          <span class="hljs-comment">// 状态: UPCOMING(未到期), DUE(待还款), OVERDUE(逾期), REPAID(已还)</span>
+        <span class="hljs-attr">&quot;repaidTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span>        <span class="hljs-comment">// 若已还，则为还款时间</span>
+      <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-comment">// ... 其他期数计划</span>
+    <span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">totalPeriods</td>
+<td align="left">int</td>
+<td align="left">还款总期数</td>
+</tr>
+<tr>
+<td align="left">repaidPeriods</td>
+<td align="left">int</td>
+<td align="left">已还期数</td>
+</tr>
+<tr>
+<td align="left">periodNumber</td>
+<td align="left">int</td>
+<td align="left">当前期数</td>
+</tr>
+<tr>
+<td align="left">dueDate</td>
+<td align="left">long</td>
+<td align="left">截止时间戳</td>
+</tr>
+<tr>
+<td align="left">principalAmount</td>
+<td align="left">decimal</td>
+<td align="left">本期应还本金</td>
+</tr>
+<tr>
+<td align="left">interestAmount</td>
+<td align="left">decimal</td>
+<td align="left">本期应还利息</td>
+</tr>
+<tr>
+<td align="left">totalAmount</td>
+<td align="left">decimal</td>
+<td align="left">本期应还金额</td>
+</tr>
+<tr>
+<td align="left">repaidTime</td>
+<td align="left">string</td>
+<td align="left">还款时间</td>
+</tr>
+</tbody></table>
+<h4>3.5.2 发起还款请求</h4>
+<ul>
+<li><p>功能说明：用户为某一笔贷款的特定期数发起还款。</p>
+</li>
+<li><p>功能需求：FR-06</p>
+</li>
+<li><p>Endpoint: <code>POST /loan/repayment/{applicationId}</code></p>
+</li>
+<li><p>Headers: <code>Authorization: bearer &lt;token&gt;</code></p>
+</li>
+<li><p>请求体</p>
+</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;applicationId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repayPeriod&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 偿还第4期。如为0，则表示提前结清所有未还期数。</span>
+  <span class="hljs-attr">&quot;paymentMethod&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;BANK_CARD&quot;</span> <span class="hljs-comment">// 支付方式：银行卡、其他余额等</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Repayment request accepted, redirecting to payment...&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;repaymentId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;REP202411080001&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 本次还款请求的唯一ID</span>
+    <span class="hljs-attr">&quot;paymentUrl&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://payment.com/pay/xxx&quot;</span> <span class="hljs-comment">// 支付网关地址（如需跳转）</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h4>3.5.3 查看还款结果</h4>
+<ul>
+<li><p>功能说明：用户某一次还款后查询还款结果。</p>
+</li>
+<li><p>功能需求：FR-06</p>
+</li>
+<li><p>Endpoint: <code>GET /loan/repayment/{repaymentId}/result</code></p>
+</li>
+<li><p>Headers: <code>Authorization: bearer &lt;token&gt;</code></p>
+</li>
+<li><p>成功响应</p>
+</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Success&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;repaymentId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;REP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;SUCCESS&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 支付状态: PROCESSING, SUCCESS, FAILED</span>
+    <span class="hljs-attr">&quot;failureReason&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span> <span class="hljs-comment">// 若失败，此处为失败原因</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h3>3.6 执行审批</h3>
+<h4>3.6.1 系统自动审批</h4>
+<ul>
+<li><p>功能说明：由系统内部触发的流程，当用户提交贷款申请后，系统自动调用风控模型进行决策。不直接对前端开放。</p>
+</li>
+<li><p>功能需求：FR-04</p>
+</li>
+<li><p>Endpoint: <code>POST /internal/risk/auto-approval</code></p>
+</li>
+<li><p>触发条件：用户提交贷款申请（<code>POST /loan/applications</code>）,由系统自动调用。</p>
+</li>
+<li><p>请求体</p>
+</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;applicationId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;userId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10001</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;applyAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10000.00</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;loanTerm&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;userData&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">30</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;income&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">15000.00</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-comment">// ... 其他风控所需数据</span>
+    <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>请求参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">applyAmount</td>
+<td align="left">decimal</td>
+<td align="left">申请金额</td>
+</tr>
+<tr>
+<td align="left">loanTerm</td>
+<td align="left">int</td>
+<td align="left">贷款期数</td>
+</tr>
+<tr>
+<td align="left">age</td>
+<td align="left">int</td>
+<td align="left">年龄</td>
+</tr>
+<tr>
+<td align="left">income</td>
+<td align="left">decimal</td>
+<td align="left">收入</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>处理逻辑:<br>系统整合内外部数据，调用反欺诈和信用评分模型。<br>根据预置的业务规则（如额度限制、征信准入规则）进行决策。<br>更新贷款申请的状态。  </p>
+</li>
+<li><p>决策结果与状态映射:<br>自动通过 -&gt; 申请状态更新为  APPROVED <br>自动拒绝 -&gt; 申请状态更新为  REJECTED <br>转人工审核 -&gt; 申请状态更新为  PENDING_MANUAL_REVIEW</p>
+</li>
+</ul>
+<p> </p>
+<h4>3.6.2 （管理端）获取人工待审批列表</h4>
+<ul>
+<li><p>功能说明：风控管理员通过此接口获取所有需要人工审批的贷款申请列表。</p>
+</li>
+<li><p>功能需求：FR-08,FR-09</p>
+</li>
+<li><p>Endpoint: <code>GET /admin/loan/applications/pending-review</code></p>
+</li>
+<li><p>Headers: <code>Authorization: bearer &lt;admin-token&gt;</code>(管理员权限)</p>
+</li>
+<li><p>查询参数：<br>page:页码<br>size：每页大小</p>
+</li>
+<li><p>成功响应</p>
+</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Success&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;applicationId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;userInfo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+          <span class="hljs-attr">&quot;realName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;牢大&quot;</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">&quot;mobile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;138****8000&quot;</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">&quot;idCardNumber&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;11010119900307****&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;applyAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10000.00</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;loanTerm&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;productName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;急速贷&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;autoReviewResult&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+          <span class="hljs-attr">&quot;creditScore&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">650</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">&quot;riskLevel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;MEDIUM&quot;</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">&quot;reason&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;信用评分处于临界值，建议人工复核收入稳定性。&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;createTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1719832845000</span>
+      <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;totalPages&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;totalElements&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;size&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;page&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">creditScore</td>
+<td align="left">int</td>
+<td align="left">信用评分</td>
+</tr>
+<tr>
+<td align="left">riskLevel</td>
+<td align="left">string</td>
+<td align="left">风险等级</td>
+</tr>
+<tr>
+<td align="left">reason</td>
+<td align="left">string</td>
+<td align="left">转人工原因</td>
+</tr>
+</tbody></table>
+<h4>3.6.3 提交人工审批结果</h4>
+<ul>
+<li><p>功能说明：管理员对需要人工审批的申请进行审批，提交结果及理由</p>
+</li>
+<li><p>功能需求：FR-08</p>
+</li>
+<li><p>Endpoint: <code>POST /admin/loan/applications/{applicationId}/manual-approval</code></p>
+</li>
+<li><p>Headers: <code>Authorization: bearer &lt;token&gt;</code></p>
+</li>
+<li><p>请求体</p>
+</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;decision&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APPROVED&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 审批决定：APPROVED（通过） / REJECTED（拒绝）</span>
+  <span class="hljs-attr">&quot;approvalAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10000.00</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 审批金额（可&lt;=申请金额）</span>
+  <span class="hljs-attr">&quot;approvalTerm&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">6</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;remarks&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;经过人工复核用户银行流水，收入稳定，通过。&quot;</span> <span class="hljs-comment">// 审批备注/理由</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>请求参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">decision</td>
+<td align="left">string</td>
+<td align="left">审批结果</td>
+</tr>
+<tr>
+<td align="left">approvalAmount</td>
+<td align="left">decimal</td>
+<td align="left">审批金额</td>
+</tr>
+<tr>
+<td align="left">approvalTerm</td>
+<td align="left">int</td>
+<td align="left">审批期限</td>
+</tr>
+<tr>
+<td align="left">remarks</td>
+<td align="left">string</td>
+<td align="left">审批备注</td>
+</tr>
+</tbody></table>
+<ul>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Manual approval submitted successfully&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;applicationId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;Status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APPROVED&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 申请状态更新为已批准</span>
+    <span class="hljs-attr">&quot;approver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;admin_user01&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;approvalTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1719833000000</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<ul>
+<li>响应参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th align="left">类型</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">approver</td>
+<td align="left">string</td>
+<td align="left">审批员</td>
+</tr>
+<tr>
+<td align="left">approvalTime</td>
+<td align="left">long</td>
+<td align="left">审批时间戳</td>
+</tr>
+</tbody></table>
+<ul>
+<li>业务规则:<br>只有状态为  PENDING_MANUAL_REVIEW  的申请才能进行人工审批操作。<br>操作完成后，申请状态根据决策更新为  APPROVED 或 REJIECTED 。<br>审批理由（ remarks ）为必填项，以满足审计要求。</li>
+</ul>
+<h3>3.7 管理员查看借贷信息列表</h3>
+<ul>
+<li>功能说明：管理员分页获取借款列表。</li>
+<li>功能需求：FR-09</li>
+<li>Endpoint: <code>GET /admin/loan/applications</code></li>
+<li>Headers: <code>Authorization: bearer &lt;admin-token&gt;</code></li>
+<li>查询参数：<br>page,size:分页参数<br>status:按申请状态筛选。如 APPROVED,REJECTED, PENDING_MANUAL_REVIEW <br>disburseStatus:按放款状态筛选，如PENDING,SUCCESS,FAIILED<br>hasOverdue:按是否逾期筛选，如true/false<br>approvalTimeStart/approvalTimeEnd:按审批通过时间进行筛选<br>userMobile:按用户手机号进行筛选</li>
+<li>成功响应</li>
+</ul>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;code&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">200</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Success&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;data&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;applicationId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APP202411080001&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;userInfo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+          <span class="hljs-attr">&quot;userId&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10001</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">&quot;realName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;张*&quot;</span><span class="hljs-punctuation">,</span>
+          <span class="hljs-attr">&quot;mobile&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;138****8000&quot;</span>
+        <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;productName&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;急速贷&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;applyAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10000.00</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-attr">&quot;approvedAmount&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">10000.00</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 审批金额</span>
+        <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;APPROVED&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 审批状态为“已通过”</span>
+        <span class="hljs-attr">&quot;disburseStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;PENDING&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 放款状态：PENDING, SUCCESS, FAILED</span>
+        <span class="hljs-attr">&quot;overdueStatus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;NORMAL&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 逾期状态：NORMAL, OVERDUE, CLEARED</span>
+        <span class="hljs-attr">&quot;approvalTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1719833000000</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 审批通过时间</span>
+        <span class="hljs-attr">&quot;approver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;auto_risk_engine&quot;</span> <span class="hljs-comment">// 审批人/系统</span>
+      <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-comment">// ... 分页信息</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;timestamp&quot;</span><span class="hljs-punctuation">:</span> 
+
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h2>文档修订记录</h2>
+<table>
+<thead>
+<tr>
+<th align="left">版本</th>
+<th align="left">修订日期</th>
+<th align="left">修订内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">v1.0.0</td>
+<td align="left">2025-11-09</td>
+<td align="left">初稿创建</td>
+</tr>
+</tbody></table>
+
+</body>
+</html>
