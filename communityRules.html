@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>社区规则</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>【玄盾】开发者社区规则​​
+​​一、 我们的宗旨与愿景​​
+欢迎来到【玄盾】开发者社区！我们致力于构建一个​​专注于技术、充满尊重与包容、鼓励分享与协作​​的高质量社区。无论您是初学者还是资深专家，这里都应是您获取知识、交流想法、共同成长的理想家园。</p>
+<p>​​二、 核心原则​​
+​​专业与质量 (Professionalism &amp; Quality)​​</p>
+<p>​​鼓励原创、深度、有价值的内容分享​​，包括技术文章、教程、代码解析、项目经验、行业洞察等。</p>
+<p>​​提问前先搜索​​，避免重复发布已被解答过的问题。</p>
+<p>​​提问需清晰​​，提供必要的上下文信息（如：操作系统、语言版本、相关代码、错误日志、已尝试的解决方案等）。</p>
+<p>​​尊重与包容 (Respect &amp; Inclusion)​​</p>
+<p>​​彼此尊重，对事不对人​​。我们鼓励技术观点的碰撞，但必须保持礼貌，禁止任何形式的人身攻击、歧视、挑衅、嘲讽或贬低他人。</p>
+<p>​​包容不同水平的学习者​​。禁止因他人提问“简单”或“基础”而进行嘲笑。我们都是从新手过来的。</p>
+<p>尊重他人的时间和隐私。</p>
+<p>​​开放与协作 (Openness &amp; Collaboration)​​</p>
+<p>乐于分享，感谢他人的帮助。一个“采纳答案”或简单的感谢，是对帮助者最好的回馈。</p>
+<p>鼓励就技术问题进行深入的讨论和辩论，以追求真理为目标。</p>
+<p>欢迎有理有据的批评和指正，共同提升内容质量。</p>
+<p>​​诚信与责任 (Integrity &amp; Responsibility)​​</p>
+<p>禁止任何形式的​​抄袭、洗稿​​。转载或翻译他人文章，必须​​明确标注原作者和原始出处​​，并获得必要的授权。</p>
+<p>禁止发布虚假、误导性或夸大其词的信息（如：夸大某个技术的性能、散布未经证实的漏洞等）。</p>
+<p>对自己的言论负责，遵守中国法律法规。</p>
+<p>​​三、 禁止行为（红线）​​
+以下行为将导致内容被删除，并对账号进行​​警告、禁言或永久封禁​​的处理：</p>
+<p>​​违法违规内容​​：违反中华人民共和国法律法规、涉及政治敏感话题、色情、暴力、赌博、诈骗等内容。</p>
+<p>​​人身攻击与歧视​​：对社区成员进行辱骂、诽谤、骚扰、威胁，或基于性别、年龄、种族、地域、性取向等进行歧视。</p>
+<p>​​垃圾广告与推广​​：</p>
+<p>未经允许的商业广告、推广链接、软文、招聘信息等。</p>
+<p>频繁发布与主题无关的二维码、公众号、群聊信息等。</p>
+<p>​​恶意行为​​：</p>
+<p>故意发布错误、误导性信息。</p>
+<p>恶意灌水、刷屏（如重复发布相同内容、无意义字符等）。</p>
+<p>冒充他人或官方人员。</p>
+<p>​​侵犯知识产权​​：</p>
+<p>未获授权转载、抄袭他人内容。</p>
+<p>讨论或提供盗版软件、破解工具、侵权资源的下载链接。</p>
+<p>​​AI内容滥用​​：</p>
+<p>​​禁止直接、无脑地粘贴AI生成的内容作为答案或文章​​。我们鼓励经过自己消化、验证和编辑的，能体现个人思考的技术分享。低质量、充满错误的AI内容将被视为垃圾信息。</p>
+<p>​​四、 内容发布指南​​</p>
+<p>​​标题清晰明了​​：好的标题能让他人快速判断是否能够提供帮助。例如：《Docker构建时如何减少Layer层？》优于《求助！Docker问题》。</p>
+<p>​​代码规范​​：</p>
+<p>提问时尽量提供​​最小可复现代例 (Minimal Reproducible Example)​​。</p>
+<p>使用代码块（```）格式化代码，并注明语言类型，以提高可读性。</p>
+<p>​​版权说明​​：发布非原创内容时，必须在文章开头或结尾显著位置标注来源和作者。</p>
+<p>​​五、 隐私与安全​​
+请勿在公开板块泄露个人或他人的敏感信息（如：手机号、邮箱、密码、身份证号、IP地址等）。</p>
+<p>社区交流请保持在站内，谨慎接受未经请求的私信联系，注意保护自身安全。</p>
+<p>​​最后​​</p>
+<p>本规则旨在为我们所有人维护一个干净、有价值的交流空间。规则的最终解释权归【玄盾】开发者社区所有，我们有权根据社区发展对规则进行修订。</p>
+<p>感谢您的理解与配合，期待您在这里分享知识、结交朋友、收获成长！</p>
+<p>​​【玄盾】管理团队​​</p>
+<p>​​【2025.9.16】​</p>
+
+</body>
+</html>

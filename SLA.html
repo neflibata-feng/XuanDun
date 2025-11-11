@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>服务协议</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>服务协议​​
+​​最后更新日期：​​ 2025年9月16日</p>
+<p>​​重要提示：请您在使用玄盾金融系统全平台产品（以下简称“本平台”）之前，仔细阅读本服务协议（以下简称“本协议”）。您一旦注册、登录、访问或以任何方式使用本服务，即视为您已充分阅读、理解并完全同意接受本协议的全部条款的约束。如果您不同意本协议的任何内容，请立即停止使用本服务。​​</p>
+<p>​​1. 服务定义​​
+本平台是由【玄盾】（以下简称“我们”或“平台方”）提供的一个​​仅限于测试、开发与研究用途​​的金融系统模拟环境。本平台内所有数据均为模拟数据，所有功能均处于测试阶段，​​与真实生产环境存在显著差异​​。</p>
+<p>​​2. 接受条款​​
+通过访问和使用本平台，您同意遵守本协议以及所有适用的法律法规。您保证您是为测试或开发目的而使用本平台，而非用于任何商业运营目的。</p>
+<p>​​3. 授权范围与使用限制​​
+我们授予您一项个人的、可撤销的、非独占的、不可转让的、非商业的有限许可，仅允许您出于以下目的访问和使用本平台：</p>
+<p>软件功能测试与验证</p>
+<p>系统集成与开发调试</p>
+<p>学术研究或技术评估</p>
+<p>内部培训与演示</p>
+<p>​​您严格禁止以下行为：​​</p>
+<p>​​商业化使用：​​ 严禁将本平台或其任何部分用于任何商业、生产或盈利性目的，包括但不限于处理真实金融交易、真实用户数据或向第三方提供任何形式的服务。</p>
+<p>​​安全测试：​​ 严禁未经我们明确的书面授权，对本平台进行任何网络安全扫描、压力测试、渗透测试或任何可能破坏平台稳定和安全的行为。</p>
+<p>​​移除标识：​​ 严禁删除、隐藏或修改本平台上的任何版权、商标、专利或其他所有权声明。</p>
+<p>​​反向工程：​​ 严禁对本平台的软件、代码、结构或功能进行反向工程、反编译、反汇编或任何试图推导其源代码的行为。</p>
+<p>​​4. 知识产权与开源合规​​
+​​平台方知识产权：​​ 本平台的整体设计、架构、专属代码、文档、图形界面、商标和品牌（“平台方知识产权”）归我们或我们的许可方所有。本协议未向您转让任何平台方知识产权。</p>
+<p>​​开源组件：​​ 本平台的开发可能包含或依赖于受开源许可证（如GPL、LGPL、Apache、MIT等）约束的第三方开源软件组件。</p>
+<p>​​您的合规义务：​​ 您在使用本平台时，​​必须严格遵守​​所有相关开源许可证的条款。这通常包括但不限于：</p>
+<p>​​保留声明：​​ 必须完整保留所有开源代码中的版权信息和许可声明。</p>
+<p>​​源代码公开：​​ 如果您修改或创建了基于某些“Copyleft”型许可证（如GPL）的代码的衍生作品，您可能有义务将修改后的完整源代码向公众开源。</p>
+<p>您应自行负责查阅、理解并遵守这些开源许可证的规定。因您违反开源许可证而导致我们遭受任何损害或损失，您应负责赔偿。</p>
+<p>​​5. 免责声明​​
+​​本平台按“现状”和“可用性”提供，平台方明确不提供任何形式的明示或暗示担保，包括但不限于对适销性、特定用途适用性、不侵权及持续稳定的可用性的担保。​​</p>
+<p>测试数据及系统产出的一切结果​​均无任何经济价值​​，​​不得作为任何商业决策、投资建议或任何其他依赖的依据​​。</p>
+<p>我们有权随时中断、终止或变更测试服务，且无需事先通知。</p>
+<p>您使用本平台所产生的一切风险及后果将由您自行承担。</p>
+<p>​​6. 隐私与数据​​
+您同意我们的隐私政策<a href="https://docs.uestcgal.top/privacyPolicy.md">链接</a>，该政策规定了我们如何收集和使用您的注册信息及使用数据。测试环境中产生的所有业务数据均为模拟数据，我们不对其进行保密。</p>
+<p>​​7. 协议的变更与终止​​
+我们保留随时更新或修改本协议的权利。修改后的协议将在本页面公布后立即生效。您继续使用本平台即表示接受更新后的协议。</p>
+<p>我们有权因任何原因（包括但不限于您违反本协议）随时终止您的访问权限，无需承担任何责任。</p>
+<p>​​8. 适用法律​​
+本协议的订立、执行和解释均适用中华人民共和国法律。因本协议引起的任何争议，应提交至​​平台方所在地有管辖权的人民法院​​诉讼解决。</p>
+<p>​​再次提醒：本平台仅为测试环境，严禁一切商业化用途。您必须遵守所有内置开源组件的许可证规则。​​</p>
+<p>​​如果您一旦注册、登录、访问或以任何方式使用本服务，即表示您已阅读、理解并同意受上述所有条款和条件的约束。
+Service Agreement<br>
+Last Updated: September 16, 2025</p>
+<p>Important Notice: Please read this Service Agreement (hereinafter referred to as &quot;this Agreement&quot;) carefully before using any products on the Xuandun Financial System platform (hereinafter referred to as &quot;this Platform&quot;). By registering, logging in, accessing, or using this service in any way, you are deemed to have fully read, understood, and completely agreed to be bound by all the terms of this Agreement. If you do not agree to any part of this Agreement, please immediately cease using this service.</p>
+<ol>
+<li>
+<p>Service Definition<br>
+This Platform is a financial system simulation environment provided by [Xuandun] (hereinafter referred to as &quot;we&quot; or &quot;the Platform Provider&quot;) solely for testing, development, and research purposes. All data within this Platform is simulated data, and all functionalities are in the testing phase, significantly differing from a real production environment.</p>
+</li>
+<li>
+<p>Acceptance of Terms<br>
+By accessing and using this Platform, you agree to comply with this Agreement and all applicable laws and regulations. You warrant that you are using this Platform for testing or development purposes and not for any commercial operational purposes.</p>
+</li>
+<li>
+<p>Scope of Authorization and Usage Restrictions<br>
+We grant you a personal, revocable, non-exclusive, non-transferable, non-commercial limited license to access and use this Platform solely for the following purposes:</p>
+</li>
+</ol>
+<p>• Software functionality testing and verification</p>
+<p>• System integration and development debugging</p>
+<p>• Academic research or technical evaluation</p>
+<p>• Internal training and demonstrations</p>
+<p>You are strictly prohibited from the following activities:</p>
+<p>• Commercial Use: Strictly prohibited from using this Platform or any part thereof for any commercial, production, or profit-making purposes, including but not limited to processing real financial transactions, real user data, or providing any form of service to third parties.</p>
+<p>• Security Testing: Strictly prohibited from conducting any network security scanning, stress testing, penetration testing, or any activity that may compromise the stability and security of the Platform without our explicit written authorization.</p>
+<p>• Removal of Identifiers: Strictly prohibited from removing, concealing, or modifying any copyright, trademark, patent, or other proprietary notices on this Platform.</p>
+<p>• Reverse Engineering: Strictly prohibited from reverse engineering, decompiling, disassembling, or attempting to derive the source code of the Platform's software, code, structure, or functionality.</p>
+<ol start="4">
+<li>Intellectual Property and Open-Source Compliance<br>
+• Platform Provider Intellectual Property: The overall design, architecture, proprietary code, documentation, graphical interface, trademarks, and brands of this Platform (&quot;Platform Provider Intellectual Property&quot;) are owned by us or our licensors. This Agreement does not transfer any Platform Provider Intellectual Property to you.</li>
+</ol>
+<p>• Open-Source Components: The development of this Platform may include or rely on third-party open-source software components governed by open-source licenses (e.g., GPL, LGPL, Apache, MIT, etc.).</p>
+<p>• Your Compliance Obligations: When using this Platform, you must strictly comply with the terms of all relevant open-source licenses. This typically includes but is not limited to:</p>
+<p>• Retention of Notices: Must fully retain all copyright information and license notices in the open-source code.</p>
+<p>• Source Code Disclosure: If you modify or create derivative works based on code governed by &quot;Copyleft&quot; licenses (e.g., GPL), you may be obligated to open-source the complete modified source code to the public.</p>
+<p>You are solely responsible for reviewing, understanding, and complying with these open-source license terms. You shall be liable for any damages or losses we incur due to your violation of open-source licenses.</p>
+<ol start="5">
+<li>Disclaimer<br>
+This Platform is provided &quot;as-is&quot; and &quot;as available,&quot; and the Platform Provider expressly disclaims all warranties of any kind, whether express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, non-infringement, and continuous stable availability.</li>
+</ol>
+<p>All test data and results produced by the system have no economic value and shall not be used as a basis for any commercial decisions, investment advice, or any other form of reliance.</p>
+<p>We reserve the right to interrupt, terminate, or modify the testing service at any time without prior notice.</p>
+<p>All risks and consequences arising from your use of this Platform shall be borne solely by you.</p>
+<ol start="6">
+<li>
+<p>Privacy and Data<br>
+You agree to our Privacy Policy https://docs.uestcgal.top/privacyPolicy.md, which outlines how we collect and use your registration information and usage data. All business data generated in the test environment is simulated data, and we do not treat it as confidential.</p>
+</li>
+<li>
+<p>Amendment and Termination of the Agreement<br>
+We reserve the right to update or modify this Agreement at any time. The revised Agreement will take effect immediately upon publication on this page. Your continued use of this Platform constitutes acceptance of the updated Agreement.</p>
+</li>
+</ol>
+<p>We have the right to terminate your access at any time for any reason (including but not limited to your violation of this Agreement) without incurring any liability.</p>
+<ol start="8">
+<li>Governing Law<br>
+The formation, execution, and interpretation of this Agreement shall be governed by the laws of the People's Republic of China. Any disputes arising from this Agreement shall be submitted to the competent people's court in the location of the Platform Provider for resolution.</li>
+</ol>
+<p>Reminder: This Platform is solely a testing environment, and all commercial use is strictly prohibited. You must comply with the license terms of all built-in open-source components.</p>
+<p>By registering, logging in, accessing, or using this service in any way, you indicate that you have read, understood, and agreed to be bound by all the above terms and conditions.</p>
+
+</body>
+</html>

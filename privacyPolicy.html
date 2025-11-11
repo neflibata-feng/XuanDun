@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>隐私政策</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>隐私政策​​
+​​最后更新日期：​​ 2025年9月16日</p>
+<p>​​【玄盾】（以下简称“我们”）高度重视用户的隐私保护。本隐私政策阐述了当您访问或使用我们的【玄盾金融系统全平台产品】（以下简称“本平台”）时，我们如何收集、使用、披露和处理您的信息。​​</p>
+<p>​​重要提示：本平台是一个仅供测试和开发使用的模拟环境。请您在使用前仔细阅读本政策。如果您不同意本政策的任何内容，请勿注册或使用我们的服务。通过注册、登录或使用本平台，即表示您同意我们按照本政策的规定收集、使用和处理您的信息。​​</p>
+<p>​​1. 我们收集的信息​​
+在您使用本平台的过程中，我们可能会收集以下两类信息：</p>
+<p>​​1.1 您直接提供给我们的信息​​</p>
+<p>​​账户信息：​​ 当您注册测试账户时，我们会收集您的​​姓名、电子邮箱地址、用户名、密码​​以及您可能选择提供的其他信息（如所属公司/机构名称）。这些信息仅用于账户管理和平台访问。</p>
+<p>​​联系记录：​​ 当您联系我们寻求技术支持或提供反馈时，我们会保存您的通信记录和联系方式。</p>
+<p>​​1.2 我们自动收集的信息​​</p>
+<p>​​使用日志与技术数据：​​ 当您访问本平台时，我们会自动收集某些信息，包括：</p>
+<p>​​IP地址​​、浏览器类型和版本、操作系统信息。</p>
+<p>您的设备信息。</p>
+<p>您访问的页面、访问时间和日期、在每个页面上停留的时间。</p>
+<p>通过Cookies和类似技术收集的信息（详见下文）。</p>
+<p>​​2. 我们如何使用您的信息​​
+我们仅出于以下合法目的使用收集到的信息：</p>
+<p>​​提供和维护服务：​​ 创建和管理您的账户，为您提供平台访问权限和功能。</p>
+<p>​​沟通与支持：​​ 就账户相关事宜、平台更新、安全公告或客户支持请求与您联系。</p>
+<p>​​服务改进：​​ 分析用户如何使用我们的平台，以改进功能、优化性能和用户体验。</p>
+<p>​​安全与合规：​​ 监控和防止欺诈行为，保护本平台和用户的安全，并履行我们的法律义务。</p>
+<p>​​特别说明：​​ 本平台内所有​​业务数据（如模拟交易、模拟用户信息、测试结果等）均为虚构的测试数据​​。我们不会将这些模拟数据视为个人信息，也不会将其用于本政策所述目的之外的任何用途。</p>
+<p>​​3. Cookies与类似技术​​
+我们使用Cookies和类似技术（如像素标签）来收集和使用上述信息。</p>
+<p>​​用途：​​ 这些技术用于维持您的登录状态、记住您的偏好、了解您如何使用我们的平台以及定制和改善您的体验。</p>
+<p>​​控制：​​ 您可以通过浏览器设置拒绝或管理Cookies。但请注意，禁用Cookies可能会影响本平台的某些功能的正常使用。</p>
+<p>​​4. 信息的共享与披露​​
+我们​​绝不会​​出售您的个人信息。我们仅在以下有限情况下共享您的信息：</p>
+<p>​​服务提供商：​​ 我们可能会聘请受合同约束的第三方服务提供商（如云主机提供商、数据分析服务商）来协助我们运营平台。这些提供商只能为向我们提供服务而访问您的信息，并必须对信息保密。</p>
+<p>​​遵守法律：​​ 如果我们确信为了遵守适用的法律、法规、法律程序或政府强制性要求是必要的，我们可能会披露您的信息。</p>
+<p>​​保护权利与安全：​​ 为保护我们、我们的用户或公众的权利、财产和安全免受损害，我们可能会在必要时披露信息。</p>
+<p>​​5. 您的数据权利​​
+根据适用法律，您可能拥有以下 regarding 您的个人信息：</p>
+<p>​​访问和更正：​​ 您有权访问我们持有的关于您的个人信息，并要求更正不准确的信息。您通常可以在账户设置中直接管理这些信息。</p>
+<p>​​删除：​​ 您可以请求我们删除您的个人信息。</p>
+<p>​​限制处理：​​ 在某些情况下，您可以要求我们暂停处理您的个人信息。</p>
+<p>​​数据可携性：​​ 您有权以结构化的、通用的、机器可读的格式获取您提供给我们的个人信息。</p>
+<p>如需行使上述任何权利，请通过本政策末尾提供的联系方式与我们联系。我们将在适用法律要求的时间内回复您的请求。</p>
+<p>​​6. 数据安全与保留​​
+​​安全：​​ 我们实施合理的管理、技术性和物理性安全措施，以保护您的个人信息免遭丢失、滥用、未经授权的访问、披露、更改和破坏。</p>
+<p>​​保留：​​ 我们仅在为实现本政策所述目的所必需的期限内保留您的个人信息。当您注销测试账户后，我们将在合理的时间内删除或匿名化处理您的个人信息，除非法律要求我们延长保留期。</p>
+<p>​​7. 本政策的变更​​
+我们可能会不时更新本隐私政策。任何变更都会在本页面发布修订后的政策，并更新“最后更新日期”。我们鼓励您定期查阅本政策以了解最新信息。变更后的政策在发布后立即生效。</p>
+<p>Privacy Policy<br>
+Last Updated: September 16, 2025</p>
+<p>[Xuandun] (hereinafter referred to as &quot;we&quot;) highly values the privacy protection of our users. This Privacy Policy explains how we collect, use, disclose, and process your information when you access or use our [Xuandun Financial System Full Platform Products] (hereinafter referred to as &quot;this Platform&quot;).</p>
+<p>Important Notice: This Platform is a simulated environment intended solely for testing and development purposes. Please read this Policy carefully before using our services. If you do not agree with any part of this Policy, please do not register or use our services. By registering, logging in, or using this Platform, you consent to our collection, use, and processing of your information in accordance with the provisions of this Policy.</p>
+<ol>
+<li>Information We Collect<br>
+During your use of this Platform, we may collect the following two types of information:</li>
+</ol>
+<p>1.1 Information You Provide Directly to Us</p>
+<p>Account Information: When you register for a test account, we collect your name, email address, username, password, and any other information you may choose to provide (such as your company/institution name). This information is used solely for account management and platform access.</p>
+<p>Communication Records: When you contact us for technical support or provide feedback, we save records of your communications and contact details.</p>
+<p>1.2 Information We Collect Automatically</p>
+<p>Usage Logs and Technical Data: When you access this Platform, we automatically collect certain information, including:</p>
+<p>IP address, browser type and version, and operating system information.<br>
+Your device information.<br>
+Pages visited, access times and dates, and time spent on each page.<br>
+Information collected through Cookies and similar technologies (as detailed below).</p>
+<ol start="2">
+<li>How We Use Your Information<br>
+We use the collected information only for the following legitimate purposes:</li>
+</ol>
+<p>Providing and Maintaining Services: Creating and managing your account, providing you with platform access and functionalities.</p>
+<p>Communication and Support: Contacting you regarding account-related matters, platform updates, security announcements, or customer support requests.</p>
+<p>Service Improvement: Analyzing how users interact with our platform to improve functionalities, optimize performance, and enhance user experience.</p>
+<p>Security and Compliance: Monitoring and preventing fraudulent activities, safeguarding the security of this Platform and its users, and fulfilling our legal obligations.</p>
+<p>Special Note: All business data within this Platform (such as simulated transactions, simulated user information, test results, etc.) are fictional test data. We do not treat such simulated data as personal information, nor do we use it for any purposes beyond those described in this Policy.</p>
+<ol start="3">
+<li>Cookies and Similar Technologies<br>
+We use Cookies and similar technologies (such as pixel tags) to collect and use the information mentioned above.</li>
+</ol>
+<p>Purpose: These technologies are used to maintain your login status, remember your preferences, understand how you use our platform, and customize and improve your experience.</p>
+<p>Control: You can refuse or manage Cookies through your browser settings. Please note, however, that disabling Cookies may affect the normal use of certain features of this Platform.</p>
+<ol start="4">
+<li>Sharing and Disclosure of Information<br>
+We will never sell your personal information. We share your information only under the following limited circumstances:</li>
+</ol>
+<p>Service Providers: We may engage third-party service providers (such as cloud hosting providers and data analytics services) bound by contracts to assist us in operating the platform. These providers may access your information solely for the purpose of providing services to us and must keep the information confidential.</p>
+<p>Legal Compliance: We may disclose your information if we believe it is necessary to comply with applicable laws, regulations, legal processes, or governmental mandatory requirements.</p>
+<p>Protecting Rights and Security: We may disclose information when necessary to protect the rights, property, and safety of our company, our users, or the public from harm.</p>
+<ol start="5">
+<li>Your Data Rights<br>
+Under applicable laws, you may have the following rights regarding your personal information:</li>
+</ol>
+<p>Access and Correction: You have the right to access the personal information we hold about you and to request corrections to inaccurate information. You can typically manage this information directly in your account settings.</p>
+<p>Deletion: You may request that we delete your personal information.</p>
+<p>Restriction of Processing: In certain circumstances, you may request that we suspend the processing of your personal information.</p>
+<p>Data Portability: You have the right to receive the personal information you provided to us in a structured, commonly used, and machine-readable format.</p>
+<p>To exercise any of the above rights, please contact us using the contact details provided at the end of this Policy. We will respond to your request within the time frame required by applicable laws.</p>
+<ol start="6">
+<li>Data Security and Retention<br>
+Security: We implement reasonable administrative, technical, and physical security measures to protect your personal information from loss, misuse, unauthorized access, disclosure, alteration, and destruction.</li>
+</ol>
+<p>Retention: We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Policy. After you deactivate your test account, we will delete or anonymize your personal information within a reasonable time, unless laws require us to retain it for a longer period.</p>
+<ol start="7">
+<li>Changes to This Policy<br>
+We may update this Privacy Policy from time to time. Any changes will be posted on this page with the revised policy and an updated &quot;Last Updated&quot; date. We encourage you to review this Policy periodically to stay informed. The updated policy will take effect immediately upon posting.</li>
+</ol>
+
+</body>
+</html>
