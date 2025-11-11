@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玄盾OpenAPI开发者门户</title>
+    <title>玄盾OpenAPI开发者门户首页</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -127,108 +127,78 @@
             margin: 0 auto 40px;
         }
 
-        .search-box {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
+        .chat-container {
+            width: 1000px;
+            max-width: 90%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            height: 200px; 
         }
 
-        .search-box input {
-            width: 100%;
-            padding: 15px 20px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 1rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        .chat-window {
+           flex: 1;
+           padding: 15px;
+           overflow-y: auto;
+           background-color: #f9f9f9;
         }
 
-        .search-box button {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--primary);
-            color: white;
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+
+        .user-message {
+            background-color: #ffffff;
+            color: #000000;
+            align-self: flex-end;
+       }
+
+        .bot-message {
+            background-color: #ffffff;
+            color: #000000;
+            align-self: flex-start;
+        }
+
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+
+        .chat-input input {
+            flex: 1;
             border: none;
-            border-radius: 6px;
-            padding: 8px 15px;
-            cursor: pointer;
-            transition: all 0.3s;
+            padding: 10px 15px;
+            font-size: 16px;
+            outline: none;
         }
 
-        .search-box button:hover {
-            background: var(--primary-dark);
+        .chat-input button {
+            background-color: #000000;
+            border: none;
+            padding: 0 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .chat-input button:hover {
+            background-color: #696d70;
         }
 
        
 
-        /* 快速开始 */
-        .quick-start {
-            background: var(--light);
-            padding: 80px 5%;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .quick-start-content {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .quick-start h2 {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: var(--dark);
-            text-align: center;
-        }
-
-        .steps {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .step {
-            display: flex;
-            gap: 20px;
-        }
-
-        .step-number {
-            width: 36px;
-            height: 36px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-weight: 700;
-        }
-
-        .step-content h3 {
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-
-        .step-content p {
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-
-        .code-block {
-            background: #f1f5f9;
-            border-radius: 6px;
-            padding: 15px;
-            font-family: monospace;
-            font-size: 0.95rem;
-            overflow-x: auto;
-        }
-
+        
         /* 页脚 */
         footer {
             background: var(--dark);
@@ -340,54 +310,21 @@
     <section class="hero">
         <h1>OpenAPI</h1>
         <p>从这里开始，集成玄盾金融系统</p>
-        <div class="search-box">
-            <input type="text" placeholder="搜索文档、API、示例...">
-            <button><i class="fas fa-search"></i> 搜索</button>
+    </section>
+    <!-- 聊天区域 -->
+    <section class="chat-container">
+        <div class="chat-window" id="chatWindow">
+        <!-- 聊天消息会显示在这里 -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" placeholder="与玄小盾AI聊天，获取帮助和支持...">
+            <button id="sendBtn"><i class="fas fa-comments"></i></button>
         </div>
     </section>
 
     
 
-    <!-- 快速开始 -->
-    <section class="quick-start">
-        <div class="quick-start-content">
-            <h2>快速开始</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>创建开发者账号</h3>
-                        <p>注册开放平台账号并创建应用获取API密钥</p>
-                        <div class="code-block">
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>安装SDK</h3>
-                        <p>选择适合您开发语言的SDK并安装</p>
-                        <div class="code-block">
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>调用API</h3>
-                        <p>使用您的API密钥进行身份验证并调用API</p>
-                        <div class="code-block">
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- 页脚 -->
     <footer>
@@ -433,3 +370,34 @@
     </footer>
 </body>
 </html>
+<script>
+    const chatWindow = document.getElementById('chatWindow');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    // 添加消息到聊天窗口
+    function addMessage(content, type) {
+        const msg = document.createElement('div');
+        msg.className = 'chat-message ' + (type === 'user' ? 'user-message' : 'bot-message');
+            msg.textContent = content;
+            chatWindow.appendChild(msg);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+    // 点击按钮发送消息
+    sendBtn.addEventListener('click', () => {
+        const text = userInput.value.trim();
+        if (!text) return;
+        addMessage(text, 'user');
+        userInput.value = '';
+
+    // 模拟AI回复
+        setTimeout(() => {
+            addMessage('玄小盾：' + text, 'bot');
+        }, 500);
+   });
+
+    // 回车发送
+    userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendBtn.click();
+   });
+</script>
