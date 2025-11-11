@@ -788,7 +788,7 @@
                         <div class="post-card" data-id="${issue.number}">
                             <div class="post-header">
                                 <div class="user-avatar">
-                                    <img src="https://cravatar.cn/avatar/${issue.user.id}?d=retro" alt="${issue.user.login}" width="40" height="40">
+                                  <img src="${issue.user.avatar_url}" alt="${issue.user.login}" width="40" height="40">
                                 </div>
                                 <div class="post-info">
                                     <h3>${issue.user.login}</h3>
@@ -877,7 +877,7 @@
                         <div class="comment">
                             <div class="comment-header">
                                 <div class="comment-user">
-                                    <img src="https://cravatar.cn/avatar/${comment.user.id}?d=retro" alt="${comment.user.login}" width="30" height="30" style="border-radius: 50%;">
+                                    <img src="${comment.user.avatar_url}" alt="${comment.user.login}" width="30" height="30">
                                     ${comment.user.login}
                                 </div>
                                 <div class="comment-date">${commentDate}</div>
@@ -903,7 +903,7 @@
                 postDetailContent.innerHTML = `
                     <div class="post-detail-header">
                         <div class="user-avatar" style="width: 60px; height: 60px; margin-right: 15px;">
-                            <img src="https://cravatar.cn/avatar/${issue.user.id}?d=retro" alt="${issue.user.login}" width="60" height="60">
+                            <img src="${issue.user.avatar_url}" alt="${issue.user.login}" width="60" height="60">
                         </div>
                         <div>
                             <h1>${issue.title}</h1>
