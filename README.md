@@ -5,7 +5,7 @@
 本仓库是团队金融系统项目的开放平台，聚焦对外开放能力与生态协作，提供标准化接口、事件机制与扩展点，便于集成账户、账务、清结算、对账、风控等金融核心域能力。
 
 ## 网页截图
-![XuanDun](https://github.com/neflibata-feng/ImgBase/blob/main/XuanDun.png?raw=true)
+![XuanDun](https://github.com/neflibata-feng/ImgBase/blob/main/XuanDun1.png?raw=true)
 ## 贡献
 - 提交 Issue 描述需求或缺陷
 - Fork 后创建特性分支并提交 PR（建议使用 Conventional Commits）
