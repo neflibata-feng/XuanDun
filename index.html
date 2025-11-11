@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玄盾OpenAPI开发者门户首页</title>
+    <title>玄盾开发者门户</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -399,7 +399,7 @@ sendBtn.addEventListener('click', async () => {
 
     try {
         // 调用Hugging Face匿名推理接口
-        const response = await fetch("https://huggingface.co/api/inference/HuggingFaceH4/zephyr-7b-beta", {
+        const response = await fetch("https://router.huggingface.co/hf-inference/models/gpt2", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ inputs: text })
