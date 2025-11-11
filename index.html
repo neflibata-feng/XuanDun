@@ -384,20 +384,42 @@
             chatWindow.scrollTop = chatWindow.scrollHeight;
     }
     // 点击按钮发送消息
-    sendBtn.addEventListener('click', () => {
-        const text = userInput.value.trim();
-        if (!text) return;
-        addMessage('我：' + text, 'user');
-        userInput.value = '';
+sendBtn.addEventListener('click', async () => {
+    const text = userInput.value.trim();
+    if (!text) return;
+    addMessage('我：' + text, 'user');
+    userInput.value = '';
 
-    // AI回复
-        setTimeout(() => {
-            addMessage('玄小盾：' + '用户您好！模型服务暂未开启，敬请期待。', 'bot');
-        }, 500);
-   });
+    // 显示“正在思考中...”
+    const thinkingMsg = document.createElement('div');
+    thinkingMsg.className = 'chat-message bot-message';
+    thinkingMsg.textContent = '玄小盾：正在思考中...';
+    chatWindow.appendChild(thinkingMsg);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
 
-    // 回车发送
-    userInput.addEventListener('keypress', (e) => {
+    try {
+        // 调用Hugging Face匿名推理接口
+        const response = await fetch("https://huggingface.co/api/inference/HuggingFaceH4/zephyr-7b-beta", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ inputs: text })
+        });
+
+        if (!response.ok) throw new Error('网络或模型错误');
+
+        const result = await response.json();
+        const reply = result?.[0]?.generated_text || "（模型未返回结果）";
+
+        thinkingMsg.textContent = '玄小盾：' + reply;
+    } catch (err) {
+        thinkingMsg.textContent = '玄小盾：模型暂时不可用，请稍后再试。';
+        console.error(err);
+    }
+
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+});
+    // 回车发送 
+    userInput.addEventListener('keypress', (e) => { 
         if (e.key === 'Enter') sendBtn.click();
-   });
+    });
 </script>
