@@ -387,12 +387,12 @@
     sendBtn.addEventListener('click', () => {
         const text = userInput.value.trim();
         if (!text) return;
-        addMessage(text, 'user');
+        addMessage('我：' + text, 'user');
         userInput.value = '';
 
-    // 模拟AI回复
+    // AI回复
         setTimeout(() => {
-            addMessage('玄小盾：' + text, 'bot');
+            addMessage('玄小盾：' + '用户您好！模型服务暂未开启，敬请期待。', 'bot');
         }, 500);
    });
 
