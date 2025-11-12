@@ -596,18 +596,41 @@
             font-size: 0.9rem;
         }
         
+        /* 响应式 */
         @media (max-width: 768px) {
-            .community-container {
-                grid-template-columns: 1fr;
+            .hero h1 {
+                font-size: 2.2rem;
             }
-            
-            .sidebar {
-                display: block;
+
+            .nav-links {
+                gap: 15px;
+                font-size: 0.9rem;
             }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
+
+            .categories-grid {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 50px 5% 30px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
