@@ -128,77 +128,149 @@
         }
 
         .chat-container {
-            width: 1000px;
-            max-width: 90%;
+            width: 100%;
+            max-width: 800px;
             margin: 20px auto;
             display: flex;
             flex-direction: column;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            overflow: hidden;
+            border-radius: 12px;
             background-color: #fff;
-            height: 200px; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            height: 500px;
+            position: relative;
         }
 
+        /* 聊天窗口 */
         .chat-window {
-           flex: 1;
-           padding: 15px;
-           overflow-y: auto;
-           background-color: #f9f9f9;
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f7f8f9;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
+        /* 聊天消息 */
         .chat-message {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 15px;
-            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 20px;
+            max-width: 75%;
+            position: relative;
+            word-wrap: break-word;
+            font-size: 16px;
         }
 
+        /* 用户消息 */
         .user-message {
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #0078d4;
+            color: #fff;
             align-self: flex-end;
-       }
-
-        .bot-message {
-            background-color: #ffffff;
-            color: #000000;
-            align-self: flex-start;
+            border-radius: 20px 20px 0 20px;
+            max-width: 80%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
+        /* 机器人消息 */
+        .bot-message {
+            background-color: #e1e1e1;
+            color: #333;
+            align-self: flex-start;
+            border-radius: 20px 20px 20px 0;
+            max-width: 80%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 输入区域 */
         .chat-input {
             display: flex;
-            border-top: 1px solid #ccc;
+            border-top: 1px solid #e0e0e0;
+            background-color: #fff;
+            padding: 10px;
+            align-items: center;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
         }
 
+        /* 输入框 */
         .chat-input input {
             flex: 1;
             border: none;
-            padding: 10px 15px;
+            padding: 12px 16px;
             font-size: 16px;
+            border-radius: 20px;
             outline: none;
-        }
-
-        .chat-input button {
-            background-color: #000000;
-            border: none;
-            padding: 0 20px;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: #f1f1f1;
             transition: background-color 0.3s;
         }
 
-        .chat-input button:hover {
-            background-color: #696d70;
+        .chat-input input:focus {
+            background-color: #ffffff;
+            box-shadow: 0 0 5px rgba(0, 120, 212, 0.8);
         }
 
-       
+        /* 发送按钮 */
+        .chat-input button {
+            background-color: #0078d4;
+            border: none;
+            padding: 12px 20px;
+            color: white;
+            font-size: 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-        
+        .chat-input button:hover {
+            background-color: #005a8a;
+        }
+
+        .chat-input button:active {
+            background-color: #004066;
+        }
+
+        /* 加载提示 */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #0078d4;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        /* 旋转动画 */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 消息气泡动画 */
+        .chat-message {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateX(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         /* 页脚 */
         footer {
             background: var(--dark);
@@ -311,20 +383,19 @@
         <h1>OpenAPI</h1>
         <p>从这里开始，集成玄盾金融系统</p>
     </section>
+
     <!-- 聊天区域 -->
     <section class="chat-container">
         <div class="chat-window" id="chatWindow">
-        <!-- 聊天消息会显示在这里 -->
+            <!-- 聊天消息会显示在这里 -->
         </div>
         <div class="chat-input">
-            <input type="text" id="userInput" placeholder="与玄小盾AI聊天，获取帮助和支持...">
-            <button id="sendBtn"><i class="fas fa-comments"></i></button>
+            <input type="text" id="userInput" placeholder="与玄小盾AI聊天，获取帮助和支持..." aria-label="输入消息...">
+            <button id="sendBtn" aria-label="发送消息">
+                <i class="fas fa-paper-plane"></i>
+            </button>
         </div>
     </section>
-
-    
-
-    
 
     <!-- 页脚 -->
     <footer>
@@ -368,58 +439,7 @@
             <p>© 2025-2026 玄盾OpenAPI | 提供专业开发者支持</p>
         </div>
     </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
-<script>
-    const chatWindow = document.getElementById('chatWindow');
-    const userInput = document.getElementById('userInput');
-    const sendBtn = document.getElementById('sendBtn');
-
-    // 添加消息到聊天窗口
-    function addMessage(content, type) {
-        const msg = document.createElement('div');
-        msg.className = 'chat-message ' + (type === 'user' ? 'user-message' : 'bot-message');
-            msg.textContent = content;
-            chatWindow.appendChild(msg);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-    }
-    // 点击按钮发送消息
-sendBtn.addEventListener('click', async () => {
-    const text = userInput.value.trim();
-    if (!text) return;
-    addMessage('我：' + text, 'user');
-    userInput.value = '';
-
-    // 显示“正在思考中...”
-    const thinkingMsg = document.createElement('div');
-    thinkingMsg.className = 'chat-message bot-message';
-    thinkingMsg.textContent = '玄小盾：正在思考中...';
-    chatWindow.appendChild(thinkingMsg);
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-
-    try {
-        // 调用Hugging Face匿名推理接口
-        const response = await fetch("https://router.huggingface.co/hf-inference/models/gpt2", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ inputs: text })
-        });
-
-        if (!response.ok) throw new Error('网络或模型错误');
-
-        const result = await response.json();
-        const reply = result?.[0]?.generated_text || "（模型未返回结果）";
-
-        thinkingMsg.textContent = '玄小盾：' + reply;
-    } catch (err) {
-        thinkingMsg.textContent = '玄小盾：模型暂时不可用，请稍后再试。';
-        console.error(err);
-    }
-
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-});
-    // 回车发送 
-    userInput.addEventListener('keypress', (e) => { 
-        if (e.key === 'Enter') sendBtn.click();
-    });
-</script>
