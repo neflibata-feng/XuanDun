@@ -273,7 +273,8 @@
         </div>
     </header>
 <body>
-<script>
+<body>
+  <script>
     mermaid.initialize({
       startOnLoad: true,
       theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
@@ -284,14 +285,14 @@
 <h1 id="%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E8%9E%8D%E5%90%88%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%AA%E4%BA%BA%E8%B4%B7%E6%AC%BE%E5%8F%8A%E5%85%A8%E6%B5%81%E7%A8%8B%E9%A3%8E%E6%8E%A7%E7%B3%BB%E7%BB%9F">多数据源融合的互联网个人贷款及全流程风控系统</h1>
 <h2 id="1%E6%96%87%E6%A1%A3%E4%BF%A1%E6%81%AF">1.文档信息</h2>
 <ul>
-<li>项目名称：多数据源融合的互联网个人贷款及全流程风控系统API文档。</li>
-<li>版本：v1.0.1</li>
+<li>项目名称：多数据源融合的互联网个人贷款及全流程风控系统。</li>
+<li>版本：0.0.1</li>
 <li>描述：本文档定义了个人贷款系统前后端交互的接口规范，所有接口遵循RESTful设计原则。</li>
 </ul>
 <h2 id="2%E9%80%9A%E7%94%A8%E7%BA%A6%E5%AE%9A">2.通用约定</h2>
 <h3 id="%E5%9F%BA%E7%A1%80%E4%BF%A1%E6%81%AF">基础信息</h3>
 <ul>
-<li>Base URL：https://www.xxxxxx.com</li>
+<li>Base URL：https://后端服务器IP/</li>
 <li>数据格式：请求与响应主体均使用 application/json。</li>
 <li>字符编码：UTF-8</li>
 </ul>
@@ -300,7 +301,7 @@
 <li>若请求成功，API会返回如下JSON格式的返回码及说明</li>
 </ul>
 <pre class="hljs"><code><div>{
-    <span class="hljs-attr">"code"</span>: ***,
+    <span class="hljs-attr">"code"</span>: <span class="hljs-string">"***"</span>,
     <span class="hljs-attr">"data"</span>: {
         ***
     }
@@ -311,11 +312,15 @@
 </ul>
 <pre class="hljs"><code><div>{
     <span class="hljs-attr">"error"</span>:{
-        <span class="hljs-attr">"code"</span>: ***,
+        <span class="hljs-attr">"code"</span>: <span class="hljs-string">"***"</span>,
         <span class="hljs-attr">"message"</span>: <span class="hljs-string">"*****"</span>
     }
 }
 </div></code></pre>
+<h3 id="token%E9%89%B4%E6%9D%83">token鉴权</h3>
+<ul>
+<li>Authorization: Bearer <token></li>
+</ul>
 <h3 id="%E6%A0%87%E5%87%86http%E7%8A%B6%E6%80%81%E7%A0%81">标准HTTP状态码</h3>
 <table>
 <thead>
@@ -369,7 +374,7 @@
 <ul>
 <li>功能说明：用户输入用户名、密码和角色注册账号 ，密码要求有不少于8位，包含字母、数字、特殊符号三类，且必须包含大小写，并且输入两次进行检查，角色为“管理员”和“普通用户”二选一。</li>
 <li>功能需求：FR-01</li>
-<li>Endpoint: <code>POST https://www.xxxxxx.com/register</code> (Basse URL以下皆省略，即省略“https://www.xxxxxx.com”)</li>
+<li>Endpoint: <code>POST https://后端服务器IP/api/register</code> (Basse URL以下皆省略，即省略“https://后端服务器IP/api”)</li>
 <li>请求体：</li>
 </ul>
 <pre class="hljs"><code><div>{
@@ -413,11 +418,12 @@
 <pre class="hljs"><code><div>{
     <span class="hljs-attr">"code"</span>: <span class="hljs-number">201</span>,
     <span class="hljs-attr">"data"</span>: {
-        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>,
+        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-attr">"userName"</span>: <span class="hljs-string">"sjm"</span>,
         <span class="hljs-attr">"password"</span>: <span class="hljs-string">"sjm123456"</span>,
         <span class="hljs-attr">"role"</span>: <span class="hljs-string">"普通用户"</span>
-    }
+    },
+    <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
 <ul>
@@ -501,10 +507,12 @@
 <pre class="hljs"><code><div>{
     <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span>,
     <span class="hljs-attr">"data"</span>: {
-        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>,
+        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-attr">"userName"</span>: <span class="hljs-string">"sjm"</span>,
-        <span class="hljs-attr">"role"</span>: <span class="hljs-string">"普通用户"</span>
-    }
+        <span class="hljs-attr">"role"</span>: <span class="hljs-string">"普通用户"</span>,
+        <span class="hljs-attr">"token"</span>: <span class="hljs-string">"************"</span>
+    },
+    <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
 <ul>
@@ -546,10 +554,12 @@
 <ul>
 <li>功能说明：用户填写真实姓名、性别、年龄和身份证号，身份证号为18位。</li>
 <li>功能需求：FR-02</li>
-<li>Endpoint: <code>POST /user/userInfo</code></li>
+<li>Endpoint:<code>POST /user/userInfo</code></li>
+<li>Authorization: Bearer <token></li>
 <li>请求体</li>
 </ul>
 <pre class="hljs"><code><div>{
+    <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>,
     <span class="hljs-attr">"realName"</span>: <span class="hljs-string">"玄小盾"</span>,
     <span class="hljs-attr">"sex"</span>: <span class="hljs-string">"男"</span>,
     <span class="hljs-attr">"age"</span>: <span class="hljs-number">18</span>,
@@ -596,14 +606,15 @@
 <pre class="hljs"><code><div>{
     <span class="hljs-attr">"code"</span>: <span class="hljs-number">201</span>,
     <span class="hljs-attr">"data"</span>: {
-        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>,
+        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-attr">"userName"</span>: <span class="hljs-string">"sjm"</span>,
         <span class="hljs-attr">"realName"</span>: <span class="hljs-string">"玄小盾"</span>,
         <span class="hljs-attr">"sex"</span>: <span class="hljs-string">"男"</span>,
         <span class="hljs-attr">"age"</span>: <span class="hljs-number">18</span>,
         <span class="hljs-attr">"idNumber"</span>: <span class="hljs-string">"110000200601010001"</span>
+    },
+    <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
     }
-}
 </div></code></pre>
 <ul>
 <li>响应参数</li>
@@ -658,7 +669,8 @@
 <ul>
 <li>功能说明：管理员查看所有用户信息总表，只有分页功能。</li>
 <li>功能需求：FR-02</li>
-<li>Endpoint: <code>GET /admin/getUserInfo?page={page}&amp;size={size}</code></li>
+<li>Endpoint:<code>GET /admin/getUserInfo?page={page}&amp;size={size}</code></li>
+<li>Authorization: Bearer <token></li>
 <li>成功响应</li>
 </ul>
 <pre class="hljs"><code><div>{
@@ -669,23 +681,28 @@
     <span class="hljs-attr">"size"</span>: <span class="hljs-number">10</span>,
     <span class="hljs-attr">"users"</span>: [
       {
-        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>,
+        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-attr">"userName"</span>: <span class="hljs-string">"sjm"</span>,
+        <span class="hljs-attr">"password"</span>: <span class="hljs-string">"sjm123456"</span>,
         <span class="hljs-attr">"realName"</span>: <span class="hljs-string">"玄小盾"</span>,
         <span class="hljs-attr">"sex"</span>: <span class="hljs-string">"男"</span>,
         <span class="hljs-attr">"age"</span>: <span class="hljs-number">18</span>,
-        <span class="hljs-attr">"idNumber"</span>: <span class="hljs-string">"110000200601010001"</span>
+        <span class="hljs-attr">"idNumber"</span>: <span class="hljs-string">"110000200601010001"</span>,
+        <span class="hljs-attr">"cardNumber"</span>: <span class="hljs-literal">null</span>
       },
       {
-        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00002</span>,
+        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">2</span>,
         <span class="hljs-attr">"userName"</span>: <span class="hljs-string">"fmy"</span>,
+        <span class="hljs-attr">"password"</span>: <span class="hljs-string">"xdd123456"</span>,
         <span class="hljs-attr">"realName"</span>: <span class="hljs-string">"玄大盾"</span>,
         <span class="hljs-attr">"sex"</span>: <span class="hljs-string">"男"</span>,
         <span class="hljs-attr">"age"</span>: <span class="hljs-number">18</span>,
-        <span class="hljs-attr">"idNumber"</span>: <span class="hljs-string">"110000200602020002"</span>
+        <span class="hljs-attr">"idNumber"</span>: <span class="hljs-string">"110000200602020002"</span>,
+        <span class="hljs-attr">"cardNumber"</span>: <span class="hljs-literal">null</span>
       }
     ]
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
 <ul>
@@ -731,11 +748,14 @@
 <ul>
 <li>功能说明：管理员通过账号删除用户，仅可删除普通用户，前端请将这个功能集成到3.2.2总览中。</li>
 <li>功能需求：FR-02</li>
-<li>Endpoint: <code>DELETE /admin/deleteUser/{userId}</code></li>
+<li>Endpoint:<code>DELETE /admin/deleteUser/{userId}</code></li>
+<li>Authorization: Bearer <token></li>
 <li>成功响应</li>
 </ul>
 <pre class="hljs"><code><div>{
-    <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span> 
+    <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span> ,
+    <span class="hljs-attr">"data"</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
 <ul>
@@ -769,11 +789,9 @@
   <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span>,
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"total"</span>: <span class="hljs-number">100</span>,
-    <span class="hljs-attr">"page"</span>: <span class="hljs-number">1</span>,
-    <span class="hljs-attr">"size"</span>: <span class="hljs-number">10</span>,
     <span class="hljs-attr">"product"</span>:[
       {
-        <span class="hljs-attr">"loanId"</span>: <span class="hljs-number">00001</span>,
+        <span class="hljs-attr">"loanId"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-attr">"loanName"</span>: <span class="hljs-string">"王八贷"</span>,
         <span class="hljs-attr">"loanTermMax"</span>: <span class="hljs-number">10</span>,    
         <span class="hljs-attr">"interestRate"</span>: <span class="hljs-number">0.12</span>,
@@ -781,7 +799,8 @@
       }
       <span class="hljs-comment">// 其他产品</span>
     ]
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
 <ul>
@@ -825,14 +844,15 @@
 </table>
 <h4 id="332-%E7%94%A8%E6%88%B7%E6%8F%90%E4%BA%A4%E8%B4%B7%E6%AC%BE%E7%94%B3%E8%AF%B7">3.3.2 用户提交贷款申请</h4>
 <ul>
-<li>功能说明：用户选择产品，填写金额、期限、还款方式，提交贷款申请,状态：未申请-审核中-已通过/未通过-已放款/未通过</li>
+<li>功能说明：用户选择产品，填写金额、期限、还款方式，提交贷款申请,状态：未申请-审核中-已通过/未通过~已放款/未通过</li>
 <li>功能需求：FR-03</li>
 <li>Endpoint: <code>POST /loan/user/application</code></li>
+<li>Authorization: Bearer <token></li>
 <li>请求体</li>
 </ul>
 <pre class="hljs"><code><div>{ 
-  <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>,
-  <span class="hljs-attr">"loanId"</span>: <span class="hljs-number">00001</span>,
+  <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>,
+  <span class="hljs-attr">"loanId"</span>: <span class="hljs-number">1</span>,
   <span class="hljs-attr">"userLoanAmount"</span>: <span class="hljs-number">10000.00</span>,
   <span class="hljs-attr">"userLoanTerm"</span>: <span class="hljs-number">6</span>,
   <span class="hljs-attr">"userLoanWay"</span>: <span class="hljs-string">"等额本息"</span>
@@ -884,7 +904,9 @@
   <span class="hljs-attr">"code"</span>: <span class="hljs-number">201</span>,
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"userLoanStatus"</span>: <span class="hljs-string">"审核中"</span>
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
+ 
 }
 </div></code></pre>
 <ul>
@@ -899,11 +921,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
 <tr>
 <td style="text-align:left">userLoanStatus</td>
 <td style="text-align:left">String</td>
@@ -916,18 +933,20 @@
 <li>功能说明：用户查询贷款申请状态。</li>
 <li>功能需求：FR-03</li>
 <li>Endpoint: <code>GET /loan/user/getApplication/{userId}</code></li>
+<li>Authorization: Bearer <token></li>
 <li>成功响应</li>
 </ul>
 <pre class="hljs"><code><div>{
   <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span>,
   <span class="hljs-attr">"data"</span>: {
-    <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>,
-    <span class="hljs-attr">"loanId"</span>: <span class="hljs-number">00001</span>,
+    <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-attr">"userLoanId"</span>: <span class="hljs-number">1</span>,
     <span class="hljs-attr">"userLoanAmount"</span>: <span class="hljs-number">10000.00</span>,
     <span class="hljs-attr">"userLoanTerm"</span>: <span class="hljs-number">6</span>,
     <span class="hljs-attr">"userLoanWay"</span>: <span class="hljs-string">"等额本息"</span>,
     <span class="hljs-attr">"userLoanStatus"</span>: <span class="hljs-string">"审核中"</span>
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
 <ul>
@@ -943,17 +962,12 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
 <td style="text-align:left">userId</td>
 <td style="text-align:left">long</td>
 <td style="text-align:left">申请人账号</td>
 </tr>
 <tr>
-<td style="text-align:left">loanId</td>
+<td style="text-align:left">userLoanId</td>
 <td style="text-align:left">long</td>
 <td style="text-align:left">贷款产品号</td>
 </tr>
@@ -984,6 +998,7 @@
 <li>功能说明：绑定银行卡用于放款。必须是储蓄卡16-19位</li>
 <li>功能需求：FR-03</li>
 <li>Endpoint: <code>POST /loan/user/finishApplication/{userId}</code></li>
+<li>Authorization: Bearer <token></li>
 <li>请求体</li>
 </ul>
 <pre class="hljs"><code><div>{
@@ -1017,7 +1032,8 @@
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"cardNumber"</span>: <span class="hljs-string">"0000000000000000"</span>,
     <span class="hljs-attr">"userLoanStatus"</span>: <span class="hljs-string">"已放款"</span>
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
 <ul>
@@ -1032,11 +1048,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
 <tr>
 <td style="text-align:left">cardNumber</td>
 <td style="text-align:left">string</td>
@@ -1054,6 +1065,7 @@
 <li>功能说明：管理员发布新的贷款产品。</li>
 <li>功能需求：FR-03</li>
 <li>Endpoint: <code>POST /loan/admin/application</code></li>
+<li>Authorization: Bearer <token></li>
 <li>请求体：</li>
 </ul>
 <pre class="hljs"><code><div>{
@@ -1063,127 +1075,40 @@
 }
 </div></code></pre>
 <ul>
-<li>请求参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">loanName</td>
-<td style="text-align:left">String</td>
-<td style="text-align:left">贷款产品名</td>
-</tr>
-<tr>
-<td style="text-align:left">loanTermMax</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">最大分期数</td>
-</tr>
-<tr>
-<td style="text-align:left">interestRate</td>
-<td style="text-align:left">double</td>
-<td style="text-align:left">利率</td>
-</tr>
-</tbody>
-</table>
-<ul>
 <li>成功响应</li>
 </ul>
 <pre class="hljs"><code><div>{
   <span class="hljs-attr">"code"</span>: <span class="hljs-number">201</span>,
   <span class="hljs-attr">"data"</span>: {
-    <span class="hljs-attr">"loanId"</span>: <span class="hljs-number">00001</span>,
+    <span class="hljs-attr">"loanId"</span>: <span class="hljs-number">1</span>,
     <span class="hljs-attr">"loanName"</span>: <span class="hljs-string">"王八贷"</span>,
     <span class="hljs-attr">"loanTermMax"</span>: <span class="hljs-number">10</span>,    
     <span class="hljs-attr">"interestRate"</span>: <span class="hljs-number">0.12</span>,
     <span class="hljs-attr">"loanStatus"</span>: <span class="hljs-string">"已开放"</span>
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
-<td style="text-align:left">loanId</td>
-<td style="text-align:left">long</td>
-<td style="text-align:left">贷款产品号</td>
-</tr>
-<tr>
-<td style="text-align:left">loanName</td>
-<td style="text-align:left">String</td>
-<td style="text-align:left">贷款产品名</td>
-</tr>
-<tr>
-<td style="text-align:left">loanTermMax</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">最大分期数</td>
-</tr>
-<tr>
-<td style="text-align:left">interestRate</td>
-<td style="text-align:left">double</td>
-<td style="text-align:left">利率</td>
-</tr>
-<tr>
-<td style="text-align:left">loanStatus</td>
-<td style="text-align:left">String</td>
-<td style="text-align:left">贷款产品状态</td>
-</tr>
-</tbody>
-</table>
 <h4 id="336-%E7%AE%A1%E7%90%86%E5%91%98%E5%88%A0%E9%99%A4%E8%B4%B7%E6%AC%BE%E4%BA%A7%E5%93%81">3.3.6 管理员删除贷款产品</h4>
 <ul>
 <li>功能说明：管理员删除贷款产品。前端请集成到产品总览，注意只有管理端显示。</li>
 <li>功能需求：FR-03</li>
 <li>Endpoint: <code>DELETE /loan/admin/deleteProduct/{loanId}</code></li>
+<li>Authorization: Bearer <token></li>
 <li>成功响应：</li>
 </ul>
 <pre class="hljs"><code><div>{
-  <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span>
+  <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span>,
+  <span class="hljs-attr">"data"</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-</tbody>
-</table>
 <h4 id="337-%E7%AE%A1%E7%90%86%E5%91%98%E8%8E%B7%E5%8F%96%E7%94%B3%E8%AF%B7%E6%83%85%E5%86%B5%E6%80%BB%E8%A7%88">3.3.7 管理员获取申请情况总览</h4>
 <ul>
 <li>功能说明：管理员查看所有用户申请贷款情况总表，只有分页功能。</li>
 <li>功能需求：FR-03</li>
-<li>Endpoint: <code>GET /loan/admin/getUserInfo?page={page}&amp;size={size}</code></li>
+<li>Endpoint:<code>GET /loan/admin/getUserInfo?page={page}&amp;size={size}</code></li>
+<li>Authorization: Bearer <token></li>
 <li>成功响应</li>
 </ul>
 <pre class="hljs"><code><div>{
@@ -1194,11 +1119,11 @@
     <span class="hljs-attr">"size"</span>: <span class="hljs-number">10</span>,
     <span class="hljs-attr">"users"</span>: [
       {
-        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>,
+        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-attr">"userName"</span>: <span class="hljs-string">"sjm"</span>,
         <span class="hljs-attr">"realName"</span>: <span class="hljs-string">"玄小盾"</span>,
         <span class="hljs-attr">"creditScore"</span>: <span class="hljs-number">99.00</span>,
-        <span class="hljs-attr">"loanId"</span>: <span class="hljs-number">00001</span>,
+        <span class="hljs-attr">"userLoanId"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-attr">"userLoanAmount"</span>: <span class="hljs-number">10000.00</span>,
         <span class="hljs-attr">"userLoanTerm"</span>: <span class="hljs-number">6</span>,
         <span class="hljs-attr">"userLoanWay"</span>: <span class="hljs-string">"等额本息"</span>,
@@ -1206,11 +1131,11 @@
         <span class="hljs-attr">"userLoanStatus"</span>: <span class="hljs-string">"已放款"</span>
       },
       {
-        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00002</span>,
+        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">2</span>,
         <span class="hljs-attr">"userName"</span>: <span class="hljs-string">"fmy"</span>,
         <span class="hljs-attr">"realName"</span>: <span class="hljs-string">"玄大盾"</span>,
         <span class="hljs-attr">"creditScore"</span>: <span class="hljs-number">99.00</span>,
-        <span class="hljs-attr">"loanId"</span>: <span class="hljs-number">00001</span>,
+        <span class="hljs-attr">"userLoanId"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-attr">"userLoanAmount"</span>: <span class="hljs-number">10000.00</span>,
         <span class="hljs-attr">"userLoanTerm"</span>: <span class="hljs-number">6</span>,
         <span class="hljs-attr">"userLoanWay"</span>: <span class="hljs-string">"等额本息"</span>,
@@ -1218,78 +1143,22 @@
         <span class="hljs-attr">"userLoanStatus"</span>: <span class="hljs-string">"审核中"</span>
       }
     ]
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
-<td style="text-align:left">total</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">总记录数</td>
-</tr>
-<tr>
-<td style="text-align:left">page</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">当前记录页</td>
-</tr>
-<tr>
-<td style="text-align:left">size</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">每页条数</td>
-</tr>
-<tr>
-<td style="text-align:left">users</td>
-<td style="text-align:left">list</td>
-<td style="text-align:left">用户贷款申请信息列表，每条记录包含 userId、userName、realName、creditScore、loanId、userLoanAmount,userLoanTerm,userLoanWay,cardNumber,userLoanStatus</td>
-</tr>
-</tbody>
-</table>
 <h4 id="338-%E7%AE%A1%E7%90%86%E5%91%98%E5%AE%A1%E6%89%B9%E7%94%B3%E8%AF%B7">3.3.8 管理员审批申请</h4>
 <ul>
 <li>功能说明：管理员对申请进行审批，前端集成到申请情况总览</li>
 <li>功能需求：FR-03</li>
 <li>Endpoint: <code>POST /loan/admin/deside</code></li>
+<li>Authorization: Bearer <token></li>
 <li>请求体</li>
 </ul>
 <pre class="hljs"><code><div>{
-  <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>
+  <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>
 }
 </div></code></pre>
-<ul>
-<li>请求参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">userId</td>
-<td style="text-align:left">long</td>
-<td style="text-align:left">账号</td>
-</tr>
-</tbody>
-</table>
 <ul>
 <li>成功响应</li>
 </ul>
@@ -1297,33 +1166,10 @@
   <span class="hljs-attr">"code"</span>: <span class="hljs-number">201</span>,
   <span class="hljs-attr">"data"</span>: {
     <span class="hljs-attr">"userLoanStatus"</span>: <span class="hljs-string">"已通过"</span>
-  }
+  },
+  <span class="hljs-attr">"error"</span>:<span class="hljs-literal">null</span>
 }
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
-<td style="text-align:left">userLoanStatus</td>
-<td style="text-align:left">String</td>
-<td style="text-align:left">贷款申请状态</td>
-</tr>
-</tbody>
-</table>
 <h3 id="34-%E8%BF%98%E6%AC%BE">3.4 还款</h3>
 <h4 id="341-%E7%94%A8%E6%88%B7%E6%9F%A5%E8%AF%A2%E8%BF%98%E6%AC%BE%E8%AE%A1%E5%88%92%E6%80%BB%E8%A7%88">3.4.1 用户查询还款计划总览</h4>
 <ul>
@@ -1335,106 +1181,84 @@
 <pre class="hljs"><code><div>{
   <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span>,
   <span class="hljs-attr">"data"</span>: {
-     <span class="hljs-attr">"userPayAmountTermX"</span>: [
-      <span class="hljs-string">"term1"</span>: <span class="hljs-number">100.00</span>,
-      <span class="hljs-string">"term2"</span>: <span class="hljs-number">1000.00</span>,
-      <span class="hljs-string">"term3"</span>: <span class="hljs-number">10000.00</span>
-     ],
-     <span class="hljs-attr">"userPayStatusTermX"</span>: [
-      <span class="hljs-string">"term1"</span>: <span class="hljs-string">"已还款"</span>,
-      <span class="hljs-string">"term2"</span>: <span class="hljs-string">"未还款"</span>,
-      <span class="hljs-string">"term3"</span>: <span class="hljs-string">"未还款"</span>
-     ]
-  }
+     <span class="hljs-attr">"interestRate"</span>: <span class="hljs-number">0.12</span>,
+     <span class="hljs-attr">"repaymentWay"</span>: <span class="hljs-string">"等额本息"</span>,
+     <span class="hljs-attr">"repaymentProgress"</span>: <span class="hljs-number">0</span>,
+     <span class="hljs-attr">"pendingTerm"</span>: <span class="hljs-number">6</span>,
+     <span class="hljs-attr">"remainingAmount"</span>: <span class="hljs-number">10352.88</span>, 
+     <span class="hljs-attr">"userPayAmountTermX"</span>: {
+      <span class="hljs-attr">"term1"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term2"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term3"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term4"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term5"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term6"</span>: <span class="hljs-number">1725.48</span>
+     },
+     <span class="hljs-attr">"userPayStatusTermX"</span>: {
+      <span class="hljs-attr">"term1"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term2"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term3"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term4"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term5"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term6"</span>: <span class="hljs-string">"未还款"</span>
+     },
+     <span class="hljs-attr">"totalLoanAmount"</span>: <span class="hljs-number">10000.0</span>,
+     <span class="hljs-attr">"totalRepaymentAmount"</span>: <span class="hljs-number">10352.88</span>,
+     <span class="hljs-attr">"alert"</span>: <span class="hljs-string">"请还第1期贷款"</span>,
+     <span class="hljs-attr">"paidAmount"</span>: <span class="hljs-number">0.00</span>,
+     <span class="hljs-attr">"paidTerms"</span>: <span class="hljs-number">0</span>
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
-<td style="text-align:left">userPayAmountTermX</td>
-<td style="text-align:left">list</td>
-<td style="text-align:left">用户分期额度表</td>
-</tr>
-<tr>
-<td style="text-align:left">userPayStatusTermX</td>
-<td style="text-align:left">list</td>
-<td style="text-align:left">用户分期还款状态表</td>
-</tr>
-</tbody>
-</table>
 <h4 id="342-%E7%94%A8%E6%88%B7%E5%8F%91%E8%B5%B7%E8%BF%98%E6%AC%BE%E8%AF%B7%E6%B1%82">3.4.2 用户发起还款请求</h4>
 <ul>
 <li>功能说明：用户为贷款的特定期数发起还款,前端集成到计划页。</li>
 <li>功能需求：FR-04</li>
 <li>Endpoint: <code>POST /repay/user/repay/{userId}&amp;{term}</code></li>
+<li>Authorization: Bearer <token></li>
 <li>成功响应</li>
 </ul>
 <pre class="hljs"><code><div>{
-  <span class="hljs-attr">"code"</span>: <span class="hljs-number">201</span>
-  <span class="hljs-string">"data"</span>: {
-     <span class="hljs-attr">"userPayAmountTermX"</span>: [
-      <span class="hljs-string">"term1"</span>: <span class="hljs-number">100.00</span>,
-      <span class="hljs-string">"term2"</span>: <span class="hljs-number">1000.00</span>,
-      <span class="hljs-string">"term3"</span>: <span class="hljs-number">10000.00</span>
-     ],
-     <span class="hljs-attr">"userPayStatusTermX"</span>: [
-      <span class="hljs-string">"term1"</span>: <span class="hljs-string">"已还款"</span>,
-      <span class="hljs-string">"term2"</span>: <span class="hljs-string">"还款"</span>,
-      <span class="hljs-string">"term3"</span>: <span class="hljs-string">"未还款"</span>
-     ]
-  }
+  <span class="hljs-attr">"code"</span>: <span class="hljs-number">201</span>,
+  <span class="hljs-attr">"data"</span>: {
+     <span class="hljs-attr">"interestRate"</span>: <span class="hljs-number">0.12</span>,
+     <span class="hljs-attr">"repaymentWay"</span>: <span class="hljs-string">"等额本息"</span>,
+     <span class="hljs-attr">"repaymentProgress"</span>: <span class="hljs-number">17</span>,
+     <span class="hljs-attr">"pendingTerm"</span>: <span class="hljs-number">6</span>,
+     <span class="hljs-attr">"remainingAmount"</span>: <span class="hljs-number">30000.00</span>, 
+     <span class="hljs-attr">"userPayAmountTermX"</span>: {
+      <span class="hljs-attr">"term1"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term2"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term3"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term4"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term5"</span>: <span class="hljs-number">1725.48</span>,
+      <span class="hljs-attr">"term6"</span>: <span class="hljs-number">1725.48</span>
+     },
+     <span class="hljs-attr">"userPayStatusTermX"</span>:{
+      <span class="hljs-attr">"term1"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term2"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term3"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term4"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term5"</span>: <span class="hljs-string">"未还款"</span>,
+      <span class="hljs-attr">"term6"</span>: <span class="hljs-string">"未还款"</span>
+     },
+     <span class="hljs-attr">"totalLoanAmount"</span>: <span class="hljs-number">10000.0</span>,
+     <span class="hljs-attr">"totalRepaymentAmount"</span>: <span class="hljs-number">10352.88</span>,
+     <span class="hljs-attr">"alert"</span>: <span class="hljs-string">"请还第2期贷款"</span>,
+     <span class="hljs-attr">"paidAmount"</span>: <span class="hljs-number">1725.48</span>,
+     <span class="hljs-attr">"paidTerms"</span>: <span class="hljs-number">1</span>
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
-<td style="text-align:left">userPayAmountTermX</td>
-<td style="text-align:left">list</td>
-<td style="text-align:left">用户分期额度表</td>
-</tr>
-<tr>
-<td style="text-align:left">userPayStatusTermX</td>
-<td style="text-align:left">list</td>
-<td style="text-align:left">用户分期还款状态表</td>
-</tr>
-</tbody>
-</table>
 <h4 id="343-%E7%AE%A1%E7%90%86%E5%91%98%E8%8E%B7%E5%8F%96%E8%BF%98%E6%AC%BE%E6%83%85%E5%86%B5%E6%80%BB%E8%A7%88">3.4.3 管理员获取还款情况总览</h4>
 <ul>
 <li>功能说明：管理员查看所有用户还款情况。</li>
 <li>功能需求：FR-04</li>
 <li>Endpoint: <code>GET /repay/admin/repayStatus?page={page}&amp;size={size}</code></li>
+<li>Authorization: Bearer <token></li>
 <li>成功响应</li>
 </ul>
 <pre class="hljs"><code><div>{
@@ -1445,107 +1269,48 @@
     <span class="hljs-attr">"size"</span>: <span class="hljs-number">10</span>,
     <span class="hljs-attr">"users"</span>: [
       {
-        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>,
-        <span class="hljs-attr">"userName"</span>: <span class="hljs-string">"sjm"</span>,
         <span class="hljs-attr">"realName"</span>: <span class="hljs-string">"玄小盾"</span>,
-        <span class="hljs-attr">"userPayAmountTermX"</span>: [
-          <span class="hljs-string">"term1"</span>: <span class="hljs-number">100.00</span>,
-          <span class="hljs-string">"term2"</span>: <span class="hljs-number">1000.00</span>,
-          <span class="hljs-string">"term3"</span>: <span class="hljs-number">10000.00</span>
-        ],
-        <span class="hljs-attr">"userPayStatusTermX"</span>: [
-          <span class="hljs-string">"term1"</span>: <span class="hljs-string">"已还款"</span>,
-          <span class="hljs-string">"term2"</span>: <span class="hljs-string">"未还款"</span>,
-          <span class="hljs-string">"term3"</span>: <span class="hljs-string">"未还款"</span>
-        ] 
+        <span class="hljs-attr">"userPayAmountTermX"</span>: {
+          <span class="hljs-attr">"term1"</span>: <span class="hljs-number">100.00</span>,
+          <span class="hljs-attr">"term2"</span>: <span class="hljs-number">1000.00</span>,
+          <span class="hljs-attr">"term3"</span>: <span class="hljs-number">10000.00</span>
+        },
+        <span class="hljs-attr">"userPayStatusTermX"</span>: {
+          <span class="hljs-attr">"term1"</span>: <span class="hljs-string">"已还款"</span>,
+          <span class="hljs-attr">"term2"</span>: <span class="hljs-string">"未还款"</span>,
+          <span class="hljs-attr">"term3"</span>: <span class="hljs-string">"未还款"</span>
+        } 
       }
       <span class="hljs-comment">//其他用户</span>
     ]
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
-<td style="text-align:left">total</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">总记录数</td>
-</tr>
-<tr>
-<td style="text-align:left">page</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">当前记录页</td>
-</tr>
-<tr>
-<td style="text-align:left">size</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">每页条数</td>
-</tr>
-<tr>
-<td style="text-align:left">users</td>
-<td style="text-align:left">list</td>
-<td style="text-align:left">用户还款信息列表，每条记录包含userId,userName,realName,userPayAmountTermX,userPayStatusTermX</td>
-</tr>
-</tbody>
-</table>
 <h3 id="35-%E9%A3%8E%E6%8E%A7">3.5 风控</h3>
 <h4 id="351-%E7%94%A8%E6%88%B7%E6%9F%A5%E8%AF%A2%E4%BF%A1%E7%94%A8%E5%88%86">3.5.1 用户查询信用分</h4>
 <ul>
 <li>功能说明：用户查询信用分。</li>
 <li>功能需求：FR-05</li>
-<li>Endpoint: <code>GET /risk/user/getCreditScore/{userId}</code>
--成功响应</li>
+<li>Endpoint: <code>GET /risk/user/getCreditScore/{userId}</code></li>
+<li>Authorization: Bearer <token></li>
+<li>成功响应</li>
 </ul>
 <pre class="hljs"><code><div>{  
   <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span>,
-  <span class="hljs-attr">"creditScore"</span>: <span class="hljs-number">100.00</span>
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"creditScore"</span>: <span class="hljs-number">99.0</span>
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
-<td style="text-align:left">creditScore</td>
-<td style="text-align:left">double</td>
-<td style="text-align:left">信用分</td>
-</tr>
-</tbody>
-</table>
 <h4 id="352-%E7%AE%A1%E7%90%86%E5%91%98%E9%A3%8E%E6%8E%A7%E6%80%BB%E8%A7%88">3.5.2 管理员风控总览</h4>
 <ul>
 <li>功能说明：管理员查看用户风控列表。</li>
 <li>功能需求：FR-05</li>
-<li>Endpoint: <code>GET /risk/admin/CreditScoreList?page={page}&amp;size={size}</code>
--成功响应</li>
+<li>Endpoint: <code>GET /risk/admin/CreditScoreList?page={page}&amp;size={size}</code></li>
+<li>Authorization: Bearer <token></li>
+<li>成功响应</li>
 </ul>
 <pre class="hljs"><code><div>{
   <span class="hljs-attr">"code"</span>: <span class="hljs-number">200</span>,
@@ -1555,139 +1320,68 @@
     <span class="hljs-attr">"size"</span>: <span class="hljs-number">10</span>,
     <span class="hljs-attr">"users"</span>: [
       {
-        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>,
+        <span class="hljs-attr">"userId"</span>: <span class="hljs-number">1</span>,
         <span class="hljs-attr">"userName"</span>: <span class="hljs-string">"sjm"</span>,
         <span class="hljs-attr">"realName"</span>: <span class="hljs-string">"玄小盾"</span>,
         <span class="hljs-attr">"creditScore"</span>: <span class="hljs-number">100.00</span>
       }
       <span class="hljs-comment">//其他用户</span>
     ]
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
-<td style="text-align:left">total</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">总记录数</td>
-</tr>
-<tr>
-<td style="text-align:left">page</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">当前记录页</td>
-</tr>
-<tr>
-<td style="text-align:left">size</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">每页条数</td>
-</tr>
-<tr>
-<td style="text-align:left">users</td>
-<td style="text-align:left">list</td>
-<td style="text-align:left">用户还款信息列表，每条记录包含userId,userName,realName,creditScore</td>
-</tr>
-</tbody>
-</table>
 <h4 id="353-%E9%A3%8E%E6%8E%A7%E6%A0%B8%E5%BF%83">3.5.3 风控核心</h4>
 <ul>
 <li>功能说明：管理员输入用户信用分。</li>
 <li>功能需求：FR-05</li>
 <li>Endpoint: <code>POST /risk/admin/changeCreditScore</code></li>
+<li>Authorization: Bearer <token></li>
 <li>请求体</li>
 </ul>
 <pre class="hljs"><code><div>{
-  <span class="hljs-attr">"userId"</span>: <span class="hljs-number">00001</span>
+  <span class="hljs-attr">"userId"</span>: <span class="hljs-number">3</span>,
+  <span class="hljs-attr">"creditScore"</span>: <span class="hljs-number">99</span>
 }
 </div></code></pre>
-<ul>
-<li>请求参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">userId</td>
-<td style="text-align:left">long</td>
-<td style="text-align:left">账号</td>
-</tr>
-</tbody>
-</table>
 <p>-成功响应</p>
 <pre class="hljs"><code><div>{
   <span class="hljs-attr">"code"</span>: <span class="hljs-number">201</span>,
   <span class="hljs-attr">"data"</span>: {
      <span class="hljs-attr">"creditScore"</span>: <span class="hljs-number">99.00</span>
-  }
+  },
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
 }
 </div></code></pre>
-<ul>
-<li>响应参数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">关键字</th>
-<th style="text-align:left">类型</th>
-<th style="text-align:left">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">code</td>
-<td style="text-align:left">int</td>
-<td style="text-align:left">响应码</td>
-</tr>
-<tr>
-<td style="text-align:left">creditScore</td>
-<td style="text-align:left">double</td>
-<td style="text-align:left">信用分</td>
-</tr>
-</tbody>
-</table>
 <h2 id="%E6%96%87%E6%A1%A3%E4%BF%AE%E8%AE%A2%E8%AE%B0%E5%BD%95">文档修订记录</h2>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">版本</th>
+<th style="text-align:left">API版本</th>
 <th style="text-align:left">修订日期</th>
 <th style="text-align:left">修订内容</th>
+<th style="text-align:left">系统版本</th>
+<th style="text-align:left">Docker镜像(内部tags)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">v1.0.0</td>
-<td style="text-align:left">2025-11-10</td>
+<td style="text-align:left">0.0.0</td>
+<td style="text-align:left">2025-11-14</td>
 <td style="text-align:left">第一版</td>
+<td style="text-align:left">内测版</td>
+<td style="text-align:left">未上线</td>
 </tr>
 <tr>
-<td style="text-align:left">v1.0.1</td>
-<td style="text-align:left">2025-11-13</td>
+<td style="text-align:left">0.0.1</td>
+<td style="text-align:left">2025-11-16</td>
 <td style="text-align:left">当前版本</td>
+<td style="text-align:left">0.0.1</td>
+<td style="text-align:left">xuandunbackend:v1</td>
 </tr>
 </tbody>
 </table>
+
 
 </body>
 
