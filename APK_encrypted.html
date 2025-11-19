@@ -2,7 +2,7 @@
 <html class="staticrypt-html">
     <head>
         <meta charset="utf-8" />
-        <title>Protected Page</title>
+        <title>玄盾|身份验证</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <!-- do not cache this page -->
@@ -13,119 +13,132 @@
         <meta http-equiv="pragma" content="no-cache" />
 
         <style>
-            .staticrypt-hr {
-                margin-top: 20px;
-                margin-bottom: 20px;
-                border: 0;
-                border-top: 1px solid #eee;
+            :root {
+                --primary: #2563eb;
+                --primary-dark: #1d4ed8;
+                --secondary: #64748b;
+                --light: #f1f5f9;
+                --card: #ffffff;
+                --border: #e2e8f0;
             }
 
-            .staticrypt-page {
-                width: 360px;
-                padding: 8% 0 0;
-                margin: auto;
+            * {
                 box-sizing: border-box;
+                font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
             }
 
-            .staticrypt-form {
-                position: relative;
-                z-index: 1;
-                background: #ffffff;
-                max-width: 360px;
-                margin: 0 auto 100px;
-                padding: 45px;
-                text-align: center;
-                box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-            }
-
-            .staticrypt-form input[type="password"],
-            input[type="text"] {
-                background: inherit;
-                border: 0;
-                box-sizing: border-box; /* This ensures padding is included in the total width */
-                font-size: 14px;
-                outline: 0;
-                padding: 15px 30px 15px 15px; /* Adjust the padding to ensure there is space for the icon */
-                width: 100%;
-            }
-
-            .staticrypt-password-container {
-                position: relative;
-                outline: 0;
-                background: #f2f2f2;
-                width: 100%;
-                border: 0;
-                margin: 0 0 15px;
-                box-sizing: border-box;
-            }
-
-            .staticrypt-toggle-password-visibility {
-                cursor: pointer;
-                height: 20px;
-                opacity: 60%;
-                padding: 13px;
-                position: absolute;
-                right: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 20px;
-            }
-
-            .staticrypt-form .staticrypt-decrypt-button {
-                text-transform: uppercase;
-                outline: 0;
-                background: #4CAF50;
-                width: 100%;
-                border: 0;
-                padding: 15px;
-                color: #ffffff;
-                font-size: 14px;
-                cursor: pointer;
-            }
-
-            .staticrypt-form .staticrypt-decrypt-button:hover,
-            .staticrypt-form .staticrypt-decrypt-button:active,
-            .staticrypt-form .staticrypt-decrypt-button:focus {
-                background: #4CAF50;
-                filter: brightness(92%);
-            }
-
-            .staticrypt-html {
-                height: 100%;
-            }
-
+            .staticrypt-html,
             .staticrypt-body {
                 height: 100%;
                 margin: 0;
+                background: linear-gradient(135deg, #eff6ff, #dbeafe);
+                color: #0f172a;
             }
 
             .staticrypt-content {
                 height: 100%;
-                margin-bottom: 1em;
-                background: #76B852;
-                font-family: "Arial", sans-serif;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 24px;
+            }
+
+            .staticrypt-page {
+                width: min(420px, 100%);
+            }
+
+            .staticrypt-form {
+                background: var(--card);
+                border-radius: 20px;
+                padding: 36px 40px;
+                box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
+                border: 1px solid #eef2ff;
+                text-align: center;
             }
 
             .staticrypt-instructions {
-                margin-top: -1em;
-                margin-bottom: 1em;
+                margin-bottom: 24px;
             }
 
             .staticrypt-title {
-                font-size: 1.5em;
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-bottom: 8px;
+            }
+
+            .staticrypt-hr {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 24px 0;
+            }
+
+            .staticrypt-password-container {
+                position: relative;
+                background: var(--light);
+                border-radius: 14px;
+                border: 1px solid var(--border);
+                margin-bottom: 18px;
+            }
+
+            .staticrypt-form input[type="password"],
+            .staticrypt-form input[type="text"] {
+                background: transparent;
+                border: none;
+                width: 100%;
+                padding: 14px 48px 14px 16px;
+                font-size: 1rem;
+                color: #0f172a;
+            }
+
+            .staticrypt-form input[type="password"]:focus-visible,
+            .staticrypt-form input[type="text"]:focus-visible {
+                outline: none;
+            }
+
+            .staticrypt-toggle-password-visibility {
+                position: absolute;
+                top: 50%;
+                right: 12px;
+                transform: translateY(-50%);
+                width: 22px;
+                height: 22px;
+                cursor: pointer;
+                opacity: 0.7;
             }
 
             label.staticrypt-remember {
                 display: flex;
+                gap: 10px;
                 align-items: center;
-                margin-bottom: 1em;
+                font-size: 0.95rem;
+                color: var(--secondary);
+                margin-bottom: 18px;
+                justify-content: center;
             }
 
             .staticrypt-remember input[type="checkbox"] {
-                transform: scale(1.5);
-                margin-right: 1em;
+                width: 18px;
+                height: 18px;
+                accent-color: var(--primary);
+            }
+
+            .staticrypt-form .staticrypt-decrypt-button {
+                width: 100%;
+                border: none;
+                border-radius: 14px;
+                background: var(--primary);
+                color: #fff;
+                font-weight: 600;
+                font-size: 1rem;
+                padding: 14px;
+                cursor: pointer;
+                transition: background 0.2s ease;
+                text-transform: none;
+            }
+
+            .staticrypt-form .staticrypt-decrypt-button:hover,
+            .staticrypt-form .staticrypt-decrypt-button:focus-visible {
+                background: var(--primary-dark);
             }
 
             .hidden {
@@ -140,23 +153,12 @@
             }
 
             .staticrypt-spinner {
-                display: inline-block;
-                width: 2rem;
-                height: 2rem;
-                vertical-align: text-bottom;
-                border: 0.25em solid gray;
-                border-right-color: transparent;
+                width: 2.5rem;
+                height: 2.5rem;
+                border: 0.3em solid #bfdbfe;
+                border-top-color: var(--primary);
                 border-radius: 50%;
-                -webkit-animation: spinner-border 0.75s linear infinite;
                 animation: spinner-border 0.75s linear infinite;
-                animation-duration: 0.75s;
-                animation-timing-function: linear;
-                animation-delay: 0s;
-                animation-iteration-count: infinite;
-                animation-direction: normal;
-                animation-fill-mode: none;
-                animation-play-state: running;
-                animation-name: spinner-border;
             }
 
             @keyframes spinner-border {
@@ -167,7 +169,7 @@
 
             @media screen and (-webkit-min-device-pixel-ratio: 0) {
                 .staticrypt-form input[type="password"],
-                input[type="text"] {
+                .staticrypt-form input[type="text"] {
                     font-size: 16px;
                 }
             }
@@ -183,7 +185,7 @@
             <div class="staticrypt-page">
                 <div class="staticrypt-form">
                     <div class="staticrypt-instructions">
-                        <p class="staticrypt-title">Protected Page</p>
+                        <p class="staticrypt-title">玄盾|内部身份验证</p>
                         <p></p>
                     </div>
 
@@ -195,7 +197,7 @@
                                 id="staticrypt-password"
                                 type="password"
                                 name="password"
-                                placeholder="Password"
+                                placeholder="密钥"
                                 autofocus
                             />
 
@@ -209,10 +211,10 @@
 
                         <label id="staticrypt-remember-label" class="staticrypt-remember hidden">
                             <input id="staticrypt-remember" type="checkbox" name="remember" />
-                            Remember me
+                            保持解锁状态
                         </label>
 
-                        <input type="submit" class="staticrypt-decrypt-button" value="DECRYPT" />
+                        <input type="submit" class="staticrypt-decrypt-button" value="解锁" />
                     </form>
                 </div>
             </div>
