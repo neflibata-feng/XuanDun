@@ -39,6 +39,12 @@ function getAutoReply(userText) {
 function handleUserMessage() {
     const text = userInput.value.trim();
     if (!text) return;
+    if (typeof window.guardTrackUsage === 'function') {
+        const allowed = window.guardTrackUsage();
+        if (!allowed) {
+            return;
+        }
+    }
     // 显示用户消息
     addMessage(text, 'user');
     userInput.value = ''; // 清空输入框

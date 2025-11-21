@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>玄盾 | 人机验证</title>
+  <style>
+    :root {
+      --primary:#2563eb;--primary-dark:#1d4ed8;--secondary:#64748b;--light:#f1f5f9;--border:#e2e8f0;--danger:#dc2626;--success:#16a34a;
+    }
+    * {box-sizing:border-box;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;}
+    body {margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#eff6ff,#dbeafe);color:#0f172a;padding:24px;}
+    .card {width:min(420px,100%);background:#fff;border:1px solid #eef2ff;border-radius:24px;padding:38px 42px;box-shadow:0 25px 60px rgba(15,23,42,.12);position:relative;}
+    h1 {margin:0 0 4px;font-size:1.6rem;font-weight:700;}
+    .sub {margin:0 0 24px;font-size:.95rem;color:var(--secondary);}
+    .challenge-wrap {margin-bottom:18px;display:flex;flex-direction:column;gap:12px;}
+    .canvas-box {display:flex;justify-content:center;}
+    canvas {border:1px dashed var(--border);border-radius:12px;background:var(--light);}
+    .input-row {display:flex;gap:10px;}
+    input[type=text] {flex:1;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:#fff;font-size:1rem;}
+    input[type=text]:focus {outline:2px solid #93c5fd;border-color:#60a5fa;}
+    button {border:none;border-radius:14px;padding:14px 20px;font-size:1rem;font-weight:600;cursor:pointer;background:var(--primary);color:#fff;transition:.2s;display:flex;align-items:center;justify-content:center;}
+    button:hover {background:var(--primary-dark);} 
+    .info {font-size:.8rem;color:var(--secondary);margin-top:18px;line-height:1.4;}
+    .error {color:var(--danger);font-size:.85rem;margin-top:4px;min-height:18px;}
+    .success {color:var(--success);font-size:.9rem;margin-top:8px;}
+    .actions {display:flex;gap:10px;margin-top:8px;}
+    .secondary-btn {background:#fff;color:var(--primary);border:1px solid var(--primary);}
+    .secondary-btn:hover {background:#2563eb;color:#fff;}
+    .footer-tip {margin-top:28px;font-size:.7rem;color:#94a3b8;text-align:center;}
+    .hidden {display:none !important;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>人机验证</h1>
+    <p class="sub">请完成下面的算术挑战以继续访问主页。</p>
+    <div class="challenge-wrap">
+      <div class="canvas-box"><canvas id="captcha" width="240" height="80" aria-label="算术挑战"></canvas></div>
+      <div class="input-row">
+        <input id="answer" type="text" placeholder="输入结果" autocomplete="off" />
+        <button id="submitBtn">验证</button>
+      </div>
+      <div class="actions">
+        <button id="refreshBtn" type="button" class="secondary-btn" aria-label="刷新挑战">刷新</button>
+        <button id="backBtn" type="button" class="secondary-btn" aria-label="返回主页">返回</button>
+      </div>
+      <div id="feedback" class="error" role="alert"></div>
+      <div id="successMsg" class="success hidden">验证通过，正在跳转...</div>
+    </div>
+    <div class="info">
+      验证通过后，本地会保存 15 分钟的许可；玄小盾对话次数达到 10 次后需重新验证。
+    </div>
+    <div class="footer-tip">© 2025 玄盾 | XuanDun Local Guard</div>
+  </div>
+  <script src="verify.js"></script>
+</body>
+</html>
