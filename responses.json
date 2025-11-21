@@ -8,23 +8,2847 @@
         "response": "再见！祝您有美好的一天！"
     },
     "帮助": {
-        "pattern": "(帮助|支持|需要帮忙|帮忙|协助|求助|指导)",
+        "pattern": "(帮助|支持|需要帮忙|帮忙|协助|求助|指导|怎么用|使用方法|说明书)",
         "response": "我可以为您提供玄盾金融系统的相关帮助。请告诉我您的问题。"
     },
     "联系方式": {
-        "pattern": "(联系方式|邮箱|怎么联系|联系|电话|联络方式|联系信息|联系我|联系你)",
+        "pattern": "(联系方式|邮箱|怎么联系|联系|电话|联络方式|联系信息|联系我|联系你|客服|人工)",
         "response": "您可以通过邮箱 neflibatafeng@gmail.com 联系我们。"
     },
     "管理端": {
-        "pattern": "(管理端|web|web端|网址|网站|系统|平台|后台|界面)",
-        "response": "金融系统管理端网址为https://web.uestcgal.top，请注意我们是学生项目，不可以商用，如果您有任何技术相关的问题，请告诉我，我会尽力帮助您解决。"
+        "pattern": "(管理端|web|web端|网址|网站|系统|平台|后台|界面|入口|链接)",
+        "response": "金融系统管理端网址为https://web.uestcgal.top，请注意我们是学生项目，不可以商用。"
     },
-    "脏话处理":{
+    "脏话处理": {
         "pattern": "(傻逼|sb|你妈|操你妈|你妈逼|妈的|他妈的|去你妈的|狗日的|我日你|草泥马|操|日你|滚|杂种|畜生|王八蛋|贱人|妈了个逼|尼玛|他娘的|我操|死全家|死你|死逼|逼样|破鞋|骚货|贱逼|贱逼样|婊子|你大爷|你妹|你妈个逼|操你大爷|干你|干你娘|娘的|操你妈逼|日你妈|草你妈|去你妈的|操你妈的|操你妈逼的|我草|我艹|我操你|我操你妈|你妈死了|你妈死|妈蛋|靠|靠你妈|滚蛋|妈的|他妈个逼|妈了个比|傻叉|煞笔|你大爷|你大爷的|老母狗|操蛋|草蛋|臭逼|臭婊子|死变态|去死|去你妈的|脑残|智障|呆逼|混蛋|滚你妈|滚你妈的|贱货|婊子养的|吃屎|吃屎去吧)",
         "response": "请注意您的言辞，我们提倡文明交流。"
     },
     "default": {
         "pattern": ".+",
         "response": "抱歉，我没有理解您的问题。请尝试重新提问。"
+    },
+    "系统介绍": {
+        "pattern": "(这是什么|玄盾是什么|介绍一下|系统介绍|关于玄盾|项目介绍|这是干嘛的|功能介绍)",
+        "response": "玄盾金融系统是一个仅限于测试、开发与研究用途的金融系统模拟环境，由学生团队开发。"
+    },
+    "是否真实": {
+        "pattern": "(是真的吗|真实资金|真钱|可以提现吗|真实交易|模拟的吗|假的吗)",
+        "response": "本平台所有数据均为模拟数据，不涉及真实资金，不可提现，仅供测试使用。"
+    },
+    "商业用途": {
+        "pattern": "(商用|商业用途|赚钱|盈利|收费吗|多少钱|价格|购买)",
+        "response": "本平台严禁商业化使用，仅供学习和研究，且完全免费。"
+    },
+    "开发者": {
+        "pattern": "(谁做的|开发者|作者|团队|公司|老板|负责人)",
+        "response": "玄盾金融系统由neflibata-feng及团队开发，属于学生项目。"
+    },
+    "注册": {
+        "pattern": "(怎么注册|注册账号|创建账号|申请账号|如何注册|我要注册|新用户)",
+        "response": "请访问管理端 https://web.uestcgal.top 进行注册。如果遇到问题，请联系管理员。"
+    },
+    "忘记密码": {
+        "pattern": "(忘记密码|密码忘了|找回密码|重置密码|密码丢了|登不上|无法登录)",
+        "response": "目前请联系管理员通过邮箱 neflibatafeng@gmail.com 协助重置密码。"
+    },
+    "登录失败": {
+        "pattern": "(登录失败|登不进去|进不去|报错|登录不了|无法登陆)",
+        "response": "请检查您的网络连接，并确认账号密码正确。如果问题持续，请截图报错信息发送至我们的邮箱。"
+    },
+    "开源": {
+        "pattern": "(开源|代码|github|源码|仓库|git)",
+        "response": "本项目部分组件可能开源，请遵守相关的开源协议。具体请查看GitHub仓库。"
+    },
+    "API文档": {
+        "pattern": "(API|接口|文档|开发文档|接口文档|怎么调用)",
+        "response": "API文档请参考项目中的 docs.html 或相关说明文件。"
+    },
+    "测试数据": {
+        "pattern": "(数据|测试数据|模拟数据|哪里有数据|生成数据)",
+        "response": "系统内部提供模拟数据生成功能，您也可以手动录入测试数据。"
+    },
+    "部署": {
+        "pattern": "(部署|安装|怎么跑|运行|环境|配置|服务器)",
+        "response": "请参考 README.md 文件中的部署说明进行环境配置和运行。"
+    },
+    "隐私政策": {
+        "pattern": "(隐私|个人信息|数据安全|隐私政策|泄露|保密)",
+        "response": "请阅读我们的隐私政策：https://docs.uestcgal.top/privacyPolicy.md。测试环境数据不保密。"
+    },
+    "服务协议": {
+        "pattern": "(协议|规则|条款|SLA|服务协议|用户协议)",
+        "response": "请阅读我们的服务协议：https://docs.uestcgal.top/SLA.md。"
+    },
+    "天气": {
+        "pattern": "(天气|下雨|晴天|温度)",
+        "response": "我是金融系统助手，无法提供天气信息。"
+    },
+    "几点了": {
+        "pattern": "(几点了|时间|现在几点)",
+        "response": "请查看您设备上的系统时间。"
+    },
+    "你是谁": {
+        "pattern": "(你是谁|你叫什么|名字|身份)",
+        "response": "我是玄盾金融系统的智能助手。"
+    },
+    "聪明": {
+        "pattern": "(聪明|智能|厉害|好用|不错|棒)",
+        "response": "谢谢夸奖！我会继续努力。"
+    },
+    "笨": {
+        "pattern": "(笨|傻|不好用|垃圾|智障|人工智障)",
+        "response": "抱歉让您失望了，我会继续学习改进。"
+    },
+    "吃饭": {
+        "pattern": "(吃饭|饿了|吃什么|午饭|晚饭)",
+        "response": "请按时吃饭，身体是革命的本钱。"
+    },
+    "无聊": {
+        "pattern": "(无聊|没意思|讲个笑话|笑话|乐子)",
+        "response": "您可以尝试探索一下玄盾系统的功能，或者去写几行代码？"
+    },
+    "爱": {
+        "pattern": "(爱|喜欢|爱你)",
+        "response": "谢谢您的喜爱！"
+    },
+    "恨": {
+        "pattern": "(恨|讨厌)",
+        "response": "我会努力做得更好。"
+    },
+    "哈哈": {
+        "pattern": "(哈哈|呵呵|嘻嘻|嘿嘿)",
+        "response": "看到您开心我也很开心。"
+    },
+    "测试": {
+        "pattern": "(测试|test|try)",
+        "response": "系统正常运行中。"
+    },
+    "版本": {
+        "pattern": "(版本|version|v几)",
+        "response": "当前是开发测试版本。"
+    },
+    "更新": {
+        "pattern": "(更新|升级|update)",
+        "response": "我们会不定期进行系统更新。"
+    },
+    "慢": {
+        "pattern": "(慢|卡|延迟|卡顿)",
+        "response": "可能是网络原因或服务器负载较高，请稍后再试。"
+    },
+    "报错": {
+        "pattern": "(报错|error|bug|出错了|崩溃)",
+        "response": "遇到Bug请反馈给 neflibatafeng@gmail.com，感谢您的帮助！"
+    },
+    "安全": {
+        "pattern": "(安全|黑客|攻击|防护)",
+        "response": "我们重视系统安全，但也请注意这只是测试系统。"
+    },
+    "数据库": {
+        "pattern": "(数据库|database|sql|mysql)",
+        "response": "后端使用数据库存储模拟数据。"
+    },
+    "前端": {
+        "pattern": "(前端|界面|ui|css|html|js)",
+        "response": "管理端采用Web技术构建。"
+    },
+    "后端": {
+        "pattern": "(后端|服务器|server|java|python|node)",
+        "response": "后端提供API支持。"
+    },
+    "手机": {
+        "pattern": "(手机|app|移动端|安卓|ios)",
+        "response": "目前主要支持Web端访问。"
+    },
+    "微信": {
+        "pattern": "(微信|小程序|公众号)",
+        "response": "暂无微信小程序版本。"
+    },
+    "支付": {
+        "pattern": "(支付|充值|提现|转账)",
+        "response": "系统内均为模拟支付，不涉及真实资金。"
+    },
+    "余额": {
+        "pattern": "(余额|钱|资产)",
+        "response": "您可以在管理端查看您的模拟账户余额。"
+    },
+    "流水": {
+        "pattern": "(流水|记录|明细|账单)",
+        "response": "管理端提供交易流水查询功能。"
+    },
+    "审核": {
+        "pattern": "(审核|审批|通过)",
+        "response": "部分操作可能需要管理员审核。"
+    },
+    "权限": {
+        "pattern": "(权限|无法访问|拒绝|403)",
+        "response": "请确认您是否有相应的操作权限。"
+    },
+    "角色": {
+        "pattern": "(角色|管理员|用户)",
+        "response": "系统区分普通用户和管理员角色。"
+    },
+    "日志": {
+        "pattern": "(日志|log)",
+        "response": "系统后台会记录操作日志。"
+    },
+    "备份": {
+        "pattern": "(备份|恢复|丢数据)",
+        "response": "测试数据建议您自行备份，系统可能会重置。"
+    },
+    "重置": {
+        "pattern": "(重置|清空|还原)",
+        "response": "系统可能会不定期重置数据。"
+    },
+    "教程": {
+        "pattern": "(教程|教学|怎么学|学习)",
+        "response": "建议先阅读文档，然后动手操作。"
+    },
+    "反馈": {
+        "pattern": "(反馈|建议|意见)",
+        "response": "欢迎发送邮件提出宝贵建议。"
+    },
+    "合作": {
+        "pattern": "(合作|商务|加盟)",
+        "response": "本项目为学生非盈利项目，暂不接受商业合作。"
+    },
+    "招聘": {
+        "pattern": "(招聘|招人|加入)",
+        "response": "如果您对项目感兴趣，可以联系作者交流。"
+    },
+    "位置": {
+        "pattern": "(位置|地址|在哪)",
+        "response": "我们是线上项目。"
+    },
+    "学校": {
+        "pattern": "(学校|大学|uestc)",
+        "response": "本项目与电子科技大学相关。"
+    },
+    "老师": {
+        "pattern": "(老师|指导)",
+        "response": "感谢指导老师的帮助。"
+    },
+    "同学": {
+        "pattern": "(同学|队友)",
+        "response": "感谢团队成员的付出。"
+    },
+    "作业": {
+        "pattern": "(作业|毕设|课设)",
+        "response": "这可能是一个课程设计或个人项目。"
+    },
+    "分数": {
+        "pattern": "(分数|成绩)",
+        "response": "希望通过这个项目能学到东西。"
+    },
+    "难": {
+        "pattern": "(难|不会|复杂)",
+        "response": "万事开头难，加油！"
+    },
+    "简单": {
+        "pattern": "(简单|容易)",
+        "response": "那太好了，欢迎深入研究。"
+    },
+    "代码": {
+        "pattern": "(代码|code)",
+        "response": "代码质量是我们关注的重点。"
+    },
+    "架构": {
+        "pattern": "(架构|设计)",
+        "response": "系统采用前后端分离架构。"
+    },
+    "性能": {
+        "pattern": "(性能|速度|并发)",
+        "response": "我们在不断优化系统性能。"
+    },
+    "并发": {
+        "pattern": "(并发|高并发)",
+        "response": "测试环境资源有限，请勿进行高并发压测。"
+    },
+    "攻击": {
+        "pattern": "(攻击|ddos|注入)",
+        "response": "严禁对本平台进行恶意攻击。"
+    },
+    "漏洞": {
+        "pattern": "(漏洞|exploit)",
+        "response": "发现漏洞请及时报告，不要利用。"
+    },
+    "奖励": {
+        "pattern": "(奖励|赏金)",
+        "response": "暂无漏洞赏金计划，全是为爱发电。"
+    },
+    "证书": {
+        "pattern": "(证书|https|ssl)",
+        "response": "Web端已启用HTTPS安全连接。"
+    },
+    "浏览器": {
+        "pattern": "(浏览器|chrome|edge|firefox)",
+        "response": "推荐使用Chrome或Edge浏览器访问。"
+    },
+    "兼容性": {
+        "pattern": "(兼容|ie)",
+        "response": "不建议使用IE浏览器。"
+    },
+    "乱码": {
+        "pattern": "(乱码|编码|utf-8)",
+        "response": "请确保使用UTF-8编码。"
+    },
+    "下载": {
+        "pattern": "(下载|download)",
+        "response": "暂无客户端下载，请使用Web端。"
+    },
+    "上传": {
+        "pattern": "(上传|upload)",
+        "response": "部分功能支持文件上传。"
+    },
+    "图片": {
+        "pattern": "(图片|image)",
+        "response": "支持常见的图片格式。"
+    },
+    "视频": {
+        "pattern": "(视频|video)",
+        "response": "暂不支持视频功能。"
+    },
+    "音频": {
+        "pattern": "(音频|audio)",
+        "response": "暂不支持音频功能。"
+    },
+    "直播": {
+        "pattern": "(直播|live)",
+        "response": "暂不支持直播。"
+    },
+    "消息": {
+        "pattern": "(消息|通知|提醒)",
+        "response": "系统会有站内消息提醒。"
+    },
+    "设置": {
+        "pattern": "(设置|配置|setting)",
+        "response": "可以在个人中心进行设置。"
+    },
+    "退出": {
+        "pattern": "(退出|注销|logout)",
+        "response": "点击右上角可以退出登录。"
+    },
+    "删除": {
+        "pattern": "(删除|delete)",
+        "response": "删除操作请谨慎，数据可能无法恢复。"
+    },
+    "修改": {
+        "pattern": "(修改|edit|update)",
+        "response": "大部分信息支持修改。"
+    },
+    "查询": {
+        "pattern": "(查询|搜索|search|find)",
+        "response": "支持多种条件的查询。"
+    },
+    "排序": {
+        "pattern": "(排序|sort)",
+        "response": "列表支持按时间等字段排序。"
+    },
+    "分页": {
+        "pattern": "(分页|page)",
+        "response": "数据量大时会进行分页显示。"
+    },
+    "导出": {
+        "pattern": "(导出|export|excel|csv)",
+        "response": "支持导出部分数据。"
+    },
+    "导入": {
+        "pattern": "(导入|import)",
+        "response": "支持导入特定格式的数据。"
+    },
+    "打印": {
+        "pattern": "(打印|print)",
+        "response": "可以使用浏览器自带的打印功能。"
+    },
+    "报表": {
+        "pattern": "(报表|图表|统计)",
+        "response": "管理端提供可视化的统计报表。"
+    },
+    "大屏": {
+        "pattern": "(大屏|展示)",
+        "response": "暂无数据大屏功能。"
+    },
+    "监控": {
+        "pattern": "(监控|monitor)",
+        "response": "后台有基本的系统监控。"
+    },
+    "告警": {
+        "pattern": "(告警|alert)",
+        "response": "异常情况会触发告警。"
+    },
+    "日志_74": {
+        "pattern": "(日志|log)",
+        "response": "操作日志可追溯。"
+    },
+    "审计": {
+        "pattern": "(审计|audit)",
+        "response": "支持安全审计。"
+    },
+    "合规": {
+        "pattern": "(合规|compliance)",
+        "response": "我们努力符合相关规范。"
+    },
+    "法律": {
+        "pattern": "(法律|law)",
+        "response": "请遵守当地法律法规。"
+    },
+    "版权": {
+        "pattern": "(版权|copyright)",
+        "response": "版权归开发者所有。"
+    },
+    "授权": {
+        "pattern": "(授权|license)",
+        "response": "使用需遵循开源协议。"
+    },
+    "免费": {
+        "pattern": "(免费|free)",
+        "response": "是的，完全免费。"
+    },
+    "捐赠": {
+        "pattern": "(捐赠|donate|打赏)",
+        "response": "心意领了，暂不接受捐赠。"
+    },
+    "广告": {
+        "pattern": "(广告|推广)",
+        "response": "本平台无广告。"
+    },
+    "垃圾邮件": {
+        "pattern": "(垃圾邮件|spam)",
+        "response": "我们不会发送垃圾邮件。"
+    },
+    "验证码": {
+        "pattern": "(验证码|captcha)",
+        "response": "登录注册可能需要验证码。"
+    },
+    "短信": {
+        "pattern": "(短信|sms)",
+        "response": "暂不支持短信通知。"
+    },
+    "邮件": {
+        "pattern": "(邮件|email)",
+        "response": "支持邮件通知。"
+    },
+    "头像": {
+        "pattern": "(头像|avatar)",
+        "response": "支持自定义头像。"
+    },
+    "昵称": {
+        "pattern": "(昵称|name)",
+        "response": "支持修改昵称。"
+    },
+    "实名": {
+        "pattern": "(实名|身份证)",
+        "response": "测试系统不需要实名认证。"
+    },
+    "银行卡": {
+        "pattern": "(银行卡|card)",
+        "response": "不需要绑定真实银行卡。"
+    },
+    "基金": {
+        "pattern": "(基金|fund)",
+        "response": "系统内包含模拟基金交易功能。"
+    },
+    "股票": {
+        "pattern": "(股票|stock)",
+        "response": "系统内包含模拟股票交易功能。"
+    },
+    "期货": {
+        "pattern": "(期货|future)",
+        "response": "暂不支持期货。"
+    },
+    "外汇": {
+        "pattern": "(外汇|forex)",
+        "response": "暂不支持外汇。"
+    },
+    "债券": {
+        "pattern": "(债券|bond)",
+        "response": "暂不支持债券。"
+    },
+    "保险": {
+        "pattern": "(保险|insurance)",
+        "response": "暂不支持保险业务。"
+    },
+    "贷款": {
+        "pattern": "(贷款|loan)",
+        "response": "系统内包含模拟贷款功能。"
+    },
+    "存款": {
+        "pattern": "(存款|deposit)",
+        "response": "支持模拟存款。"
+    },
+    "利息": {
+        "pattern": "(利息|interest)",
+        "response": "系统会自动计算模拟利息。"
+    },
+    "汇率": {
+        "pattern": "(汇率|rate)",
+        "response": "使用固定或模拟汇率。"
+    },
+    "K线": {
+        "pattern": "(K线|走势图)",
+        "response": "提供基本的走势图表。"
+    },
+    "风险": {
+        "pattern": "(风险|risk)",
+        "response": "投资有风险，入市需谨慎（虽然是模拟的）。"
+    },
+    "收益": {
+        "pattern": "(收益|profit)",
+        "response": "祝您在模拟交易中获得高收益。"
+    },
+    "亏损": {
+        "pattern": "(亏损|loss)",
+        "response": "模拟亏损也是积累经验。"
+    },
+    "策略": {
+        "pattern": "(策略|strategy)",
+        "response": "您可以尝试不同的投资策略。"
+    },
+    "量化": {
+        "pattern": "(量化|quant)",
+        "response": "支持简单的量化接口。"
+    },
+    "算法": {
+        "pattern": "(算法|algorithm)",
+        "response": "系统内部使用了一些金融算法。"
+    },
+    "模型": {
+        "pattern": "(模型|model)",
+        "response": "基于简化的金融模型。"
+    },
+    "预测": {
+        "pattern": "(预测|predict)",
+        "response": "不提供市场预测功能。"
+    },
+    "分析": {
+        "pattern": "(分析|analyze)",
+        "response": "提供基础的数据分析工具。"
+    },
+    "报告": {
+        "pattern": "(报告|report)",
+        "response": "可以生成交易报告。"
+    },
+    "日记": {
+        "pattern": "(日记|diary)",
+        "response": "建议记录交易日记。"
+    },
+    "复盘": {
+        "pattern": "(复盘|review)",
+        "response": "复盘是提高的好方法。"
+    },
+    "心态": {
+        "pattern": "(心态|mood)",
+        "response": "保持良好的投资心态。"
+    },
+    "贪婪": {
+        "pattern": "(贪婪|greed)",
+        "response": "克服贪婪。"
+    },
+    "恐惧": {
+        "pattern": "(恐惧|fear)",
+        "response": "战胜恐惧。"
+    },
+    "耐心": {
+        "pattern": "(耐心|patience)",
+        "response": "耐心等待机会。"
+    },
+    "止损": {
+        "pattern": "(止损|stop loss)",
+        "response": "学会止损很重要。"
+    },
+    "止盈": {
+        "pattern": "(止盈|take profit)",
+        "response": "适时止盈。"
+    },
+    "仓位": {
+        "pattern": "(仓位|position)",
+        "response": "控制好仓位。"
+    },
+    "杠杆": {
+        "pattern": "(杠杆|leverage)",
+        "response": "模拟交易支持杠杆，请谨慎使用。"
+    },
+    "爆仓": {
+        "pattern": "(爆仓|liquidation)",
+        "response": "注意风险，避免爆仓。"
+    },
+    "追加保证金": {
+        "pattern": "(追加|margin call)",
+        "response": "保证金不足时请及时追加。"
+    },
+    "手续费": {
+        "pattern": "(手续费|fee)",
+        "response": "模拟交易会扣除虚拟手续费。"
+    },
+    "税": {
+        "pattern": "(税|tax)",
+        "response": "不涉及真实税务。"
+    },
+    "会计": {
+        "pattern": "(会计|accounting)",
+        "response": "遵循基本的会计准则。"
+    },
+    "审计_127": {
+        "pattern": "(审计|audit)",
+        "response": "模拟审计流程。"
+    },
+    "监管": {
+        "pattern": "(监管|regulation)",
+        "response": "模拟监管环境。"
+    },
+    "合规_129": {
+        "pattern": "(合规|compliance)",
+        "response": "模拟合规检查。"
+    },
+    "反洗钱": {
+        "pattern": "(反洗钱|aml)",
+        "response": "系统包含反洗钱模拟模块。"
+    },
+    "KYC": {
+        "pattern": "(KYC|身份认证)",
+        "response": "模拟KYC流程。"
+    },
+    "区块链": {
+        "pattern": "(区块链|blockchain)",
+        "response": "暂未集成区块链技术。"
+    },
+    "比特币": {
+        "pattern": "(比特币|btc|crypto)",
+        "response": "暂不支持加密货币。"
+    },
+    "AI": {
+        "pattern": "(AI|人工智能)",
+        "response": "我是您的AI助手。"
+    },
+    "大数据": {
+        "pattern": "(大数据|big data)",
+        "response": "使用了一些大数据技术。"
+    },
+    "云计算": {
+        "pattern": "(云计算|cloud)",
+        "response": "部署在云服务器上。"
+    },
+    "物联网": {
+        "pattern": "(物联网|iot)",
+        "response": "与物联网无关。"
+    },
+    "5G": {
+        "pattern": "(5G)",
+        "response": "与5G无关。"
+    },
+    "元宇宙": {
+        "pattern": "(元宇宙|metaverse)",
+        "response": "我们专注于传统金融模拟。"
+    },
+    "NFT": {
+        "pattern": "(NFT)",
+        "response": "不支持NFT。"
+    },
+    "Web3": {
+        "pattern": "(Web3)",
+        "response": "目前是Web2应用。"
+    },
+    "DAO": {
+        "pattern": "(DAO)",
+        "response": "不是DAO组织。"
+    },
+    "DeFi": {
+        "pattern": "(DeFi)",
+        "response": "不是DeFi应用。"
+    },
+    "GameFi": {
+        "pattern": "(GameFi)",
+        "response": "不是链游。"
+    },
+    "SocialFi": {
+        "pattern": "(SocialFi)",
+        "response": "不是SocialFi。"
+    },
+    "XuanDun": {
+        "pattern": "(XuanDun|xuandun)",
+        "response": "XuanDun是我们的项目代号。"
+    },
+    "玄": {
+        "pattern": "(玄)",
+        "response": "玄之又玄，众妙之门。"
+    },
+    "盾": {
+        "pattern": "(盾)",
+        "response": "坚如磐石，安全之盾。"
+    },
+    "Logo": {
+        "pattern": "(Logo|图标)",
+        "response": "Logo是我们自己设计的。"
+    },
+    "Slogan": {
+        "pattern": "(Slogan|口号)",
+        "response": "安全、高效、模拟。"
+    },
+    "愿景": {
+        "pattern": "(愿景|vision)",
+        "response": "打造最好的学生金融模拟系统。"
+    },
+    "使命": {
+        "pattern": "(使命|mission)",
+        "response": "帮助学生理解金融系统。"
+    },
+    "价值观": {
+        "pattern": "(价值观|values)",
+        "response": "诚信、创新、探索。"
+    },
+    "文化": {
+        "pattern": "(文化|culture)",
+        "response": "极客文化。"
+    },
+    "团队": {
+        "pattern": "(团队|team)",
+        "response": "我们是一个年轻的团队。"
+    },
+    "加入我们": {
+        "pattern": "(加入我们|join)",
+        "response": "欢迎有志之士。"
+    },
+    "联系作者": {
+        "pattern": "(联系作者|contact author)",
+        "response": "neflibatafeng@gmail.com"
+    },
+    "支持我们": {
+        "pattern": "(支持我们|support)",
+        "response": "多提Bug就是最大的支持。"
+    },
+    "点赞": {
+        "pattern": "(点赞|star)",
+        "response": "请在GitHub上给我们点个Star。"
+    },
+    "收藏": {
+        "pattern": "(收藏|fork)",
+        "response": "欢迎Fork代码。"
+    },
+    "关注": {
+        "pattern": "(关注|follow)",
+        "response": "关注我们的GitHub账号。"
+    },
+    "分享": {
+        "pattern": "(分享|share)",
+        "response": "欢迎分享给你的同学。"
+    },
+    "转发": {
+        "pattern": "(转发|repost)",
+        "response": "感谢转发。"
+    },
+    "评论": {
+        "pattern": "(评论|comment)",
+        "response": "欢迎留言评论。"
+    },
+    "社区": {
+        "pattern": "(社区|community)",
+        "response": "欢迎加入我们的社区讨论。"
+    },
+    "论坛": {
+        "pattern": "(论坛|forum)",
+        "response": "暂无官方论坛。"
+    },
+    "群": {
+        "pattern": "(群|group|qq群|微信群)",
+        "response": "暂无官方交流群。"
+    },
+    "活动": {
+        "pattern": "(活动|event)",
+        "response": "暂无线下活动。"
+    },
+    "比赛": {
+        "pattern": "(比赛|competition)",
+        "response": "可能会举办模拟交易大赛。"
+    },
+    "奖品": {
+        "pattern": "(奖品|prize)",
+        "response": "比赛会有虚拟奖品。"
+    },
+    "排名": {
+        "pattern": "(排名|rank)",
+        "response": "可以看到自己的收益排名。"
+    },
+    "榜单": {
+        "pattern": "(榜单|leaderboard)",
+        "response": "努力冲击榜首吧。"
+    },
+    "高手": {
+        "pattern": "(高手|master)",
+        "response": "向高手学习。"
+    },
+    "小白": {
+        "pattern": "(小白|newbie)",
+        "response": "小白也能快速上手。"
+    },
+    "入门": {
+        "pattern": "(入门|start)",
+        "response": "查看入门指南。"
+    },
+    "进阶": {
+        "pattern": "(进阶|advanced)",
+        "response": "探索进阶功能。"
+    },
+    "精通": {
+        "pattern": "(精通|expert)",
+        "response": "成为金融系统专家。"
+    },
+    "放弃": {
+        "pattern": "(放弃|give up)",
+        "response": "不要轻言放弃。"
+    },
+    "坚持": {
+        "pattern": "(坚持|persist)",
+        "response": "坚持就是胜利。"
+    },
+    "努力": {
+        "pattern": "(努力|effort)",
+        "response": "努力会有回报。"
+    },
+    "学习": {
+        "pattern": "(学习|study)",
+        "response": "好好学习，天天向上。"
+    },
+    "工作": {
+        "pattern": "(工作|work)",
+        "response": "工作顺利。"
+    },
+    "生活": {
+        "pattern": "(生活|life)",
+        "response": "生活愉快。"
+    },
+    "健康": {
+        "pattern": "(健康|health)",
+        "response": "注意身体健康。"
+    },
+    "快乐": {
+        "pattern": "(快乐|happy)",
+        "response": "天天开心。"
+    },
+    "悲伤": {
+        "pattern": "(悲伤|sad)",
+        "response": "抱抱你，一切都会好起来的。"
+    },
+    "生气": {
+        "pattern": "(生气|angry)",
+        "response": "消消气，不值得。"
+    },
+    "焦虑": {
+        "pattern": "(焦虑|anxious)",
+        "response": "深呼吸，放松一下。"
+    },
+    "抑郁": {
+        "pattern": "(抑郁|depressed)",
+        "response": "如果需要，请寻求专业帮助。"
+    },
+    "孤独": {
+        "pattern": "(孤独|lonely)",
+        "response": "我在这里陪你。"
+    },
+    "无助": {
+        "pattern": "(无助|helpless)",
+        "response": "告诉我你的困难。"
+    },
+    "迷茫": {
+        "pattern": "(迷茫|confused)",
+        "response": "确立目标，一步步来。"
+    },
+    "梦想": {
+        "pattern": "(梦想|dream)",
+        "response": "有梦想谁都了不起。"
+    },
+    "未来": {
+        "pattern": "(未来|future)",
+        "response": "未来可期。"
+    },
+    "现在": {
+        "pattern": "(现在|now)",
+        "response": "把握当下。"
+    },
+    "过去": {
+        "pattern": "(过去|past)",
+        "response": "往事随风。"
+    },
+    "时间": {
+        "pattern": "(时间|time)",
+        "response": "时间就是金钱。"
+    },
+    "金钱": {
+        "pattern": "(金钱|money)",
+        "response": "君子爱财，取之有道。"
+    },
+    "财富": {
+        "pattern": "(财富|wealth)",
+        "response": "知识是最大的财富。"
+    },
+    "自由": {
+        "pattern": "(自由|freedom)",
+        "response": "财务自由是很多人的目标。"
+    },
+    "独立": {
+        "pattern": "(独立|independent)",
+        "response": "保持独立思考。"
+    },
+    "思考": {
+        "pattern": "(思考|think)",
+        "response": "多思考，多总结。"
+    },
+    "行动": {
+        "pattern": "(行动|action)",
+        "response": "行动胜于空谈。"
+    },
+    "计划": {
+        "pattern": "(计划|plan)",
+        "response": "凡事预则立。"
+    },
+    "目标": {
+        "pattern": "(目标|goal)",
+        "response": "设定一个小目标。"
+    },
+    "成功": {
+        "pattern": "(成功|success)",
+        "response": "失败是成功之母。"
+    },
+    "失败": {
+        "pattern": "(失败|fail)",
+        "response": "从失败中吸取教训。"
+    },
+    "挑战": {
+        "pattern": "(挑战|challenge)",
+        "response": "勇于接受挑战。"
+    },
+    "机遇": {
+        "pattern": "(机遇|opportunity)",
+        "response": "抓住机遇。"
+    },
+    "改变": {
+        "pattern": "(改变|change)",
+        "response": "拥抱改变。"
+    },
+    "创新": {
+        "pattern": "(创新|innovation)",
+        "response": "创新驱动发展。"
+    },
+    "科技": {
+        "pattern": "(科技|tech)",
+        "response": "科技改变生活。"
+    },
+    "互联网": {
+        "pattern": "(互联网|internet)",
+        "response": "互联网连接世界。"
+    },
+    "世界": {
+        "pattern": "(世界|world)",
+        "response": "世界很大，去看看。"
+    },
+    "宇宙": {
+        "pattern": "(宇宙|universe)",
+        "response": "宇宙浩瀚。"
+    },
+    "人类": {
+        "pattern": "(人类|human)",
+        "response": "人类渺小而伟大。"
+    },
+    "生命": {
+        "pattern": "(生命|life)",
+        "response": "敬畏生命。"
+    },
+    "自然": {
+        "pattern": "(自然|nature)",
+        "response": "保护自然。"
+    },
+    "环境": {
+        "pattern": "(环境|environment)",
+        "response": "爱护环境。"
+    },
+    "和平": {
+        "pattern": "(和平|peace)",
+        "response": "愿世界和平。"
+    },
+    "爱国": {
+        "pattern": "(爱国|patriotism)",
+        "response": "热爱祖国。"
+    },
+    "敬业": {
+        "pattern": "(敬业|dedication)",
+        "response": "爱岗敬业。"
+    },
+    "诚信": {
+        "pattern": "(诚信|integrity)",
+        "response": "诚信为本。"
+    },
+    "友善": {
+        "pattern": "(友善|friendly)",
+        "response": "友善待人。"
+    },
+    "文明": {
+        "pattern": "(文明|civilization)",
+        "response": "做文明人。"
+    },
+    "和谐": {
+        "pattern": "(和谐|harmony)",
+        "response": "构建和谐社会。"
+    },
+    "富强": {
+        "pattern": "(富强|prosperity)",
+        "response": "国家富强。"
+    },
+    "民主": {
+        "pattern": "(民主|democracy)",
+        "response": "社会民主。"
+    },
+    "法治": {
+        "pattern": "(法治|rule of law)",
+        "response": "依法治国。"
+    },
+    "公正": {
+        "pattern": "(公正|justice)",
+        "response": "公平正义。"
+    },
+    "平等": {
+        "pattern": "(平等|equality)",
+        "response": "人人平等。"
+    },
+    "理财": {
+        "pattern": "(理财|finance)",
+        "response": "理财需要专业知识。"
+    },
+    "消费": {
+        "pattern": "(消费|consume)",
+        "response": "理性消费。"
+    },
+    "储蓄": {
+        "pattern": "(储蓄|saving)",
+        "response": "养成储蓄好习惯。"
+    },
+    "预算": {
+        "pattern": "(预算|budget)",
+        "response": "做好预算管理。"
+    },
+    "记账": {
+        "pattern": "(记账|bookkeeping)",
+        "response": "记账是个好习惯。"
+    },
+    "债务": {
+        "pattern": "(债务|debt)",
+        "response": "远离不良债务。"
+    },
+    "信用": {
+        "pattern": "(信用|credit)",
+        "response": "珍惜个人信用。"
+    },
+    "征信": {
+        "pattern": "(征信|credit report)",
+        "response": "保持良好征信记录。"
+    },
+    "分期": {
+        "pattern": "(分期|installment)",
+        "response": "分期付款要算好费率。"
+    },
+    "套路": {
+        "pattern": "(套路|trick)",
+        "response": "小心金融诈骗套路。"
+    },
+    "诈骗": {
+        "pattern": "(诈骗|scam)",
+        "response": "遇到诈骗请报警。"
+    },
+    "报警": {
+        "pattern": "(报警|police)",
+        "response": "110是报警电话。"
+    },
+    "律师": {
+        "pattern": "(律师|lawyer)",
+        "response": "法律问题咨询律师。"
+    },
+    "合同": {
+        "pattern": "(合同|contract)",
+        "response": "签合同要看仔细。"
+    },
+    "条款": {
+        "pattern": "(条款|terms)",
+        "response": "注意霸王条款。"
+    },
+    "签字": {
+        "pattern": "(签字|sign)",
+        "response": "签字需谨慎。"
+    },
+    "印章": {
+        "pattern": "(印章|seal)",
+        "response": "公章具有法律效力。"
+    },
+    "发票": {
+        "pattern": "(发票|invoice)",
+        "response": "索要发票是权利。"
+    },
+    "收据": {
+        "pattern": "(收据|receipt)",
+        "response": "保留好收据。"
+    },
+    "凭证": {
+        "pattern": "(凭证|voucher)",
+        "response": "交易凭证要留存。"
+    },
+    "对账": {
+        "pattern": "(对账|reconcile)",
+        "response": "定期对账。"
+    },
+    "结算": {
+        "pattern": "(结算|settlement)",
+        "response": "及时结算。"
+    },
+    "清算": {
+        "pattern": "(清算|clearing)",
+        "response": "清算机构负责清算。"
+    },
+    "交割": {
+        "pattern": "(交割|delivery)",
+        "response": "期货交割日要注意。"
+    },
+    "持仓": {
+        "pattern": "(持仓|holding)",
+        "response": "关注持仓变化。"
+    },
+    "空仓": {
+        "pattern": "(空仓|empty)",
+        "response": "空仓也是一种策略。"
+    },
+    "满仓": {
+        "pattern": "(满仓|full)",
+        "response": "满仓风险大。"
+    },
+    "半仓": {
+        "pattern": "(半仓|half)",
+        "response": "半仓操作灵活。"
+    },
+    "建仓": {
+        "pattern": "(建仓|open)",
+        "response": "分批建仓。"
+    },
+    "加仓": {
+        "pattern": "(加仓|add)",
+        "response": "顺势加仓。"
+    },
+    "减仓": {
+        "pattern": "(减仓|reduce)",
+        "response": "适时减仓。"
+    },
+    "清仓": {
+        "pattern": "(清仓|clear)",
+        "response": "清仓离场。"
+    },
+    "抄底": {
+        "pattern": "(抄底|bottom)",
+        "response": "抄底需谨慎。"
+    },
+    "逃顶": {
+        "pattern": "(逃顶|top)",
+        "response": "逃顶是技术活。"
+    },
+    "被套": {
+        "pattern": "(被套|trapped)",
+        "response": "被套了不要急。"
+    },
+    "解套": {
+        "pattern": "(解套|untie)",
+        "response": "等待解套机会。"
+    },
+    "割肉": {
+        "pattern": "(割肉|cut)",
+        "response": "该割肉时就割肉。"
+    },
+    "踏空": {
+        "pattern": "(踏空|miss)",
+        "response": "踏空比亏损好。"
+    },
+    "追涨": {
+        "pattern": "(追涨|chase)",
+        "response": "追涨杀跌是大忌。"
+    },
+    "杀跌": {
+        "pattern": "(杀跌|drop)",
+        "response": "不要盲目杀跌。"
+    },
+    "盘面": {
+        "pattern": "(盘面|board)",
+        "response": "关注盘面变化。"
+    },
+    "大盘": {
+        "pattern": "(大盘|market)",
+        "response": "大盘走势影响个股。"
+    },
+    "个股": {
+        "pattern": "(个股|stock)",
+        "response": "精选个股。"
+    },
+    "板块": {
+        "pattern": "(板块|sector)",
+        "response": "轮动板块。"
+    },
+    "热点": {
+        "pattern": "(热点|hotspot)",
+        "response": "追逐市场热点。"
+    },
+    "题材": {
+        "pattern": "(题材|theme)",
+        "response": "炒作题材。"
+    },
+    "概念": {
+        "pattern": "(概念|concept)",
+        "response": "概念股波动大。"
+    },
+    "蓝筹": {
+        "pattern": "(蓝筹|blue chip)",
+        "response": "蓝筹股稳健。"
+    },
+    "白马": {
+        "pattern": "(白马|white horse)",
+        "response": "白马股业绩好。"
+    },
+    "黑马": {
+        "pattern": "(黑马|dark horse)",
+        "response": "寻找黑马股。"
+    },
+    "妖股": {
+        "pattern": "(妖股|monster)",
+        "response": "远离妖股。"
+    },
+    "龙头": {
+        "pattern": "(龙头|leader)",
+        "response": "龙头股溢价高。"
+    },
+    "跟风": {
+        "pattern": "(跟风|follow)",
+        "response": "不要盲目跟风。"
+    },
+    "主力": {
+        "pattern": "(主力|main force)",
+        "response": "跟随主力资金。"
+    },
+    "散户": {
+        "pattern": "(散户|retail)",
+        "response": "散户要保护自己。"
+    },
+    "庄家": {
+        "pattern": "(庄家|banker)",
+        "response": "警惕庄家操纵。"
+    },
+    "机构": {
+        "pattern": "(机构|institution)",
+        "response": "机构调研动向。"
+    },
+    "游资": {
+        "pattern": "(游资|hot money)",
+        "response": "游资快进快出。"
+    },
+    "外资": {
+        "pattern": "(外资|foreign)",
+        "response": "北向资金动向。"
+    },
+    "内资": {
+        "pattern": "(内资|domestic)",
+        "response": "内资机构力量。"
+    },
+    "公募": {
+        "pattern": "(公募|public fund)",
+        "response": "公募基金规模大。"
+    },
+    "私募": {
+        "pattern": "(私募|private fund)",
+        "response": "私募基金门槛高。"
+    },
+    "风投": {
+        "pattern": "(风投|vc)",
+        "response": "风险投资。"
+    },
+    "天使": {
+        "pattern": "(天使|angel)",
+        "response": "天使轮融资。"
+    },
+    "A轮": {
+        "pattern": "(A轮|series a)",
+        "response": "A轮融资。"
+    },
+    "B轮": {
+        "pattern": "(B轮|series b)",
+        "response": "B轮融资。"
+    },
+    "C轮": {
+        "pattern": "(C轮|series c)",
+        "response": "C轮融资。"
+    },
+    "IPO": {
+        "pattern": "(IPO|上市)",
+        "response": "首次公开募股。"
+    },
+    "退市": {
+        "pattern": "(退市|delist)",
+        "response": "退市风险。"
+    },
+    "停牌": {
+        "pattern": "(停牌|suspend)",
+        "response": "股票停牌。"
+    },
+    "复牌": {
+        "pattern": "(复牌|resume)",
+        "response": "股票复牌。"
+    },
+    "涨停": {
+        "pattern": "(涨停|limit up)",
+        "response": "涨停板。"
+    },
+    "跌停": {
+        "pattern": "(跌停|limit down)",
+        "response": "跌停板。"
+    },
+    "熔断": {
+        "pattern": "(熔断|circuit breaker)",
+        "response": "市场熔断机制。"
+    },
+    "T+0": {
+        "pattern": "(T\\+0)",
+        "response": "T+0交易制度。"
+    },
+    "T+1": {
+        "pattern": "(T\\+1)",
+        "response": "T+1交易制度。"
+    },
+    "做多": {
+        "pattern": "(做多|long)",
+        "response": "看涨做多。"
+    },
+    "做空": {
+        "pattern": "(做空|short)",
+        "response": "看跌做空。"
+    },
+    "对冲": {
+        "pattern": "(对冲|hedge)",
+        "response": "对冲风险。"
+    },
+    "套利": {
+        "pattern": "(套利|arbitrage)",
+        "response": "无风险套利。"
+    },
+    "高频": {
+        "pattern": "(高频|hft)",
+        "response": "高频交易。"
+    },
+    "程序化": {
+        "pattern": "(程序化|program)",
+        "response": "程序化交易。"
+    },
+    "API Key": {
+        "pattern": "(API Key|密钥)",
+        "response": "保护好您的API Key。"
+    },
+    "Token": {
+        "pattern": "(Token|令牌)",
+        "response": "Token过期请重新登录。"
+    },
+    "Cookie": {
+        "pattern": "(Cookie)",
+        "response": "Cookie用于保持会话。"
+    },
+    "Session": {
+        "pattern": "(Session)",
+        "response": "Session超时。"
+    },
+    "Cache": {
+        "pattern": "(Cache|缓存)",
+        "response": "清理缓存试试。"
+    },
+    "DNS": {
+        "pattern": "(DNS)",
+        "response": "检查DNS设置。"
+    },
+    "IP": {
+        "pattern": "(IP)",
+        "response": "IP地址被封禁。"
+    },
+    "VPN": {
+        "pattern": "(VPN|代理)",
+        "response": "请关闭代理尝试。"
+    },
+    "WiFi": {
+        "pattern": "(WiFi)",
+        "response": "切换WiFi试试。"
+    },
+    "4G": {
+        "pattern": "(4G)",
+        "response": "使用4G网络。"
+    },
+    "流量": {
+        "pattern": "(流量|data)",
+        "response": "注意流量消耗。"
+    },
+    "电量": {
+        "pattern": "(电量|battery)",
+        "response": "电量充足。"
+    },
+    "屏幕": {
+        "pattern": "(屏幕|screen)",
+        "response": "屏幕分辨率。"
+    },
+    "键盘": {
+        "pattern": "(键盘|keyboard)",
+        "response": "键盘输入。"
+    },
+    "鼠标": {
+        "pattern": "(鼠标|mouse)",
+        "response": "鼠标点击。"
+    },
+    "触摸": {
+        "pattern": "(触摸|touch)",
+        "response": "触摸屏操作。"
+    },
+    "声音": {
+        "pattern": "(声音|sound)",
+        "response": "开启声音。"
+    },
+    "麦克风": {
+        "pattern": "(麦克风|mic)",
+        "response": "允许麦克风权限。"
+    },
+    "摄像头": {
+        "pattern": "(摄像头|camera)",
+        "response": "允许摄像头权限。"
+    },
+    "定位": {
+        "pattern": "(定位|location)",
+        "response": "获取位置信息。"
+    },
+    "蓝牙": {
+        "pattern": "(蓝牙|bluetooth)",
+        "response": "蓝牙连接。"
+    },
+    "NFC": {
+        "pattern": "(NFC)",
+        "response": "NFC功能。"
+    },
+    "指纹": {
+        "pattern": "(指纹|fingerprint)",
+        "response": "指纹解锁。"
+    },
+    "人脸": {
+        "pattern": "(人脸|face)",
+        "response": "人脸识别。"
+    },
+    "密码学": {
+        "pattern": "(密码学|crypto)",
+        "response": "使用加密算法。"
+    },
+    "哈希": {
+        "pattern": "(哈希|hash)",
+        "response": "Hash校验。"
+    },
+    "签名": {
+        "pattern": "(签名|sign)",
+        "response": "数字签名。"
+    },
+    "证书_341": {
+        "pattern": "(证书|cert)",
+        "response": "SSL证书。"
+    },
+    "公钥": {
+        "pattern": "(公钥|public key)",
+        "response": "公钥加密。"
+    },
+    "私钥": {
+        "pattern": "(私钥|private key)",
+        "response": "私钥解密。"
+    },
+    "RSA": {
+        "pattern": "(RSA)",
+        "response": "RSA算法。"
+    },
+    "AES": {
+        "pattern": "(AES)",
+        "response": "AES加密。"
+    },
+    "MD5": {
+        "pattern": "(MD5)",
+        "response": "MD5摘要。"
+    },
+    "SHA": {
+        "pattern": "(SHA)",
+        "response": "SHA算法。"
+    },
+    "Base64": {
+        "pattern": "(Base64)",
+        "response": "Base64编码。"
+    },
+    "Hex": {
+        "pattern": "(Hex)",
+        "response": "十六进制。"
+    },
+    "二进制": {
+        "pattern": "(二进制|binary)",
+        "response": "二进制数据。"
+    },
+    "源码": {
+        "pattern": "(源码|source)",
+        "response": "查看源码。"
+    },
+    "编译": {
+        "pattern": "(编译|compile)",
+        "response": "编译代码。"
+    },
+    "解释": {
+        "pattern": "(解释|interpret)",
+        "response": "解释执行。"
+    },
+    "脚本": {
+        "pattern": "(脚本|script)",
+        "response": "脚本语言。"
+    },
+    "命令": {
+        "pattern": "(命令|command)",
+        "response": "命令行操作。"
+    },
+    "终端": {
+        "pattern": "(终端|terminal)",
+        "response": "打开终端。"
+    },
+    "控制台": {
+        "pattern": "(控制台|console)",
+        "response": "浏览器控制台。"
+    },
+    "调试": {
+        "pattern": "(调试|debug)",
+        "response": "调试程序。"
+    },
+    "断点": {
+        "pattern": "(断点|breakpoint)",
+        "response": "设置断点。"
+    },
+    "堆栈": {
+        "pattern": "(堆栈|stack)",
+        "response": "堆栈溢出。"
+    },
+    "内存": {
+        "pattern": "(内存|memory)",
+        "response": "内存泄漏。"
+    },
+    "CPU": {
+        "pattern": "(CPU)",
+        "response": "CPU占用高。"
+    },
+    "磁盘": {
+        "pattern": "(磁盘|disk)",
+        "response": "磁盘空间不足。"
+    },
+    "网络": {
+        "pattern": "(网络|network)",
+        "response": "网络连接中断。"
+    },
+    "IO": {
+        "pattern": "(IO)",
+        "response": "IO阻塞。"
+    },
+    "线程": {
+        "pattern": "(线程|thread)",
+        "response": "多线程并发。"
+    },
+    "进程": {
+        "pattern": "(进程|process)",
+        "response": "进程管理。"
+    },
+    "死锁": {
+        "pattern": "(死锁|deadlock)",
+        "response": "发生死锁。"
+    },
+    "同步": {
+        "pattern": "(同步|sync)",
+        "response": "同步操作。"
+    },
+    "异步": {
+        "pattern": "(异步|async)",
+        "response": "异步回调。"
+    },
+    "回调": {
+        "pattern": "(回调|callback)",
+        "response": "回调地狱。"
+    },
+    "Promise": {
+        "pattern": "(Promise)",
+        "response": "使用Promise。"
+    },
+    "Await": {
+        "pattern": "(Await)",
+        "response": "Async/Await。"
+    },
+    "JSON": {
+        "pattern": "(JSON)",
+        "response": "JSON格式错误。"
+    },
+    "XML": {
+        "pattern": "(XML)",
+        "response": "XML解析。"
+    },
+    "HTML": {
+        "pattern": "(HTML)",
+        "response": "HTML结构。"
+    },
+    "CSS": {
+        "pattern": "(CSS)",
+        "response": "CSS样式。"
+    },
+    "JS": {
+        "pattern": "(JS|JavaScript)",
+        "response": "JavaScript脚本。"
+    },
+    "TS": {
+        "pattern": "(TS|TypeScript)",
+        "response": "TypeScript类型。"
+    },
+    "Vue": {
+        "pattern": "(Vue)",
+        "response": "Vue框架。"
+    },
+    "React": {
+        "pattern": "(React)",
+        "response": "React库。"
+    },
+    "Angular": {
+        "pattern": "(Angular)",
+        "response": "Angular框架。"
+    },
+    "Node": {
+        "pattern": "(Node)",
+        "response": "Node.js环境。"
+    },
+    "Python": {
+        "pattern": "(Python)",
+        "response": "Python语言。"
+    },
+    "Java": {
+        "pattern": "(Java)",
+        "response": "Java语言。"
+    },
+    "C++": {
+        "pattern": "(C\\+\\+)",
+        "response": "C++语言。"
+    },
+    "Go": {
+        "pattern": "(Go|Golang)",
+        "response": "Go语言。"
+    },
+    "Rust": {
+        "pattern": "(Rust)",
+        "response": "Rust语言。"
+    },
+    "PHP": {
+        "pattern": "(PHP)",
+        "response": "PHP语言。"
+    },
+    "Ruby": {
+        "pattern": "(Ruby)",
+        "response": "Ruby语言。"
+    },
+    "Swift": {
+        "pattern": "(Swift)",
+        "response": "Swift语言。"
+    },
+    "Kotlin": {
+        "pattern": "(Kotlin)",
+        "response": "Kotlin语言。"
+    },
+    "Dart": {
+        "pattern": "(Dart)",
+        "response": "Dart语言。"
+    },
+    "Flutter": {
+        "pattern": "(Flutter)",
+        "response": "Flutter框架。"
+    },
+    "Android": {
+        "pattern": "(Android)",
+        "response": "Android开发。"
+    },
+    "iOS": {
+        "pattern": "(iOS)",
+        "response": "iOS开发。"
+    },
+    "Linux": {
+        "pattern": "(Linux)",
+        "response": "Linux系统。"
+    },
+    "Windows": {
+        "pattern": "(Windows)",
+        "response": "Windows系统。"
+    },
+    "Mac": {
+        "pattern": "(Mac|macOS)",
+        "response": "macOS系统。"
+    },
+    "Ubuntu": {
+        "pattern": "(Ubuntu)",
+        "response": "Ubuntu发行版。"
+    },
+    "CentOS": {
+        "pattern": "(CentOS)",
+        "response": "CentOS发行版。"
+    },
+    "Debian": {
+        "pattern": "(Debian)",
+        "response": "Debian发行版。"
+    },
+    "Docker": {
+        "pattern": "(Docker)",
+        "response": "Docker容器。"
+    },
+    "K8s": {
+        "pattern": "(K8s|Kubernetes)",
+        "response": "K8s集群。"
+    },
+    "Nginx": {
+        "pattern": "(Nginx)",
+        "response": "Nginx服务器。"
+    },
+    "Apache": {
+        "pattern": "(Apache)",
+        "response": "Apache服务器。"
+    },
+    "Tomcat": {
+        "pattern": "(Tomcat)",
+        "response": "Tomcat容器。"
+    },
+    "Redis": {
+        "pattern": "(Redis)",
+        "response": "Redis缓存。"
+    },
+    "MongoDB": {
+        "pattern": "(MongoDB)",
+        "response": "MongoDB数据库。"
+    },
+    "MySQL": {
+        "pattern": "(MySQL)",
+        "response": "MySQL数据库。"
+    },
+    "PostgreSQL": {
+        "pattern": "(PostgreSQL|PG)",
+        "response": "PG数据库。"
+    },
+    "Oracle": {
+        "pattern": "(Oracle)",
+        "response": "Oracle数据库。"
+    },
+    "SQL Server": {
+        "pattern": "(SQL Server)",
+        "response": "SQL Server数据库。"
+    },
+    "SQLite": {
+        "pattern": "(SQLite)",
+        "response": "SQLite数据库。"
+    },
+    "Git": {
+        "pattern": "(Git)",
+        "response": "Git版本控制。"
+    },
+    "SVN": {
+        "pattern": "(SVN)",
+        "response": "SVN版本控制。"
+    },
+    "CI/CD": {
+        "pattern": "(CI/CD)",
+        "response": "持续集成/部署。"
+    },
+    "Jenkins": {
+        "pattern": "(Jenkins)",
+        "response": "Jenkins构建。"
+    },
+    "Travis": {
+        "pattern": "(Travis)",
+        "response": "Travis CI。"
+    },
+    "Actions": {
+        "pattern": "(Actions)",
+        "response": "GitHub Actions。"
+    },
+    "DevOps": {
+        "pattern": "(DevOps)",
+        "response": "DevOps文化。"
+    },
+    "Agile": {
+        "pattern": "(Agile|敏捷)",
+        "response": "敏捷开发。"
+    },
+    "Scrum": {
+        "pattern": "(Scrum)",
+        "response": "Scrum流程。"
+    },
+    "Kanban": {
+        "pattern": "(Kanban|看板)",
+        "response": "看板管理。"
+    },
+    "Jira": {
+        "pattern": "(Jira)",
+        "response": "Jira工具。"
+    },
+    "Trello": {
+        "pattern": "(Trello)",
+        "response": "Trello工具。"
+    },
+    "Slack": {
+        "pattern": "(Slack)",
+        "response": "Slack沟通。"
+    },
+    "Discord": {
+        "pattern": "(Discord)",
+        "response": "Discord社区。"
+    },
+    "Zoom": {
+        "pattern": "(Zoom)",
+        "response": "Zoom会议。"
+    },
+    "Teams": {
+        "pattern": "(Teams)",
+        "response": "Teams协作。"
+    },
+    "Office": {
+        "pattern": "(Office)",
+        "response": "Office办公。"
+    },
+    "Word": {
+        "pattern": "(Word)",
+        "response": "Word文档。"
+    },
+    "Excel": {
+        "pattern": "(Excel)",
+        "response": "Excel表格。"
+    },
+    "PPT": {
+        "pattern": "(PPT)",
+        "response": "PPT演示。"
+    },
+    "PDF": {
+        "pattern": "(PDF)",
+        "response": "PDF文件。"
+    },
+    "Markdown": {
+        "pattern": "(Markdown|md)",
+        "response": "Markdown格式。"
+    },
+    "LaTeX": {
+        "pattern": "(LaTeX)",
+        "response": "LaTeX排版。"
+    },
+    "Photoshop": {
+        "pattern": "(Photoshop|PS)",
+        "response": "PS修图。"
+    },
+    "Illustrator": {
+        "pattern": "(Illustrator|AI)",
+        "response": "AI绘图。"
+    },
+    "Premiere": {
+        "pattern": "(Premiere|PR)",
+        "response": "PR剪辑。"
+    },
+    "After Effects": {
+        "pattern": "(After Effects|AE)",
+        "response": "AE特效。"
+    },
+    "Blender": {
+        "pattern": "(Blender)",
+        "response": "Blender建模。"
+    },
+    "Unity": {
+        "pattern": "(Unity)",
+        "response": "Unity引擎。"
+    },
+    "Unreal": {
+        "pattern": "(Unreal|UE)",
+        "response": "虚幻引擎。"
+    },
+    "Game": {
+        "pattern": "(Game|游戏)",
+        "response": "游戏开发。"
+    },
+    "App": {
+        "pattern": "(App|应用)",
+        "response": "App开发。"
+    },
+    "Web": {
+        "pattern": "(Web|网页)",
+        "response": "Web开发。"
+    },
+    "IoT": {
+        "pattern": "(IoT)",
+        "response": "物联网开发。"
+    },
+    "Embedded": {
+        "pattern": "(Embedded|嵌入式)",
+        "response": "嵌入式开发。"
+    },
+    "Driver": {
+        "pattern": "(Driver|驱动)",
+        "response": "驱动开发。"
+    },
+    "Kernel": {
+        "pattern": "(Kernel|内核)",
+        "response": "内核开发。"
+    },
+    "OS": {
+        "pattern": "(OS|操作系统)",
+        "response": "操作系统原理。"
+    },
+    "Network": {
+        "pattern": "(Network|网络)",
+        "response": "计算机网络。"
+    },
+    "Algorithm": {
+        "pattern": "(Algorithm|算法)",
+        "response": "数据结构与算法。"
+    },
+    "Design Pattern": {
+        "pattern": "(Design Pattern|设计模式)",
+        "response": "设计模式。"
+    },
+    "Architecture": {
+        "pattern": "(Architecture|架构)",
+        "response": "软件架构。"
+    },
+    "Microservices": {
+        "pattern": "(Microservices|微服务)",
+        "response": "微服务架构。"
+    },
+    "Serverless": {
+        "pattern": "(Serverless)",
+        "response": "无服务器架构。"
+    },
+    "Cloud Native": {
+        "pattern": "(Cloud Native|云原生)",
+        "response": "云原生技术。"
+    },
+    "SaaS": {
+        "pattern": "(SaaS)",
+        "response": "软件即服务。"
+    },
+    "PaaS": {
+        "pattern": "(PaaS)",
+        "response": "平台即服务。"
+    },
+    "IaaS": {
+        "pattern": "(IaaS)",
+        "response": "基础设施即服务。"
+    },
+    "API Gateway": {
+        "pattern": "(API Gateway|网关)",
+        "response": "API网关。"
+    },
+    "Load Balancer": {
+        "pattern": "(Load Balancer|负载均衡)",
+        "response": "负载均衡器。"
+    },
+    "CDN": {
+        "pattern": "(CDN)",
+        "response": "内容分发网络。"
+    },
+    "DNS_466": {
+        "pattern": "(DNS)",
+        "response": "域名解析。"
+    },
+    "HTTP": {
+        "pattern": "(HTTP)",
+        "response": "HTTP协议。"
+    },
+    "HTTPS": {
+        "pattern": "(HTTPS)",
+        "response": "HTTPS协议。"
+    },
+    "TCP": {
+        "pattern": "(TCP)",
+        "response": "TCP协议。"
+    },
+    "UDP": {
+        "pattern": "(UDP)",
+        "response": "UDP协议。"
+    },
+    "Socket": {
+        "pattern": "(Socket)",
+        "response": "Socket编程。"
+    },
+    "WebSocket": {
+        "pattern": "(WebSocket)",
+        "response": "WebSocket通信。"
+    },
+    "REST": {
+        "pattern": "(REST|RESTful)",
+        "response": "RESTful API。"
+    },
+    "GraphQL": {
+        "pattern": "(GraphQL)",
+        "response": "GraphQL查询。"
+    },
+    "RPC": {
+        "pattern": "(RPC)",
+        "response": "远程过程调用。"
+    },
+    "gRPC": {
+        "pattern": "(gRPC)",
+        "response": "gRPC框架。"
+    },
+    "Thrift": {
+        "pattern": "(Thrift)",
+        "response": "Thrift框架。"
+    },
+    "Protobuf": {
+        "pattern": "(Protobuf)",
+        "response": "Protocol Buffers。"
+    },
+    "Message Queue": {
+        "pattern": "(Message Queue|消息队列)",
+        "response": "消息队列。"
+    },
+    "Kafka": {
+        "pattern": "(Kafka)",
+        "response": "Kafka消息队列。"
+    },
+    "RabbitMQ": {
+        "pattern": "(RabbitMQ)",
+        "response": "RabbitMQ消息队列。"
+    },
+    "RocketMQ": {
+        "pattern": "(RocketMQ)",
+        "response": "RocketMQ消息队列。"
+    },
+    "ActiveMQ": {
+        "pattern": "(ActiveMQ)",
+        "response": "ActiveMQ消息队列。"
+    },
+    "ZeroMQ": {
+        "pattern": "(ZeroMQ)",
+        "response": "ZeroMQ消息队列。"
+    },
+    "Elasticsearch": {
+        "pattern": "(Elasticsearch|ES)",
+        "response": "ES搜索引擎。"
+    },
+    "Solr": {
+        "pattern": "(Solr)",
+        "response": "Solr搜索引擎。"
+    },
+    "Lucene": {
+        "pattern": "(Lucene)",
+        "response": "Lucene库。"
+    },
+    "Hadoop": {
+        "pattern": "(Hadoop)",
+        "response": "Hadoop生态。"
+    },
+    "Spark": {
+        "pattern": "(Spark)",
+        "response": "Spark计算。"
+    },
+    "Flink": {
+        "pattern": "(Flink)",
+        "response": "Flink流计算。"
+    },
+    "Storm": {
+        "pattern": "(Storm)",
+        "response": "Storm流计算。"
+    },
+    "Hive": {
+        "pattern": "(Hive)",
+        "response": "Hive数仓。"
+    },
+    "HBase": {
+        "pattern": "(HBase)",
+        "response": "HBase数据库。"
+    },
+    "Cassandra": {
+        "pattern": "(Cassandra)",
+        "response": "Cassandra数据库。"
+    },
+    "Neo4j": {
+        "pattern": "(Neo4j)",
+        "response": "Neo4j图数据库。"
+    },
+    "TensorFlow": {
+        "pattern": "(TensorFlow|TF)",
+        "response": "TensorFlow框架。"
+    },
+    "PyTorch": {
+        "pattern": "(PyTorch)",
+        "response": "PyTorch框架。"
+    },
+    "Keras": {
+        "pattern": "(Keras)",
+        "response": "Keras框架。"
+    },
+    "Scikit-learn": {
+        "pattern": "(Scikit-learn|sklearn)",
+        "response": "sklearn库。"
+    },
+    "Pandas": {
+        "pattern": "(Pandas)",
+        "response": "Pandas库。"
+    },
+    "NumPy": {
+        "pattern": "(NumPy)",
+        "response": "NumPy库。"
+    },
+    "Matplotlib": {
+        "pattern": "(Matplotlib)",
+        "response": "Matplotlib绘图。"
+    },
+    "OpenCV": {
+        "pattern": "(OpenCV)",
+        "response": "OpenCV视觉。"
+    },
+    "NLP": {
+        "pattern": "(NLP|自然语言)",
+        "response": "自然语言处理。"
+    },
+    "CV": {
+        "pattern": "(CV|计算机视觉)",
+        "response": "计算机视觉。"
+    },
+    "RL": {
+        "pattern": "(RL|强化学习)",
+        "response": "强化学习。"
+    },
+    "GAN": {
+        "pattern": "(GAN|对抗网络)",
+        "response": "生成对抗网络。"
+    },
+    "Transformer": {
+        "pattern": "(Transformer)",
+        "response": "Transformer模型。"
+    },
+    "BERT": {
+        "pattern": "(BERT)",
+        "response": "BERT模型。"
+    },
+    "GPT": {
+        "pattern": "(GPT)",
+        "response": "GPT模型。"
+    },
+    "LLM": {
+        "pattern": "(LLM|大模型)",
+        "response": "大型语言模型。"
+    },
+    "AIGC": {
+        "pattern": "(AIGC)",
+        "response": "AI生成内容。"
+    },
+    "Stable Diffusion": {
+        "pattern": "(Stable Diffusion|SD)",
+        "response": "SD绘图。"
+    },
+    "Midjourney": {
+        "pattern": "(Midjourney|MJ)",
+        "response": "MJ绘图。"
+    },
+    "ChatGPT": {
+        "pattern": "(ChatGPT)",
+        "response": "ChatGPT聊天。"
+    },
+    "Copilot": {
+        "pattern": "(Copilot)",
+        "response": "GitHub Copilot。"
+    },
+    "Gemini": {
+        "pattern": "(Gemini)",
+        "response": "Google Gemini。"
+    },
+    "Claude": {
+        "pattern": "(Claude)",
+        "response": "Anthropic Claude。"
+    },
+    "Llama": {
+        "pattern": "(Llama)",
+        "response": "Meta Llama。"
+    },
+    "Mistral": {
+        "pattern": "(Mistral)",
+        "response": "Mistral AI。"
+    },
+    "Hugging Face": {
+        "pattern": "(Hugging Face|HF)",
+        "response": "Hugging Face社区。"
+    },
+    "Kaggle": {
+        "pattern": "(Kaggle)",
+        "response": "Kaggle竞赛。"
+    },
+    "LeetCode": {
+        "pattern": "(LeetCode|力扣)",
+        "response": "LeetCode刷题。"
+    },
+    "Stack Overflow": {
+        "pattern": "(Stack Overflow|SO)",
+        "response": "Stack Overflow问答。"
+    },
+    "CSDN": {
+        "pattern": "(CSDN)",
+        "response": "CSDN博客。"
+    },
+    "Juejin": {
+        "pattern": "(Juejin|掘金)",
+        "response": "掘金社区。"
+    },
+    "Zhihu": {
+        "pattern": "(Zhihu|知乎)",
+        "response": "知乎问答。"
+    },
+    "Bilibili": {
+        "pattern": "(Bilibili|B站)",
+        "response": "B站学习。"
+    },
+    "YouTube": {
+        "pattern": "(YouTube|油管)",
+        "response": "YouTube视频。"
+    },
+    "Google": {
+        "pattern": "(Google|谷歌)",
+        "response": "Google搜索。"
+    },
+    "Baidu": {
+        "pattern": "(Baidu|百度)",
+        "response": "百度搜索。"
+    },
+    "Bing": {
+        "pattern": "(Bing|必应)",
+        "response": "Bing搜索。"
+    },
+    "Yahoo": {
+        "pattern": "(Yahoo|雅虎)",
+        "response": "Yahoo搜索。"
+    },
+    "DuckDuckGo": {
+        "pattern": "(DuckDuckGo)",
+        "response": "DuckDuckGo搜索。"
+    },
+    "Wiki": {
+        "pattern": "(Wiki|维基)",
+        "response": "维基百科。"
+    },
+    "GitHub": {
+        "pattern": "(GitHub)",
+        "response": "GitHub代码托管。"
+    },
+    "GitLab": {
+        "pattern": "(GitLab)",
+        "response": "GitLab代码托管。"
+    },
+    "Bitbucket": {
+        "pattern": "(Bitbucket)",
+        "response": "Bitbucket代码托管。"
+    },
+    "Gitee": {
+        "pattern": "(Gitee|码云)",
+        "response": "Gitee代码托管。"
+    },
+    "Coding": {
+        "pattern": "(Coding)",
+        "response": "Coding平台。"
+    },
+    "Aliyun": {
+        "pattern": "(Aliyun|阿里云)",
+        "response": "阿里云服务。"
+    },
+    "Tencent Cloud": {
+        "pattern": "(Tencent Cloud|腾讯云)",
+        "response": "腾讯云服务。"
+    },
+    "Huawei Cloud": {
+        "pattern": "(Huawei Cloud|华为云)",
+        "response": "华为云服务。"
+    },
+    "AWS": {
+        "pattern": "(AWS|亚马逊云)",
+        "response": "AWS云服务。"
+    },
+    "Azure": {
+        "pattern": "(Azure|微软云)",
+        "response": "Azure云服务。"
+    },
+    "GCP": {
+        "pattern": "(GCP|谷歌云)",
+        "response": "GCP云服务。"
+    },
+    "Oracle Cloud": {
+        "pattern": "(Oracle Cloud)",
+        "response": "Oracle云服务。"
+    },
+    "IBM Cloud": {
+        "pattern": "(IBM Cloud)",
+        "response": "IBM云服务。"
+    },
+    "DigitalOcean": {
+        "pattern": "(DigitalOcean|DO)",
+        "response": "DO云服务。"
+    },
+    "Linode": {
+        "pattern": "(Linode)",
+        "response": "Linode云服务。"
+    },
+    "Vultr": {
+        "pattern": "(Vultr)",
+        "response": "Vultr云服务。"
+    },
+    "Heroku": {
+        "pattern": "(Heroku)",
+        "response": "Heroku平台。"
+    },
+    "Vercel": {
+        "pattern": "(Vercel)",
+        "response": "Vercel部署。"
+    },
+    "Netlify": {
+        "pattern": "(Netlify)",
+        "response": "Netlify部署。"
+    },
+    "Cloudflare": {
+        "pattern": "(Cloudflare|CF)",
+        "response": "Cloudflare服务。"
+    },
+    "Domain": {
+        "pattern": "(Domain|域名)",
+        "response": "域名注册。"
+    },
+    "DNS_557": {
+        "pattern": "(DNS)",
+        "response": "DNS解析。"
+    },
+    "SSL": {
+        "pattern": "(SSL)",
+        "response": "SSL证书。"
+    },
+    "CDN_559": {
+        "pattern": "(CDN)",
+        "response": "CDN加速。"
+    },
+    "WAF": {
+        "pattern": "(WAF)",
+        "response": "Web防火墙。"
+    },
+    "DDoS": {
+        "pattern": "(DDoS)",
+        "response": "DDoS防护。"
+    },
+    "CC": {
+        "pattern": "(CC)",
+        "response": "CC攻击防护。"
+    },
+    "SQL Injection": {
+        "pattern": "(SQL Injection|注入)",
+        "response": "SQL注入防护。"
+    },
+    "XSS": {
+        "pattern": "(XSS)",
+        "response": "XSS跨站脚本。"
+    },
+    "CSRF": {
+        "pattern": "(CSRF)",
+        "response": "CSRF跨站请求伪造。"
+    },
+    "SSRF": {
+        "pattern": "(SSRF)",
+        "response": "SSRF服务端请求伪造。"
+    },
+    "RCE": {
+        "pattern": "(RCE)",
+        "response": "RCE远程代码执行。"
+    },
+    "LFI": {
+        "pattern": "(LFI)",
+        "response": "LFI本地文件包含。"
+    },
+    "RFI": {
+        "pattern": "(RFI)",
+        "response": "RFI远程文件包含。"
+    },
+    "XXE": {
+        "pattern": "(XXE)",
+        "response": "XXE实体注入。"
+    },
+    "Deserialization": {
+        "pattern": "(Deserialization|反序列化)",
+        "response": "反序列化漏洞。"
+    },
+    "Upload": {
+        "pattern": "(Upload|上传漏洞)",
+        "response": "文件上传漏洞。"
+    },
+    "Download": {
+        "pattern": "(Download|下载漏洞)",
+        "response": "任意文件下载。"
+    },
+    "Logic": {
+        "pattern": "(Logic|逻辑漏洞)",
+        "response": "业务逻辑漏洞。"
+    },
+    "Auth": {
+        "pattern": "(Auth|越权)",
+        "response": "越权访问漏洞。"
+    },
+    "Brute Force": {
+        "pattern": "(Brute Force|爆破)",
+        "response": "暴力破解。"
+    },
+    "Social Engineering": {
+        "pattern": "(Social Engineering|社工)",
+        "response": "社会工程学。"
+    },
+    "Phishing": {
+        "pattern": "(Phishing|钓鱼)",
+        "response": "钓鱼攻击。"
+    },
+    "Malware": {
+        "pattern": "(Malware|恶意软件)",
+        "response": "恶意软件。"
+    },
+    "Virus": {
+        "pattern": "(Virus|病毒)",
+        "response": "计算机病毒。"
+    },
+    "Trojan": {
+        "pattern": "(Trojan|木马)",
+        "response": "特洛伊木马。"
+    },
+    "Ransomware": {
+        "pattern": "(Ransomware|勒索)",
+        "response": "勒索软件。"
+    },
+    "Spyware": {
+        "pattern": "(Spyware|间谍)",
+        "response": "间谍软件。"
+    },
+    "Adware": {
+        "pattern": "(Adware|广告)",
+        "response": "广告软件。"
+    },
+    "Rootkit": {
+        "pattern": "(Rootkit)",
+        "response": "Rootkit隐藏。"
+    },
+    "Botnet": {
+        "pattern": "(Botnet|僵尸网络)",
+        "response": "僵尸网络。"
+    },
+    "Dark Web": {
+        "pattern": "(Dark Web|暗网)",
+        "response": "暗网监控。"
+    },
+    "Tor": {
+        "pattern": "(Tor|洋葱)",
+        "response": "Tor网络。"
+    },
+    "VPN_589": {
+        "pattern": "(VPN)",
+        "response": "VPN隐私。"
+    },
+    "Proxy": {
+        "pattern": "(Proxy|代理)",
+        "response": "代理服务器。"
+    },
+    "Firewall": {
+        "pattern": "(Firewall|防火墙)",
+        "response": "防火墙策略。"
+    },
+    "IDS": {
+        "pattern": "(IDS)",
+        "response": "入侵检测系统。"
+    },
+    "IPS": {
+        "pattern": "(IPS)",
+        "response": "入侵防御系统。"
+    },
+    "SIEM": {
+        "pattern": "(SIEM)",
+        "response": "安全信息事件管理。"
+    },
+    "SOC": {
+        "pattern": "(SOC)",
+        "response": "安全运营中心。"
+    },
+    "SRC": {
+        "pattern": "(SRC)",
+        "response": "安全响应中心。"
+    },
+    "CERT": {
+        "pattern": "(CERT)",
+        "response": "应急响应组。"
+    },
+    "CVE": {
+        "pattern": "(CVE)",
+        "response": "通用漏洞披露。"
+    },
+    "CNVD": {
+        "pattern": "(CNVD)",
+        "response": "国家漏洞库。"
+    },
+    "CNNVD": {
+        "pattern": "(CNNVD)",
+        "response": "国家漏洞库。"
+    },
+    "0day": {
+        "pattern": "(0day)",
+        "response": "0day漏洞。"
+    },
+    "1day": {
+        "pattern": "(1day)",
+        "response": "1day漏洞。"
+    },
+    "Nday": {
+        "pattern": "(Nday)",
+        "response": "Nday漏洞。"
+    },
+    "PoC": {
+        "pattern": "(PoC)",
+        "response": "概念验证代码。"
+    },
+    "Exp": {
+        "pattern": "(Exp)",
+        "response": "漏洞利用代码。"
+    },
+    "Payload": {
+        "pattern": "(Payload)",
+        "response": "攻击载荷。"
+    },
+    "Shellcode": {
+        "pattern": "(Shellcode)",
+        "response": "Shellcode代码。"
+    },
+    "WebShell": {
+        "pattern": "(WebShell)",
+        "response": "WebShell后门。"
+    },
+    "Reverse Shell": {
+        "pattern": "(Reverse Shell|反弹)",
+        "response": "反弹Shell。"
+    },
+    "Privilege Escalation": {
+        "pattern": "(Privilege Escalation|提权)",
+        "response": "权限提升。"
+    },
+    "Lateral Movement": {
+        "pattern": "(Lateral Movement|横向)",
+        "response": "横向移动。"
+    },
+    "Persistence": {
+        "pattern": "(Persistence|持久化)",
+        "response": "持久化驻留。"
+    },
+    "Cover Tracks": {
+        "pattern": "(Cover Tracks|痕迹)",
+        "response": "清理痕迹。"
+    },
+    "Forensics": {
+        "pattern": "(Forensics|取证)",
+        "response": "数字取证。"
+    },
+    "Reverse Engineering": {
+        "pattern": "(Reverse Engineering|逆向)",
+        "response": "逆向工程。"
+    },
+    "CTF": {
+        "pattern": "(CTF)",
+        "response": "CTF夺旗赛。"
+    },
+    "Pwn": {
+        "pattern": "(Pwn)",
+        "response": "Pwn攻防。"
+    },
+    "Web_618": {
+        "pattern": "(Web)",
+        "response": "Web安全。"
+    },
+    "Crypto": {
+        "pattern": "(Crypto)",
+        "response": "密码学安全。"
+    },
+    "Misc": {
+        "pattern": "(Misc)",
+        "response": "杂项安全。"
+    },
+    "Mobile": {
+        "pattern": "(Mobile)",
+        "response": "移动安全。"
+    },
+    "IoT_622": {
+        "pattern": "(IoT)",
+        "response": "物联网安全。"
+    },
+    "ICS": {
+        "pattern": "(ICS|工控)",
+        "response": "工控安全。"
+    },
+    "Car": {
+        "pattern": "(Car|车联网)",
+        "response": "车联网安全。"
+    },
+    "Cloud": {
+        "pattern": "(Cloud|云安全)",
+        "response": "云安全。"
+    },
+    "Data": {
+        "pattern": "(Data|数据安全)",
+        "response": "数据安全。"
+    },
+    "Privacy": {
+        "pattern": "(Privacy|隐私保护)",
+        "response": "隐私保护。"
+    },
+    "GDPR": {
+        "pattern": "(GDPR)",
+        "response": "GDPR合规。"
+    },
+    "CCPA": {
+        "pattern": "(CCPA)",
+        "response": "CCPA合规。"
+    },
+    "ISO27001": {
+        "pattern": "(ISO27001)",
+        "response": "ISO27001认证。"
+    },
+    "DJCP": {
+        "pattern": "(DJCP|等保)",
+        "response": "等级保护。"
+    },
+    "DevSecOps": {
+        "pattern": "(DevSecOps)",
+        "response": "开发安全运营。"
+    },
+    "SDL": {
+        "pattern": "(SDL)",
+        "response": "安全开发生命周期。"
+    },
+    "Code Review": {
+        "pattern": "(Code Review|代码审计)",
+        "response": "代码审计。"
+    },
+    "DAST": {
+        "pattern": "(DAST)",
+        "response": "动态应用安全测试。"
+    },
+    "SAST": {
+        "pattern": "(SAST)",
+        "response": "静态应用安全测试。"
+    },
+    "IAST": {
+        "pattern": "(IAST)",
+        "response": "交互式应用安全测试。"
+    },
+    "SCA": {
+        "pattern": "(SCA)",
+        "response": "软件成分分析。"
+    },
+    "RASP": {
+        "pattern": "(RASP)",
+        "response": "运行时应用自保护。"
+    },
+    "HIDS": {
+        "pattern": "(HIDS)",
+        "response": "主机入侵检测。"
+    },
+    "NIDS": {
+        "pattern": "(NIDS)",
+        "response": "网络入侵检测。"
+    },
+    "EDR": {
+        "pattern": "(EDR)",
+        "response": "端点检测响应。"
+    },
+    "NDR": {
+        "pattern": "(NDR)",
+        "response": "网络检测响应。"
+    },
+    "XDR": {
+        "pattern": "(XDR)",
+        "response": "扩展检测响应。"
+    },
+    "MDR": {
+        "pattern": "(MDR)",
+        "response": "托管检测响应。"
+    },
+    "MSSP": {
+        "pattern": "(MSSP)",
+        "response": "托管安全服务。"
+    },
+    "Red Team": {
+        "pattern": "(Red Team|红队)",
+        "response": "红队演练。"
+    },
+    "Blue Team": {
+        "pattern": "(Blue Team|蓝队)",
+        "response": "蓝队防守。"
+    },
+    "Purple Team": {
+        "pattern": "(Purple Team|紫队)",
+        "response": "紫队协同。"
+    },
+    "Penetration Test": {
+        "pattern": "(Penetration Test|渗透)",
+        "response": "渗透测试。"
+    },
+    "Vulnerability Scan": {
+        "pattern": "(Vulnerability Scan|漏扫)",
+        "response": "漏洞扫描。"
+    },
+    "Risk Assessment": {
+        "pattern": "(Risk Assessment|风评)",
+        "response": "风险评估。"
+    },
+    "Security Training": {
+        "pattern": "(Security Training|培训)",
+        "response": "安全培训。"
+    },
+    "Awareness": {
+        "pattern": "(Awareness|意识)",
+        "response": "安全意识。"
+    },
+    "Policy": {
+        "pattern": "(Policy|策略)",
+        "response": "安全策略。"
+    },
+    "Standard": {
+        "pattern": "(Standard|标准)",
+        "response": "安全标准。"
+    },
+    "Framework": {
+        "pattern": "(Framework|框架)",
+        "response": "安全框架。"
+    },
+    "Architecture_658": {
+        "pattern": "(Architecture|架构)",
+        "response": "安全架构。"
+    },
+    "Zero Trust": {
+        "pattern": "(Zero Trust|零信任)",
+        "response": "零信任架构。"
+    },
+    "BeyondCorp": {
+        "pattern": "(BeyondCorp)",
+        "response": "BeyondCorp模型。"
+    },
+    "SASE": {
+        "pattern": "(SASE)",
+        "response": "安全访问服务边缘。"
+    },
+    "SD-WAN": {
+        "pattern": "(SD-WAN)",
+        "response": "软件定义广域网。"
+    },
+    "CASB": {
+        "pattern": "(CASB)",
+        "response": "云访问安全代理。"
+    },
+    "DLP": {
+        "pattern": "(DLP)",
+        "response": "数据防泄漏。"
+    },
+    "IAM": {
+        "pattern": "(IAM)",
+        "response": "身份访问管理。"
+    },
+    "PAM": {
+        "pattern": "(PAM)",
+        "response": "特权访问管理。"
+    },
+    "MFA": {
+        "pattern": "(MFA|多因素)",
+        "response": "多因素认证。"
+    },
+    "SSO": {
+        "pattern": "(SSO|单点登录)",
+        "response": "单点登录。"
+    },
+    "OAuth": {
+        "pattern": "(OAuth)",
+        "response": "OAuth授权。"
+    },
+    "OIDC": {
+        "pattern": "(OIDC)",
+        "response": "OIDC认证。"
+    },
+    "SAML": {
+        "pattern": "(SAML)",
+        "response": "SAML协议。"
+    },
+    "LDAP": {
+        "pattern": "(LDAP)",
+        "response": "LDAP目录。"
+    },
+    "AD": {
+        "pattern": "(AD|域)",
+        "response": "Active Directory。"
+    },
+    "Kerberos": {
+        "pattern": "(Kerberos)",
+        "response": "Kerberos协议。"
+    },
+    "Radius": {
+        "pattern": "(Radius)",
+        "response": "Radius协议。"
+    },
+    "TACACS+": {
+        "pattern": "(TACACS+)",
+        "response": "TACACS+协议。"
+    },
+    "802.1X": {
+        "pattern": "(802.1X)",
+        "response": "802.1X认证。"
+    },
+    "NAC": {
+        "pattern": "(NAC)",
+        "response": "网络准入控制。"
+    },
+    "VPN_679": {
+        "pattern": "(VPN)",
+        "response": "虚拟专用网。"
+    },
+    "IPsec": {
+        "pattern": "(IPsec)",
+        "response": "IPsec协议。"
+    },
+    "SSL VPN": {
+        "pattern": "(SSL VPN)",
+        "response": "SSL VPN。"
+    },
+    "MPLS": {
+        "pattern": "(MPLS)",
+        "response": "MPLS网络。"
+    },
+    "专线": {
+        "pattern": "(专线)",
+        "response": "网络专线。"
+    },
+    "光纤": {
+        "pattern": "(光纤)",
+        "response": "光纤传输。"
+    },
+    "5G_685": {
+        "pattern": "(5G)",
+        "response": "5G网络。"
+    },
+    "WiFi 6": {
+        "pattern": "(WiFi 6)",
+        "response": "WiFi 6技术。"
+    },
+    "IPv6": {
+        "pattern": "(IPv6)",
+        "response": "IPv6协议。"
+    },
+    "DNSSEC": {
+        "pattern": "(DNSSEC)",
+        "response": "DNS安全扩展。"
+    },
+    "DoH": {
+        "pattern": "(DoH)",
+        "response": "DNS over HTTPS。"
+    },
+    "DoT": {
+        "pattern": "(DoT)",
+        "response": "DNS over TLS。"
+    },
+    "QUIC": {
+        "pattern": "(QUIC)",
+        "response": "QUIC协议。"
+    },
+    "HTTP/3": {
+        "pattern": "(HTTP/3)",
+        "response": "HTTP/3协议。"
     }
 }
