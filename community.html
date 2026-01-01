@@ -3,940 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玄盾开发者社区</title>
+    <title>玄盾开发者社区 | XuanDun Community</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-    :root {
-        --primary: #2563eb;
-        --primary-dark: #1d4ed8;
-        --secondary: #64748b;
-        --light: #f8fafc;
-        --dark: #0f172a;
-        --border: #e2e8f0;
-        --success: #10b981;
-        --error: #ef4444;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-    }
-
-    body {
-        background-color: #f9fafb;
-        color: #334155;
-        line-height: 1.6;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    /* 头部导航 */
-    header {
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        padding: 0 5%;
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto; /* 居中对齐 */
-    }
-
-    .navbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 70px;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-    }
-
-    .logo-icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
-        overflow: hidden;
-    }
-
-    .logo-icon img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    .logo-text {
-        font-size: 22px;
-        font-weight: 700;
-        color: var(--dark);
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 30px;
-    }
-
-    .nav-links a {
-        color: var(--secondary);
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s;
-        position: relative;
-        padding: 5px 0;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: var(--primary);
-    }
-
-    .nav-links a.active::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: var(--primary);
-        border-radius: 3px;
-    }
-
-    /* 社区内容 */
-    .community-container {
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 0 20px;
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 30px;
-        flex: 1;
-    }
-
-    .main-content {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-    }
-
-    .sidebar {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        padding: 25px;
-        height: fit-content;
-    }
-
-    .community-header {
-        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-        padding: 30px;
-        text-align: center;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .community-header h1 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-        color: var(--dark);
-    }
-
-    .community-header p {
-        color: var(--secondary);
-        max-width: 700px;
-        margin: 0 auto;
-    }
-
-    .create-post-btn {
-        display: inline-block;
-        background: var(--primary);
-        color: white;
-        padding: 12px 25px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s;
-        margin-top: 20px;
-    }
-
-    .create-post-btn:hover {
-        background: var(--primary-dark);
-        transform: translateY(-2px);
-    }
-
-    .posts-container {
-        padding: 30px;
-    }
-
-    .post-card {
-        padding: 25px;
-        border-bottom: 1px solid var(--border);
-        transition: all 0.3s;
-        cursor: pointer;
-    }
-
-    .post-card:hover {
-        background-color: #f8fafc;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    .post-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    .user-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #dbeafe, #eff6ff);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 15px;
-        overflow: hidden;
-    }
-
-    .user-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .post-info h3 {
-        font-size: 1.1rem;
-        margin-bottom: 5px;
-        color: var(--dark);
-    }
-
-    .post-info .post-meta {
-        color: var(--secondary);
-        font-size: 0.9rem;
-    }
-
-    .post-content h2 {
-        font-size: 1.4rem;
-        margin: 10px 0;
-        color: var(--dark);
-    }
-
-    .post-content p {
-        color: var(--secondary);
-        margin-bottom: 15px;
-    }
-
-    .post-footer {
-        display: flex;
-        gap: 20px;
-        color: var(--secondary);
-        font-size: 0.9rem;
-    }
-
-    .post-footer span {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    }
-
-    .post-footer i {
-        font-size: 14px;
-    }
-
-    .sidebar-section {
-        margin-bottom: 30px;
-    }
-
-    .sidebar-section h3 {
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-        color: var(--dark);
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .sidebar-links {
-        list-style: none;
-    }
-
-    .sidebar-links li {
-        margin-bottom: 10px;
-    }
-
-    .sidebar-links a {
-        color: var(--secondary);
-        text-decoration: none;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .sidebar-links a:hover {
-        color: var(--primary);
-    }
-
-    .sidebar-links i {
-        width: 20px;
-        text-align: center;
-    }
-
-    .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 10px;
-    }
-
-    .tag {
-        background: #e0f2fe;
-        color: var(--primary);
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        transition: all 0.3s;
-    }
-
-    .tag:hover {
-        background: #dbeafe;
-        cursor: pointer;
-    }
-
-    /* 加载状态 */
-    .loading {
-        text-align: center;
-        padding: 30px;
-        color: var(--secondary);
-    }
-
-    .loading i {
-        font-size: 2rem;
-        margin-bottom: 15px;
-        animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    .error-message {
-        background: #fee2e2;
-        color: #b91c1c;
-        padding: 15px;
-        border-radius: 6px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    /* 帖子详情模态框 */
-    .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 1000;
-        align-items: center;
-        justify-content: center;
-        overflow-y: auto;
-        padding: 20px;
-    }
-
-    .post-detail-container {
-        background: white;
-        border-radius: 12px;
-        width: 90%;
-        max-width: 800px;
-        max-height: 90vh;
-        overflow-y: auto;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        padding: 30px;
-        position: relative;
-    }
-
-    .close-modal {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: var(--secondary);
-        transition: all 0.3s;
-    }
-
-    .close-modal:hover {
-        color: var(--primary);
-    }
-
-    .post-detail-header {
-        margin-bottom: 20px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .post-detail-header h1 {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
-        color: var(--dark);
-    }
-
-    .post-meta {
-        display: flex;
-        gap: 15px;
-        color: var(--secondary);
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-    }
-
-    .post-content {
-        margin-bottom: 30px;
-        line-height: 1.7;
-    }
-
-    .post-content img {
-        max-width: 100%;
-        border-radius: 8px;
-        margin: 15px 0;
-    }
-
-    .comments-section {
-        margin-top: 30px;
-    }
-
-    .comments-section h2 {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .comment {
-        padding: 15px;
-        border-radius: 8px;
-        background: #f8fafc;
-        margin-bottom: 15px;
-    }
-
-    .comment-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-    }
-
-    .comment-user {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 500;
-    }
-
-    .comment-user img {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-    }
-
-    .comment-date {
-        color: var(--secondary);
-        font-size: 0.85rem;
-    }
-
-    .comment-content {
-        padding-left: 40px;
-        line-height: 1.6;
-    }
-
-    .reply-form {
-        margin-top: 30px;
-        padding: 20px;
-        background: #f8fafc;
-        border-radius: 8px;
-    }
-
-    .reply-form h3 {
-        margin-bottom: 15px;
-        font-size: 1.2rem;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 500;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 10px 15px;
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        font-size: 1rem;
-    }
-
-    .form-group textarea {
-        min-height: 120px;
-        resize: vertical;
-    }
-
-    .submit-btn {
-        background: var(--primary);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 6px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .submit-btn:hover {
-        background: var(--primary-dark);
-    }
-
-    /* 页脚样式 */
-    footer {
-        background: var(--dark);
-        color: white;
-        padding: 50px 5% 20px;
-        margin-top: auto;
-        width: 100%;
-    }
-
-    .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 40px;
-        margin-bottom: 40px;
-    }
-
-    .footer-section h3 {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
-        color: #e2e8f0;
-    }
-
-    .footer-links {
-        list-style: none;
-    }
-
-    .footer-links li {
-        margin-bottom: 12px;
-    }
-
-    .footer-links a {
-        color: #94a3b8;
-        text-decoration: none;
-        transition: all 0.3s;
-    }
-
-    .footer-links a:hover {
-        color: white;
-    }
-
-    .copyright {
-        text-align: center;
-        padding-top: 30px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        color: #94a3b8;
-        font-size: 0.9rem;
-    }
-
-    /* 响应式 */
-    @media (max-width: 768px) {
-        .navbar {
-            flex-direction: column;
-            height: auto;
-            padding: 15px 0;
+        :root {
+            --primary: #3b82f6;      
+            --primary-hover: #2563eb;
+            --bg-body: #f3f4f6;       
+            --bg-card: #ffffff;
+            --text-main: #1f2937;
+            --text-sub: #6b7280;
+            --border: #e5e7eb;
+            --sidebar-width: 280px;
         }
 
-        .nav-links {
-            gap: 15px;
-            font-size: 0.9rem;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        
+        body { background-color: var(--bg-body); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* --- 顶部导航栏 --- */
+        header { background: var(--bg-card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
+        .navbar { max-width: 1400px; margin: 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+        .logo { font-size: 20px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-menu a { color: var(--text-sub); text-decoration: none; margin-left: 20px; font-weight: 500; transition: 0.2s; font-size: 0.95rem; }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--primary); }
+
+        /* --- 主布局 (Grid) --- */
+        .layout-container {
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr;
+            gap: 24px;
+            max-width: 1400px;
+            margin: 24px auto;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
         }
 
-        .community-container {
-            grid-template-columns: 1fr;
-            padding: 0 10px;
+        /* --- 左侧边栏  --- */
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        
+        .sidebar-card { background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+        
+        .channel-group { padding: 12px; }
+        .channel-title { font-size: 0.8rem; text-transform: uppercase; color: var(--text-sub); font-weight: 700; padding: 0 12px 8px; margin-top: 8px; }
+        
+        .channel-btn {
+            display: flex; align-items: center; width: 100%; text-align: left;
+            padding: 10px 12px; border: none; background: transparent;
+            color: var(--text-sub); border-radius: 8px; cursor: pointer;
+            font-size: 0.95rem; transition: 0.2s; margin-bottom: 2px;
+        }
+        .channel-btn i { width: 24px; text-align: center; margin-right: 8px; font-size: 1rem; }
+        .channel-btn:hover { background-color: #eff6ff; color: var(--primary); }
+        .channel-btn.active { background-color: #eff6ff; color: var(--primary); font-weight: 600; }
+
+        /* 公告小组件 */
+        .notice-widget { padding: 20px; }
+        .notice-widget h3 { font-size: 1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .notice-item { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed var(--border); }
+        .notice-item:last-child { border: none; margin: 0; padding: 0; }
+        .notice-date { font-size: 0.75rem; color: #9ca3af; display: block; margin-top: 4px; }
+
+        /* --- 右侧主内容区 --- */
+        .main-stage { display: flex; flex-direction: column; gap: 20px; }
+
+        /* 欢迎横幅 */
+        .hero-banner {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 12px; padding: 30px; color: white;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .hero-text h1 { font-size: 1.5rem; margin-bottom: 8px; }
+        .hero-text p { opacity: 0.9; font-size: 0.95rem; }
+        .github-btn {
+            background: rgba(255,255,255,0.2); color: white; text-decoration: none;
+            padding: 8px 16px; border-radius: 6px; font-size: 0.9rem; transition: 0.2s;
+            display: flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.3);
+        }
+        .github-btn:hover { background: rgba(255,255,255,0.3); }
+
+        /* 讨论区容器 */
+        .discussion-container {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 24px;
+            min-height: 500px;
+        }
+        
+        .discussion-header {
+            border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .discussion-header h2 { font-size: 1.25rem; color: var(--text-main); }
+        .discussion-badge {
+            background: #dbeafe; color: var(--primary); font-size: 0.75rem; 
+            padding: 2px 8px; border-radius: 12px; font-weight: 600;
         }
 
-        .sidebar {
-            padding: 15px;
+        /* 加载动画 */
+        .loading-spinner {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 200px; color: var(--text-sub);
         }
+        .fa-spinner { animation: spin 1s linear infinite; font-size: 2rem; margin-bottom: 10px; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        .footer-content {
-            grid-template-columns: 1fr 1fr;
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .layout-container { grid-template-columns: 1fr; }
+            .sidebar { display: none; } 
+            .navbar { padding: 0 15px; }
         }
-    }
-
-    @media (max-width: 480px) {
-        .navbar {
-            flex-direction: column;
-            height: auto;
-            padding: 15px 0;
-        }
-
-        .nav-links {
-            margin-top: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .footer-content {
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
-
+    </style>
 </head>
 <body>
-    <!-- 头部导航 -->
+
     <header>
         <div class="navbar">
-            <div class="logo">
-                <div class="logo-icon">
-                    <img src="/favicon.ico" alt="玄盾图标">
-                </div>
-                <div class="logo-text">玄盾|OpenAPI门户</div>
-            </div>
-            <nav class="nav-links">
+            <a href="index.html" class="logo">
+                <i class="fas fa-shield-alt" style="color: var(--primary);"></i>
+                玄盾开发者社区
+            </a>
+            <nav class="nav-menu">
                 <a href="index.html">首页</a>
                 <a href="docs.html">文档</a>
-                <a href="API.html">API参考</a>
-                <a href="APK_encrypted.html">应用下载</a>
                 <a href="community.html" class="active">社区</a>
             </nav>
         </div>
     </header>
-    
-    <!-- 社区内容 -->
-    <div class="community-container">
-        <div class="main-content">
-            <div class="community-header">
-                <h1>开发者社区</h1>
-                <p>与开发者交流经验，分享知识，解决问题</p>
-                <a href="https://github.com/neflibata-feng/XuanDun/issues/new" class="create-post-btn" target="_blank">
-                    <i class="fas fa-plus"></i> 创建新帖子
+
+    <div class="layout-container">
+        
+        <aside class="sidebar">
+            <div class="sidebar-card">
+                <div class="channel-group">
+                    <div class="channel-title">社区频道</div>
+                    <button class="channel-btn active" onclick="switchChannel('综合大厅', 'General')">
+                        <i class="fas fa-comments"></i> 综合大厅
+                    </button>
+                    <button class="channel-btn" onclick="switchChannel('建议反馈', 'Ideas')">
+                        <i class="fas fa-lightbulb"></i> 建议反馈
+                    </button>
+                    <button class="channel-btn" onclick="switchChannel('技术问答', 'Q&A')">
+                        <i class="fas fa-question-circle"></i> 技术问答
+                    </button>
+                    <button class="channel-btn" onclick="switchChannel('作品展示', 'Show and tell')">
+                        <i class="fas fa-laptop-code"></i> 作品展示
+                    </button>
+                </div>
+                
+                <div class="channel-title" style="padding-left:12px; margin-top:10px;">资源链接</div>
+                <div class="channel-group">
+                    <button class="channel-btn" onclick="window.open('https://github.com/neflibata-feng/XuanDun', '_blank')">
+                        <i class="fab fa-github"></i> GitHub 仓库
+                    </button>
+                    <button class="channel-btn" onclick="location.href='docs.html'">
+                        <i class="fas fa-book"></i> 开发文档
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-card notice-widget">
+                <h3 style="color: #ea580c;"><i class="fas fa-bullhorn"></i> 最新公告</h3>
+            </div>
+        </aside>
+
+        <main class="main-stage">
+            
+            <div class="hero-banner">
+                <div class="hero-text">
+                    <h1>👋 欢迎来到玄盾社区</h1>
+                    <p>这里是开发者交流的核心地带，请文明发言，分享你的创意。</p>
+                </div>
+                <a href="https://github.com/neflibata-feng/XuanDun/discussions" target="_blank" class="github-btn">
+                    <i class="fas fa-external-link-alt"></i> 前往 GitHub 原版
                 </a>
             </div>
-            
-            <div class="posts-container" id="postsContainer">
-                <div class="loading">
-                    <i class="fas fa-spinner"></i>
-                    <p>正在加载帖子...</p>
+
+            <div class="discussion-container">
+                <div class="discussion-header">
+                    <h2 id="currentChannelTitle"><i class="fas fa-comments" style="color:var(--primary)"></i> 综合大厅</h2>
+                    <span class="discussion-badge" id="currentCategoryBadge">General</span>
+                </div>
+
+                <div id="giscus-frame">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner"></i>
+                        <p>正在连接 GitHub 社区...</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-     
-            <div class="sidebar-section">
-                <h3>社区指南</h3>
-                <ul class="sidebar-links">
-                    <li><a href="communityRules.html"><i class="fas fa-book"></i> 社区规则</a></li>
-                    <li><a href="commonQuestions.html"><i class="fas fa-question-circle"></i> 常见问题</a></li>
-                </ul>
-            </div>
-            
-            <div class="sidebar-section">
-                <h3>统计信息</h3>
-                <ul class="sidebar-links">
-                    <li><i class="fas fa-users"></i> 社区成员: <span id="memberCount">加载中...</span></li>
-                    <li><i class="fas fa-comments"></i> 帖子总数: <span id="postCount">加载中...</span></li>
-                    <li><i class="fas fa-reply"></i> 回复总数: <span id="replyCount">加载中...</span></li>
-                </ul>
-            </div>
-        </div>
+
+        </main>
     </div>
-    
-    <!-- 帖子详情模态框 -->
-    <div id="postDetailModal" class="modal">
-        <div class="post-detail-container">
-            <button class="close-modal" id="closeModal">&times;</button>
-            <div id="postDetailContent">
-                <div class="loading">
-                    <i class="fas fa-spinner"></i>
-                    <p>正在加载帖子详情...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 页脚 -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>开放平台</h3>
-                <ul class="footer-links">
-                    <li><a href="https://github.com/neflibata-feng/XuanDun">产品介绍</a></li>
-                    <li><a href="APK_encrypted.html">应用下载</a></li>
-                </ul>
-            </div>
 
-            <div class="footer-section">
-                <h3>开发者</h3>
-                <ul class="footer-links">
-                    <li><a href="community.html">社区</a></li>
-                    <li><a href="API.html">API参考</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>资源</h3>
-                <ul class="footer-links">
-                    <li><a href="docs.html">文档</a></li>
-                    <li><a href="#">教程</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>支持</h3>
-                <ul class="footer-links">
-                    <li><a href="#">帮助中心</a></li>
-                    <li><a href="#">联系我们</a></li>
-                    <li><a href="SLA.html">服务协议</a></li>
-                    <li><a href="privacyPolicy.html">隐私政策</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="copyright">
-            <p>© 2025-2026 玄盾OpenAPI | 提供专业开发者支持</p>
-        </div>
+    <footer style="text-align: center; padding: 30px; color: var(--text-sub); font-size: 0.9rem;">
+        <p>© 2026 玄盾 OpenAPI | 基于 GitHub Discussions 构建</p>
     </footer>
 
     <script>
-        // 配置信息
-        const REPO_OWNER = 'neflibata-feng';
-        const REPO_NAME = 'XuanDun';
-        
-        // DOM元素
-        const postsContainer = document.getElementById('postsContainer');
-        const postDetailModal = document.getElementById('postDetailModal');
-        const closeModal = document.getElementById('closeModal');
-        
-        // 加载帖子列表
-        async function loadPosts() {
-            try {
-                postsContainer.innerHTML = `
-                    <div class="loading">
-                        <i class="fas fa-spinner"></i>
-                        <p>正在加载帖子...</p>
-                    </div>
-                `;
-                
-                const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues`);
-                
-                if (!response.ok) {
-                    throw new Error(`GitHub API错误: ${response.status}`);
-                }
-                
-                const issues = await response.json();
-                
-                if (issues.length === 0) {
-                    postsContainer.innerHTML = `
-                        <div class="loading">
-                            <i class="fas fa-inbox"></i>
-                            <p>暂无帖子，成为第一个发帖者吧！</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                let postsHTML = '';
-                
-                issues.forEach(issue => {
-                    const createdAt = new Date(issue.created_at).toLocaleString();
-                    const labels = issue.labels.map(label => 
-                        `<span class="tag">${label.name}</span>`
-                    ).join('');
-                    
-                    postsHTML += `
-                        <div class="post-card" data-id="${issue.number}">
-                            <div class="post-header">
-                                <div class="user-avatar">
-                                  <img src="${issue.user.avatar_url}" alt="${issue.user.login}" width="40" height="40">
-                                </div>
-                                <div class="post-info">
-                                    <h3>${issue.user.login}</h3>
-                                    <div class="post-meta">发布于 ${createdAt}</div>
-                                </div>
-                            </div>
-                            <div class="post-content">
-                                <h2>${issue.title}</h2>
-                                <p>${issue.body.substring(0, 200)}...</p>
-                                <div class="tag-list">${labels}</div>
-                            </div>
-                            <div class="post-footer">
-                                <span><i class="fas fa-comment"></i> ${issue.comments} 回复</span>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                postsContainer.innerHTML = postsHTML;
-                
-                // 添加点击事件
-                document.querySelectorAll('.post-card').forEach(card => {
-                    card.addEventListener('click', () => {
-                        const issueId = card.getAttribute('data-id');
-                        showPostDetail(issueId);
-                    });
-                });
-                
-                // 更新统计信息
-                document.getElementById('postCount').textContent = issues.length;
-                const totalComments = issues.reduce((sum, issue) => sum + issue.comments, 0);
-                document.getElementById('replyCount').textContent = totalComments;
-                document.getElementById('memberCount').textContent = new Set(issues.map(issue => issue.user.id)).size;
-                
-            } catch (error) {
-                console.error('加载帖子失败:', error);
-                postsContainer.innerHTML = `
-                    <div class="error-message">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <p>加载帖子失败: ${error.message}</p>
-                        <p>请稍后再试</p>
-                    </div>
-                `;
-            }
-        }
-        
-        // 显示帖子详情
-        async function showPostDetail(issueId) {
-            try {
-                postDetailModal.style.display = 'flex';
-                const postDetailContent = document.getElementById('postDetailContent');
-                
-                postDetailContent.innerHTML = `
-                    <div class="loading">
-                        <i class="fas fa-spinner"></i>
-                        <p>正在加载帖子详情...</p>
-                    </div>
-                `;
-                
-                const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues/${issueId}`);
-                
-                if (!response.ok) {
-                    throw new Error(`GitHub API错误: ${response.status}`);
-                }
-                
-                const issue = await response.json();
-                const createdAt = new Date(issue.created_at).toLocaleString();
-                const labels = issue.labels.map(label => 
-                    `<span class="tag">${label.name}</span>`
-                ).join('');
-                
-                // 获取评论
-                const commentsResponse = await fetch(issue.comments_url);
-                
-                if (!commentsResponse.ok) {
-                    throw new Error(`GitHub API错误: ${commentsResponse.status}`);
-                }
-                
-                const comments = await commentsResponse.json();
-                
-                let commentsHTML = '';
-                
-                comments.forEach(comment => {
-                    const commentDate = new Date(comment.created_at).toLocaleString();
-                    commentsHTML += `
-                        <div class="comment">
-                            <div class="comment-header">
-                                <div class="comment-user">
-                                    <img src="${comment.user.avatar_url}" alt="${comment.user.login}" width="30" height="30">
-                                    ${comment.user.login}
-                                </div>
-                                <div class="comment-date">${commentDate}</div>
-                            </div>
-                            <div class="comment-content">
-                                ${comment.body}
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                // 添加回复表单
-                const replyFormHTML = `
-                    <div class="reply-form">
-                        <h3>添加评论</h3>
-                        <p>评论千万条，等你发一条</p>
-                        <a href="https://github.com/${REPO_OWNER}/${REPO_NAME}/issues/${issueId}" class="github-reply-link" target="_blank">
-                            <i class="fab fa-github"></i> 发表评论
-                        </a>
-                    </div>
-                `;
-                
-                postDetailContent.innerHTML = `
-                    <div class="post-detail-header">
-                        <div class="user-avatar" style="width: 60px; height: 60px; margin-right: 15px;">
-                            <img src="${issue.user.avatar_url}" alt="${issue.user.login}" width="60" height="60">
-                        </div>
-                        <div>
-                            <h1>${issue.title}</h1>
-                            <div class="post-meta">
-                                <span>作者: ${issue.user.login}</span>
-                                <span>发布于: ${createdAt}</span>
-                            </div>
-                            <div class="tag-list">${labels}</div>
-                        </div>
-                    </div>
-                    
-                    <div class="post-content">
-                        ${issue.body}
-                    </div>
-                    
-                    <div class="comments-section">
-                        <h2>评论区 (${issue.comments})</h2>
-                        ${commentsHTML || '<p>暂无评论</p>'}
-                    </div>
-                    
-                    ${replyFormHTML}
-                `;
-                
-            } catch (error) {
-                console.error('加载帖子详情失败:', error);
-                postDetailContent.innerHTML = `
-                    <div class="error-message">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <p>加载帖子详情失败: ${error.message}</p>
-                        <p>请稍后再试</p>
-                    </div>
-                `;
-            }
-        }
-        
-        // 点击模态框外部关闭
-        window.addEventListener('click', (event) => {
-            if (event.target === postDetailModal) {
-                postDetailModal.style.display = 'none';
-            }
+        const CONFIG = {
+            repo: "neflibata-feng/XuanDun",
+            repoId: "R_kgDOQDdIrQ",
+            categoryId: "DIC_kwDOQDdIrc4C0cdO" 
+        };
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGiscus('综合大厅', 'General');
         });
-        
-        // 点击关闭按钮关闭模态框
-        closeModal.addEventListener('click', () => {
-            postDetailModal.style.display = 'none';
-        });
-        
-        // 初始化加载帖子
-        loadPosts();
+        function switchChannel(channelName, category) {
+            document.querySelectorAll('.channel-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');        
+            document.getElementById('currentChannelTitle').innerHTML = channelName;
+            document.getElementById('currentCategoryBadge').innerText = category;
+            loadGiscus(channelName, category);
+        }
+
+        function loadGiscus(term, category) {
+            const frame = document.getElementById('giscus-frame');
+
+            frame.innerHTML = `
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner"></i>
+                    <p>正在切换至 ${term}...</p>
+                </div>
+            `;
+
+
+            const script = document.createElement('script');
+            script.src = "https://giscus.app/client.js";
+            
+            script.setAttribute('data-repo', CONFIG.repo);
+            script.setAttribute('data-repo-id', CONFIG.repoId);            
+            script.setAttribute('data-category', "General"); 
+            script.setAttribute('data-category-id', CONFIG.categoryId);
+            script.setAttribute('data-mapping', "title");
+            script.setAttribute('data-term', term); 
+            script.setAttribute('data-reactions-enabled', "1");
+            script.setAttribute('data-emit-metadata', "0");
+            script.setAttribute('data-input-position', "top");
+            script.setAttribute('data-theme', "light");
+            script.setAttribute('data-lang', "zh-CN");
+            script.setAttribute('crossorigin', "anonymous");
+            script.async = true;
+            setTimeout(() => {
+                frame.innerHTML = '';
+                frame.appendChild(script);
+            }, 300);
+        }
     </script>
 </body>
 </html>
