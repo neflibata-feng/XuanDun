@@ -1,0 +1,198 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Stats from '~/components/widgets/Stats.astro';
+
+const metadata = {
+  title: '玄盾开发者团队官网',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: '加入我们',
+        href: 'https://github.com/neflibata-feng/XuanDun',
+        target: '_blank',
+        icon: 'tabler:hand-click',
+      },
+      { text: '了解更多', href: '#features' },
+    ]}
+    image={{ src: '~/assets/images/XuanDun.png', alt: '玄盾团队主标识' }}
+  >
+    <Fragment slot="title">
+       致力于 <span class="hidden xl:inline"></span>
+      <span class="text-accent dark:text-white"> AI时代 </span> 多领域智能安全系统研发
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline">
+        <span class="font-semibold">玄盾开发者团队</span> 来自电子科技大学·中国成都</span
+      >
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note title="玄盾开发者团队" description=" XuanDun " />
+
+  <!-- Features Widget *************** -->
+
+  <Features
+    id="features"
+    tagline="Name"
+    title="为什么命名为玄盾开发者团队？"
+    subtitle="Why is it named XuanDun Developer Team ?"
+    items={[
+      {
+        title: '玄',
+        description:
+          '古人云：“玄而又玄，众生之门。” 玄盾立足于AI时代，依托于前沿技术，致力于实现更加智能的商业级系统。',
+        icon: 'tabler:cloud',
+      },
+      {
+        title: '盾',
+        description:
+          '玄盾致力于实现安全性与可接受成本的高度协调统一，提供以智能体为安全内核的解决方案。',
+        icon: 'tabler:shield',
+      },
+    ]}
+  />
+
+  <!-- Steps Widget ****************** -->
+
+  <Steps
+    title="只需三步，即可加入我们团队"
+    items={[
+      {
+        title: '步骤 1: <span class="font-medium">在线核验身份</span>',
+        description:
+          "您必须来自电子科技大学且为本科在读。",
+        icon: 'tabler:package',
+      },
+      {
+        title: '步骤 2: <span class="font-medium">提交简历</span>',
+        description:
+          "您需要将您的简历提交到我们指定的邮箱。",
+        icon: 'tabler:letter-case',
+      },
+      {
+        title: '步骤 3: <span class="font-medium">审核与面试</span>',
+        description:
+          '经过审核后，我们将与您联系预约线下面试，通过即可加入团队。',
+        icon: 'tabler:paint',
+      },
+      {
+        title: '完成!',
+        icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: 'Steps image',
+    }}
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="技术能力展示"
+    subtitle="Technical Skills Showcase"
+    tagline="Components"
+    items={[
+      {
+        title: 'Java',
+        icon: 'tabler:coffee',
+      },
+      {
+        title: 'Kotlin',
+        icon: 'tabler:brand-kotlin',
+      },
+      {
+        title: 'Python',
+        icon: 'tabler:brand-python',
+      },
+      {
+        title: 'JavaScript',
+        icon: 'tabler:brand-javascript',
+      },
+      {
+        title: 'TypeScript',
+        icon: 'tabler:brand-typescript',
+      },
+      {
+        title: 'Vue.js',
+        icon: 'tabler:brand-vue',
+      },
+      {
+        title: 'Astro',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Spring Boot',
+        icon: 'tabler:leaf',
+      },
+      {
+        title: 'Flask',
+        icon: 'tabler:flask',
+      },
+      {
+        title: 'MySQL',
+        icon: 'tabler:brand-mysql',
+      },
+      {
+        title: 'Redis',
+        icon: 'tabler:database',
+      },
+      {
+        title: 'Nginx',
+        icon: 'tabler:server',
+      },
+      {
+        title: 'Docker',
+        icon: 'tabler:brand-docker',
+      },
+      {
+        title: 'Git',
+        icon: 'tabler:brand-git',
+      },
+      {
+        title: 'Ubuntu',
+        icon: 'tabler:brand-ubuntu',
+      },
+      {
+        title: 'Android',
+        icon: 'tabler:brand-android',
+      },
+      {
+        title: '持续更新中',
+        icon: 'tabler:dots',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    stats={[
+      { title: '项目', amount: '2项' },
+      { title: '成员', amount: '4人' },
+    ]}
+  />
+
+</Layout>

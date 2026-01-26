@@ -1,0 +1,52 @@
+---
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+
+import Layout from '~/layouts/PageLayout.astro';
+import BlogList from '~/components/blog/List.astro';
+import Headline from '~/components/blog/Headline.astro';
+import Pagination from '~/components/blog/Pagination.astro';
+import PostTags from '~/components/blog/Tags.astro';
+
+import { blogListRobots, getStaticPathsBlogList, findCategories, findTags } from '~/utils/blog';
+
+export const prerender = true;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  return await getStaticPathsBlogList({ paginate });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props as Props;
+const currentPage = page.currentPage ?? 1;
+
+const allCategories = await findCategories();
+const allTags = await findTags();
+
+const metadata = {
+  title: `博客${currentPage > 1 ? ` — 第 ${currentPage} 页` : ''}`,
+  robots: {
+    index: blogListRobots?.index && currentPage === 1,
+    follow: blogListRobots?.follow,
+  },
+  openGraph: {
+    type: 'blog',
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 md:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <Headline
+      subtitle="记录玄盾团队的公告、技术文章与阶段性总结。"
+    >
+      博客
+    </Headline>
+
+    {allCategories?.length ? <PostTags tags={allCategories} class="mb-4" title="按分类浏览：" isCategory /> : null}
+    {allTags?.length ? <PostTags tags={allTags} class="mb-6" title="按标签浏览：" /> : null}
+
+    <BlogList posts={page.data} />
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+  </section>
+</Layout>

@@ -1,0 +1,27 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: '提交成功',
+  description: '感谢你的留言，我们会尽快回复。',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+    <div class="rounded-2xl border border-slate-200 bg-white/80 p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+      <h1 class="text-2xl md:text-3xl font-bold tracking-tight">已收到你的留言</h1>
+      <p class="mt-3 text-muted">感谢联系玄盾开发者团队，我们会尽快通过你填写的邮箱回复。</p>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a class="btn-primary" href="/">返回首页</a>
+        <a class="btn-secondary" href="/contact">重新填写</a>
+      </div>
+
+      <p class="mt-6 text-sm text-muted">
+        如果你希望立即联系，直接发送邮件也许会更快：
+        <a class="underline" href="mailto:neflibatafeng@gmail.com">neflibatafeng@gmail.com</a>
+      </p>
+    </div>
+  </section>
+</Layout>

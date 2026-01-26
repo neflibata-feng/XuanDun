@@ -1,0 +1,66 @@
+site:
+  name: 玄盾开发者团队
+  site: 'https://www.uestcgal.top'
+  base: '/'
+  trailingSlash: false
+
+# Default SEO metadata
+metadata:
+  title:
+    default: 玄盾开发者团队官网
+    template: '%s — 玄盾开发者团队官网'
+  description: "\U0001F680 玄盾开发者团队官网，我们来自电子科技大学，致力于AI时代的智能安全系统研发。"
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: 玄盾开发者团队官网
+    images:
+      - url: '~/assets/images/XuanDun.png'
+        width: 1024
+        height: 964
+    type: website
+  
+i18n:
+  language: zh-CN
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: true
+    postsPerPage: 10
+
+    post:
+      isEnabled: true
+      permalink: '/%year%/%month%/%day%-%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      robots:
+        index: true
+
+    list:
+      isEnabled: true
+      pathname: 'articles' # Blog main path, you can change this to "articles" (/articles)
+      robots:
+        index: true
+
+    category:
+      isEnabled: true
+      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      robots:
+        index: true
+
+    tag:
+      isEnabled: true
+      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      robots:
+        index: false
+
+    isRelatedPostsEnabled: true
+    relatedPostsCount: 3
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null # or "G-XXXXXXXXXX"
+
+ui:
+  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
