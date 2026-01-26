@@ -1,0 +1,61 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: '联系我们',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText tagline="Contact" title="欢迎联系我们" />
+
+  <ContactUs
+    id="form"
+    title="给我们留言"
+    subtitle="对于简单的问题，您可以浏览FAQs，如果依然未能解决您的问题，团队很高兴为您服务。"
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: '姓名',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: '电子邮箱',
+      },
+    ]}
+    textarea={{
+      label: '消息',
+    }}
+    disclaimer={{
+      label:
+        '提交这份表单之前，我们默认您知晓并同意我们收集必要的身份信息。',
+    }}
+    button="提交"
+    description="提交后留言将发送给团队；我们可能需要一些时间回复，敬请谅解。"
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="随时为您提供帮助!"
+    items={[
+      {
+        title: '电子邮箱',
+        description: 'neflibatafeng@gmail.com',
+        icon: 'tabler:mail',
+      },
+      {
+        title: '更多联系方式',
+        description: '敬请期待',
+        icon: 'tabler:dots',
+      },
+    ]}
+  />
+</Layout>

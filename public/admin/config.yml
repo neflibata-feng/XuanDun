@@ -1,0 +1,44 @@
+backend:
+  name: git-gateway
+  branch: main
+
+site_url: https://YOUR-SITE.netlify.app
+display_url: https://YOUR-SITE.netlify.app
+
+local_backend: true
+publish_mode: editorial_workflow
+
+media_folder: 'src/assets/images'
+public_folder: '~/assets/images'
+
+collections:
+  - name: 'post'
+    label: 'Post'
+    folder: 'src/data/post'
+    create: true
+    fields:
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Excerpt', name: 'excerpt', widget: 'string' }
+      - { label: 'Draft', name: 'draft', widget: 'boolean', required: false, default: false }
+      - { label: 'Category', name: 'category', widget: 'string' }
+      - {
+          label: 'Tags',
+          name: 'tags',
+          widget: 'list',
+          allow_add: true,
+          allow_delete: true,
+          collapsed: false,
+          field: { label: 'Tag', name: 'tag', widget: 'string' },
+        }
+      - { label: 'Image', name: 'image', widget: 'string' }
+      - { label: 'Publish Date', name: 'publishDate', widget: 'datetime', required: false }
+      - { label: 'Author', name: 'author', widget: 'string' }
+      -
+          label: 'SEO'
+          name: 'metadata'
+          widget: 'object'
+          collapsed: true
+          required: false
+          fields:
+            - { label: 'Description', name: 'description', widget: 'text', required: false }
+      - { label: 'Content', name: 'body', widget: 'markdown' }

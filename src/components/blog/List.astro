@@ -1,0 +1,26 @@
+---
+import Item from '~/components/blog/ListItem.astro';
+import type { Post } from '~/types';
+
+export interface Props {
+  posts: Array<Post>;
+}
+
+const { posts } = Astro.props;
+---
+
+{
+  posts?.length ? (
+    <ul>
+      {posts.map((post) => (
+        <li class="mb-12 md:mb-20">
+          <Item post={post} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <div class="rounded-xl border border-slate-200 bg-white/70 p-6 text-muted dark:border-slate-800 dark:bg-slate-900/60">
+      暂无文章。你可以先在 <a class="underline" href="/">首页</a> 查看团队介绍，或稍后再来。
+    </div>
+  )
+}
