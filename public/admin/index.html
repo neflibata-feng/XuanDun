@@ -4,20 +4,61 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>Content Manager</title>
+    <title>内容管理</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      .nc-appHeader {
+        background: #1e293b !important;
+        border-bottom: 0 !important;
+      }
+
+      .nc-appHeader * {
+        color: #ffffff !important;
+      }
+
+      .nc-login {
+        background: #f8fafc;
+      }
+
+      .nc-loginCard {
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+        border: 1px solid #e2e8f0;
+      }
+
+      .nc-loginCard button,
+      .nc-loginCard input[type='submit'] {
+        background: #1e293b !important;
+        border-color: #1e293b !important;
+      }
+    </style>
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-
     <script>
       if (window.netlifyIdentity) {
+        window.netlifyIdentity.init();
         window.netlifyIdentity.on('init', (user) => {
+          const hash = window.location.hash || '';
+          const hasToken = /invite_token|recovery_token|confirmation_token|email_change_token/.test(hash);
+
+          if (hasToken) {
+            window.netlifyIdentity.open();
+          }
+
           if (!user) {
             window.netlifyIdentity.on('login', () => {
               document.location.href = '/admin/';
             });
           }
+        });
+
+        window.netlifyIdentity.on('logout', () => {
+          document.location.href = '/';
         });
       }
     </script>
