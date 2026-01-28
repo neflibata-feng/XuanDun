@@ -13,12 +13,12 @@
         <p style="margin:0 0 20px;font-size:14px;color:#cbd5e1;">
           欢迎加入玄盾开发者团队创作中心！为了确保您的账号安全，请点击下方按钮验证您的邮箱。验证完成后，您即可完整使用我们的开发者服务。
         </p>
-        <a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#1e293b;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;">
+        <a href="{{ .SiteURL }}/admin#confirmation_token={{ .Token }}" style="display:inline-block;background:#1e293b;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;">
           确认注册
         </a>
         <p style="margin:20px 0 0;font-size:12px;color:#94a3b8;">
           如果按钮无法点击，请复制链接到浏览器打开：<br />
-          <span style="word-break:break-all;">{{ .ConfirmationURL }}</span>
+          <span style="word-break:break-all;">{{ .SiteURL }}/admin#confirmation_token={{ .Token }}</span>
         </p>
       </div>
     </div>
