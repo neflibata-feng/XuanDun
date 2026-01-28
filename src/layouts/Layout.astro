@@ -43,11 +43,17 @@ const { language, textDirection } = I18N;
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       if (window.netlifyIdentity) {
+        const hash = window.location.hash || '';
+        const hasToken = /invite_token|recovery_token|confirmation_token|email_change_token/.test(hash);
+
+        // Netlify's default Identity emails often send users to the site root with a token in the hash.
+        // Redirect into the CMS so the widget flow runs in the intended admin context.
+        if (hasToken && !window.location.pathname.startsWith('/admin')) {
+          window.location.replace('/admin' + hash);
+        }
+
         window.netlifyIdentity.init();
         window.netlifyIdentity.on('init', (user) => {
-          const hash = window.location.hash || '';
-          const hasToken = /invite_token|recovery_token|confirmation_token|email_change_token/.test(hash);
-
           if (hasToken) {
             window.netlifyIdentity.open();
           }
