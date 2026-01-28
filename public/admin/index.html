@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
-    <title>内容管理</title>
+    <title>玄盾开发者团队创作中心</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style>
       :root {
@@ -38,6 +38,14 @@
     </style>
   </head>
   <body>
+    <script>
+      (function () {
+        const { pathname, search, hash } = window.location;
+        if (pathname === '/admin') {
+          window.location.replace('/admin/' + search + hash);
+        }
+      })();
+    </script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
       if (window.netlifyIdentity) {
