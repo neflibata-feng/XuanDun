@@ -13,12 +13,12 @@
         <p style="margin:0 0 20px;font-size:14px;color:#cbd5e1;">
           您好！我们很荣幸地邀请您加入玄盾开发者团队的创作中心。在这里，你可以记录技术心得，分享极客思考。请点击下方按钮设置密码并激活账号。
         </p>
-        <a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#1e293b;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;">
+        <a href="{{ .SiteURL }}/admin/#invite_token={{ .Token }}" style="display:inline-block;background:#1e293b;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;">
           设置密码
         </a>
         <p style="margin:20px 0 0;font-size:12px;color:#94a3b8;">
           如果按钮无法点击，请复制链接到浏览器打开：<br />
-          <span style="word-break:break-all;">{{ .ConfirmationURL }}</span>
+          <span style="word-break:break-all;">{{ .SiteURL }}/admin/#invite_token={{ .Token }}</span>
         </p>
       </div>
     </div>

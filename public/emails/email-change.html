@@ -16,12 +16,12 @@
           请点击下方按钮确认此更改。更改后，原邮箱将无法再用于登录。<br />
           
         </p>
-        <a href="{{ .ConfirmationURL }}" style="display:inline-block;background:#1e293b;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;">
+        <a href="{{ .SiteURL }}/admin/#email_change_token={{ .Token }}" style="display:inline-block;background:#1e293b;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;">
           确认变更
         </a>
         <p style="margin:20px 0 0;font-size:12px;color:#94a3b8;">
           如果按钮无法点击，请复制链接到浏览器打开：<br />
-          <span style="word-break:break-all;">{{ .ConfirmationURL }}</span>
+          <span style="word-break:break-all;">{{ .SiteURL }}/admin/#email_change_token={{ .Token }}</span>
         </p>
       </div>
     </div>

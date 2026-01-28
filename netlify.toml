@@ -6,6 +6,11 @@
   NODE_VERSION = "20"
 [build.processing.html]
   pretty_urls = false
+[[redirects]]
+  from = "/admin"
+  to = "/admin/"
+  status = 301
+  force = true
 [[headers]]
   for = "/_astro/*"
   [headers.values]
