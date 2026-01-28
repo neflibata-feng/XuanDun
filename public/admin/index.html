@@ -4,8 +4,25 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
+    <base href="/admin/" />
     <title>玄盾开发者团队创作中心</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script>
+      (function () {
+        const { pathname, search, hash } = window.location;
+
+        // Normalize to a trailing-slash path for Decap CMS (config.yml relative resolution)
+        // without triggering network redirects (prevents redirect loops on some hosts).
+        if (pathname === '/admin') {
+          history.replaceState(null, '', '/admin/' + search + hash);
+        }
+
+        // Ensure default CMS route is present.
+        if ((pathname === '/admin/' || pathname === '/admin') && !hash) {
+          history.replaceState(null, '', window.location.pathname + search + '#/');
+        }
+      })();
+    </script>
     <style>
       :root {
         color-scheme: light;
@@ -52,7 +69,7 @@
 
           if (!user) {
             window.netlifyIdentity.on('login', () => {
-              document.location.href = '/admin';
+              document.location.href = '/admin/#/';
             });
           }
         });
