@@ -38,14 +38,6 @@
     </style>
   </head>
   <body>
-    <script>
-      (function () {
-        const { pathname, search, hash } = window.location;
-        if (pathname === '/admin') {
-          window.location.replace('/admin/' + search + hash);
-        }
-      })();
-    </script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
       if (window.netlifyIdentity) {
@@ -60,7 +52,7 @@
 
           if (!user) {
             window.netlifyIdentity.on('login', () => {
-              document.location.href = '/admin/';
+              document.location.href = '/admin';
             });
           }
         });
