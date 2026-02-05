@@ -1,0 +1,55 @@
+---
+import { Icon } from 'astro-icon/components';
+import Image from '~/components/common/Image.astro';
+import Headline from '~/components/ui/Headline.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+
+interface Image {
+  src: string;
+  alt?: string;
+  link?: string;
+}
+
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  images?: Array<Image>;
+  id?: string;
+  isDark?: boolean;
+  classes?: Record<string, string>;
+  bg?: string;
+}
+
+const {
+  title = '',
+  subtitle = '',
+  tagline = '',
+  images = [],
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+
+  <div class="flex flex-wrap justify-center gap-6 sm:gap-12 lg:gap-20">
+    {
+      images &&
+        images.map(
+          (image) =>
+            image.src && (
+              <div class="flex justify-center col-span-1 my-2 lg:my-4 py-1 px-3">
+                 <a href={image.link || '#'} target="_blank" rel="noopener noreferrer" title={image.alt}>
+                  <img src={image.src} alt={image.alt || ''} class="w-24 h-24 rounded-full border-4 border-gray-200 dark:border-gray-700 hover:border-primary dark:hover:border-blue-500 transition-colors duration-300 object-cover" width={96} height={96} />
+                </a>
+              </div>
+            )
+        )
+    }
+  </div>
+</WidgetWrapper>
