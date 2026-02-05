@@ -5,6 +5,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
+import Team from '~/components/widgets/Team.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Stats from '~/components/widgets/Stats.astro';
 
@@ -185,13 +186,40 @@ const metadata = {
     </Fragment>
   </Features2>
 
+  <!-- Team Widget ******************* -->
+
+  <Team
+    title="团队核心成员"
+    subtitle="Meet Our Team"
+    images={[
+      {
+        src: 'https://github.com/neflibata-feng.png',
+        alt: 'neflibata-feng',
+        link: 'https://github.com/neflibata-feng',
+      },
+      {
+        src: 'https://github.com/sheepxf.png', 
+        alt: 'sheepxf',
+        link: 'https://github.com/sheepxf',
+      },
+       {
+        src: 'https://github.com/CHARON-Silver.png', 
+        alt: 'CHARON-Silver',
+        link: 'https://github.com/CHARON-Silver',
+      },
+       {
+        src: 'https://github.com/kirito167.png', 
+        alt: 'kirito167',
+        link: 'https://github.com/kirito167',
+      },
+    ]}
+  />
   
   <!-- Stats Widget ****************** -->
 
   <Stats
     stats={[
       { title: '项目', amount: '2项' },
-      { title: '成员', amount: '4人' },
     ]}
   />
 
