@@ -9,6 +9,7 @@ tags:
 author: 玄盾官方
 metadata:
   description: 玄盾团队博客开篇：我们将会发布团队动态、技术沉淀与开源进展。
+image: ~/assets/images/XuanDun.png
 ---
 
 ## 这是什么
