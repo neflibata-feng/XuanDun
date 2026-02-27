@@ -1,6 +1,8 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
+import HorseYearBanner from '~/components/widgets/HorseYearBanner.astro';
+
 import Hero from '~/components/widgets/Hero.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
@@ -16,6 +18,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
+  <HorseYearBanner slot="announcement" />
   <!-- Hero Widget ******************* -->
 
   <Hero
@@ -33,7 +36,7 @@ const metadata = {
   >
     <Fragment slot="title">
        致力于 <span class="hidden xl:inline"></span>
-      <span class="text-accent dark:text-white"> AI时代 </span> 多领域智能安全系统研发
+      <span class="text-accent dark:text-white"> AI时代 </span> 多领域智能体研发
     </Fragment>
 
     <Fragment slot="subtitle">
@@ -64,7 +67,7 @@ const metadata = {
       {
         title: '盾',
         description:
-          '玄盾致力于实现安全性与可接受成本的高度协调统一，提供以智能体为安全内核的解决方案。',
+          '玄盾致力于实现安全性与可接受成本的高度协调统一，提供以智能体为内核的高度安全的解决方案。',
         icon: 'tabler:shield',
       },
     ]}

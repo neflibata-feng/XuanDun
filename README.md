@@ -1,5 +1,11 @@
 # 玄盾开发者团队官网（XuanDun）[![Netlify Status](https://api.netlify.com/api/v1/badges/d78f7c5c-bae1-4517-8ba2-7c659ed10b47/deploy-status)](https://app.netlify.com/projects/xuandun/deploys)
 
+<p align="center">
+  <img src="public/show.png" alt="XuanDun showcase 1" width="100%" />
+  <br />
+  <img src="public/show2.png" alt="XuanDun showcase 2" width="100%" />
+</p>
+
 本仓库是玄盾开发者团队官网开源仓库，玄盾开发者团队官网基于 **Astro 5** + **Tailwind CSS** 构建，并集成 **Decap CMS（原 Netlify CMS）** 作为内容管理后台。
 
 ---

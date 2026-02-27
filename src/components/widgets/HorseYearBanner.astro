@@ -1,0 +1,165 @@
+---
+import horseImage from '~/assets/images/2026chunjie2.jpg';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  yearLabel?: string;
+}
+
+const {
+  title = '开工大吉 · 马力全开',
+  subtitle = '新元肇启，万事顺遂 · 团队全员正式开工',
+  yearLabel = '2026 丙午马年',
+} = Astro.props;
+---
+
+<div id="horse-year-banner" class="relative w-full" data-state="init">
+  <!-- 收回态：仅保留小展开按钮 -->
+  <div class="relative mx-auto w-full max-w-screen-2xl px-4 md:px-10 h-0 border-b border-slate-200/10 dark:border-slate-800">
+    <button
+      type="button"
+      data-expand
+      class="pointer-events-auto absolute right-4 md:right-10 top-0 -translate-y-1/2 hidden items-center gap-1 rounded-full border border-white/10 bg-white/90 px-2.5 py-1 text-[11px] font-medium text-slate-900 hover:bg-white dark:bg-slate-950/90 dark:text-white/80 dark:hover:bg-slate-950"
+      aria-label="展开横幅"
+    >
+      展开
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- 展开态：从上往下“下来”的面板 -->
+  <div id="horse-year-banner-panel" class="overflow-hidden" style="max-height: 0px;">
+    <section
+      class="relative w-full border-b border-slate-200/10 dark:border-slate-800 bg-cover bg-center bg-no-repeat"
+      style={`background-image: url(${horseImage.src});`}
+      role="region"
+      aria-label="节日横幅内容"
+    >
+      <div class="absolute inset-0 bg-slate-950/35 dark:bg-slate-950/45"></div>
+
+      <div class="relative mx-auto w-full max-w-screen-2xl px-6 py-8 md:py-10 text-center">
+        <div class="mb-4 flex justify-center">
+          <div class="px-3 py-1.5 rounded-full border border-yellow-400/30 bg-yellow-950/70">
+            <span class="text-[10px] md:text-xs font-bold text-yellow-400 uppercase tracking-[0.2em]">
+            {yearLabel}
+            </span>
+          </div>
+        </div>
+
+        <h2 class="text-2xl md:text-4xl font-extrabold tracking-widest leading-tight text-white mb-2">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-yellow-100 to-yellow-400">
+            {title}
+          </span>
+        </h2>
+
+        <p class="text-xs md:text-base text-white/90 font-medium leading-relaxed tracking-wide max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+
+        <button
+          type="button"
+          data-collapse
+          class="mt-6 mx-auto inline-flex items-center gap-1 text-[11px] text-white/70 hover:text-white transition-colors"
+          aria-label="收起横幅"
+        >
+          收起
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script is:inline>
+  (() => {
+    const SEEN_KEY = 'horse-year-banner-top-seen-v1';
+    const root = document.getElementById('horse-year-banner');
+    if (!root) return;
+
+    const panel = root.querySelector('#horse-year-banner-panel');
+    const expandButton = root.querySelector('[data-expand]');
+    const collapseButton = root.querySelector('[data-collapse]');
+    if (!panel) return;
+
+    const syncPanelHeight = () => {
+      if (root.dataset.state === 'open') {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+      } else {
+        panel.style.maxHeight = '0px';
+      }
+    };
+
+    const open = () => {
+      root.dataset.state = 'open';
+      // 下一帧再计算高度，保证滚动高度正确
+      window.requestAnimationFrame(syncPanelHeight);
+    };
+
+    const collapse = () => {
+      root.dataset.state = 'collapsed';
+      syncPanelHeight();
+    };
+
+    const hasSeen = () => {
+      try {
+        return localStorage.getItem(SEEN_KEY) === '1';
+      } catch {
+        return false;
+      }
+    };
+
+    const markSeen = () => {
+      try {
+        localStorage.setItem(SEEN_KEY, '1');
+      } catch {
+        // ignore
+      }
+    };
+
+    // 第一次默认展示；以后默认收起，需点击“展开”
+    if (hasSeen()) {
+      collapse();
+    } else {
+      open();
+    }
+
+    expandButton?.addEventListener('click', () => {
+      open();
+    });
+
+    collapseButton?.addEventListener('click', () => {
+      markSeen();
+      collapse();
+    });
+
+    window.addEventListener('resize', () => {
+      // 展开态下自适应内容高度
+      if (root.dataset.state === 'open') syncPanelHeight();
+    });
+  })();
+</script>
+
+<style>
+  #horse-year-banner-panel {
+    transition: max-height 520ms cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  #horse-year-banner[data-state='collapsed'] [data-expand] {
+    display: inline-flex;
+  }
+
+  #horse-year-banner[data-state='open'] [data-expand] {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #horse-year-banner-panel {
+      transition: none;
+    }
+  }
+</style>
