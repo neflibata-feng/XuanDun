@@ -15,19 +15,30 @@ const {
 
   id,
   bg = await Astro.slots.render('bg'),
+  isFullHeight = false,
+  isDark = false,
 } = Astro.props;
 ---
 
-<section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
+<section
+  class:list={[
+    'relative md:-mt-[76px] not-prose',
+    {
+      'flex min-h-[600px] w-full items-center sm:min-h-[660px] md:min-h-[min(820px,100svh)]': isFullHeight,
+      dark: isDark,
+    },
+  ]}
+  {...id ? { id } : {}}
+>
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
     <slot name="bg">
       {bg ? <Fragment set:html={bg} /> : null}
     </slot>
   </div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+  <div class="relative mx-auto w-full max-w-7xl px-4 sm:px-6">
     <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
     <div class="py-12 md:py-20">
-      <div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
+      <div class:list={['mx-auto max-w-5xl text-center', image ? 'pb-10 md:pb-16' : 'pb-0']}>
         {
           tagline && (
             <p
@@ -39,7 +50,7 @@ const {
         {
           title && (
             <h1
-              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              class="mb-4 break-words font-heading text-4xl font-bold leading-tighter tracking-tighter dark:text-gray-200 sm:text-5xl md:text-6xl intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
               set:html={title}
             />
           )

@@ -9,7 +9,7 @@ metadata:
   title:
     default: 玄盾开发者团队官网
     template: '%s — 玄盾开发者团队官网'
-  description: "\U0001F680 玄盾开发者团队官网，我们来自电子科技大学，致力于AI时代的智能安全系统研发。"
+  description: "\U0001F680 玄盾开发者团队官网，我们来自电子科技大学，致力于 AI 时代的多领域智能体研发。"
   robots:
     index: true
     follow: true
@@ -20,7 +20,7 @@ metadata:
         width: 1024
         height: 964
     type: website
-  
+
 i18n:
   language: zh-CN
   textDirection: ltr
@@ -63,4 +63,4 @@ analytics:
       id: null # or "G-XXXXXXXXXX"
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'light:only' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"

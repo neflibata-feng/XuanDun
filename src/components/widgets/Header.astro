@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Logo from '~/components/Logo.astro';
-import ToggleTheme from '~/components/common/ToggleTheme.astro';
+import ToggleLanguage from '~/components/common/ToggleLanguage.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import Button from '~/components/ui/Button.astro';
 
@@ -27,9 +27,13 @@ export interface Props {
   isSticky?: boolean;
   isDark?: boolean;
   isFullWidth?: boolean;
-  showToggleTheme?: boolean;
+  showToggleLanguage?: boolean;
   showRssFeed?: boolean;
   position?: string;
+  locale?: 'zh' | 'en';
+  languageHref?: string;
+  homeHref?: string;
+  siteName?: string;
 }
 
 const {
@@ -39,12 +43,18 @@ const {
   isSticky = false,
   isDark = false,
   isFullWidth = false,
-  showToggleTheme = false,
+  showToggleLanguage = false,
   showRssFeed = false,
   position = 'center',
+  locale = 'zh',
+  languageHref,
+  homeHref = getHomePermalink(),
+  siteName,
 } = Astro.props;
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
+const alternateLanguageHref = languageHref ?? (locale === 'zh' ? getHomePermalink() : getAsset('/zh'));
+const navigationLabel = locale === 'zh' ? '主导航' : 'Main navigation';
 ---
 
 <header
@@ -55,7 +65,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   {...isSticky ? { 'data-aw-sticky-header': true } : {}}
   {...id ? { id } : {}}
 >
-  <div class="absolute inset-0"></div>
+  <div class:list={['absolute inset-0', { 'bg-[#010711] md:bg-transparent': isDark }]}></div>
   <div
     class:list={[
       'relative text-default py-3 px-4 md:px-10 mx-auto w-full',
@@ -71,16 +81,17 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
     ]}
   >
     <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
-      <a class="flex items-center" href={getHomePermalink()}>
-        <Logo />
+      <a class="flex items-center" href={homeHref}>
+        <Logo name={siteName} />
       </a>
-      <div class="flex items-center md:hidden">
+      <div class="flex items-center gap-2 md:hidden">
+        {showToggleLanguage && <ToggleLanguage locale={locale} href={alternateLanguageHref} />}
         <ToggleMenu />
       </div>
     </div>
     <nav
       class="items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center"
-      aria-label="Main navigation"
+      aria-label={navigationLabel}
     >
       <ul
         class="flex flex-col md:flex-row md:self-center w-full md:w-auto text-xl md:text-[0.9375rem] tracking-[0.01rem] font-medium md:justify-center md:gap-10"
@@ -136,8 +147,8 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       ]}
     >
       <div class="items-center flex justify-between w-full md:w-auto">
-        <div class="flex">
-          {showToggleTheme && <ToggleTheme iconClass="w-6 h-6 md:w-5 md:h-5 md:inline-block" />}
+        <div class="flex items-center gap-1.5">
+          {showToggleLanguage && <ToggleLanguage locale={locale} href={alternateLanguageHref} />}
           {
             showRssFeed && (
               <a

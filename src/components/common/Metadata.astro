@@ -22,6 +22,7 @@ const {
   description,
   openGraph = {},
   twitter = {},
+  languageAlternates = [],
 } = Astro.props;
 
 const seoProps: AstroSeoProps = merge(
@@ -42,6 +43,7 @@ const seoProps: AstroSeoProps = merge(
     twitter: {
       cardType: openGraph?.images?.length ? 'summary_large_image' : 'summary',
     },
+    languageAlternates: [],
   },
   {
     title: METADATA?.title?.default,
@@ -61,6 +63,7 @@ const seoProps: AstroSeoProps = merge(
     description: description,
     openGraph: { url: canonical, ...openGraph },
     twitter: twitter,
+    languageAlternates: languageAlternates,
   }
 );
 ---

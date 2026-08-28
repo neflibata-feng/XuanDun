@@ -61,6 +61,12 @@ export interface MetaData {
 
   openGraph?: MetaDataOpenGraph;
   twitter?: MetaDataTwitter;
+  languageAlternates?: Array<MetaDataLanguageAlternate>;
+}
+
+export interface MetaDataLanguageAlternate {
+  hreflang: string;
+  href: string;
 }
 
 export interface MetaDataRobots {
@@ -217,6 +223,8 @@ export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' |
   content?: string;
   actions?: string | CallToAction[];
   image?: string | unknown;
+  isFullHeight?: boolean;
+  isDark?: boolean;
 }
 
 export interface Team extends Omit<Headline, 'classes'>, Widget {

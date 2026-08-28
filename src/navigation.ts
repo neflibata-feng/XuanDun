@@ -1,107 +1,170 @@
-import { getPermalink, getBlogPermalink, getAsset, cleanSlug } from './utils/permalinks';
+import { getPermalink, getBlogPermalink, cleanSlug } from './utils/permalinks';
 
-export const headerData = {
-  links: [
-    {
-      text: '首页',
-      href: getPermalink('/'),
-    },
-    {
-      text: '文档中心',
+export type SiteLocale = 'zh' | 'en';
+
+const socialLinks = [
+  { ariaLabel: 'Mail', icon: 'tabler:brand-gmail', href: 'mailto:neflibatafeng@gmail.com' },
+  { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/neflibata-feng/XuanDun' },
+];
+
+export const getHeaderData = (locale: SiteLocale = 'zh') => {
+  if (locale === 'en') {
+    return {
       links: [
+        { text: 'Home', href: getPermalink('/') },
         {
-          text: 'API接口说明',
-          href: '#',
+          text: 'Documentation',
+          links: [
+            { text: 'API Reference', href: '#' },
+            { text: 'Product Guide', href: '#' },
+            { text: 'Terms', href: getPermalink('/terms') },
+            { text: 'Privacy', href: getPermalink('/privacy') },
+            { text: 'Contact', href: getPermalink('/contact') },
+          ],
         },
         {
-          text: '产品手册',
-          href: '#',
-        },
-        {
-          text: '服务协议',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: '隐私政策',
-          href: getPermalink('/privacy'),
-        },
-        {
-          text: '联系方式',
-          href: getPermalink('/contact'),
+          text: 'Blog',
+          links: [
+            { text: 'Posts', href: getBlogPermalink() },
+            { text: 'Categories', href: getPermalink(cleanSlug('公告'), 'category') },
+            { text: 'Tags', href: getPermalink(cleanSlug('团队'), 'tag') },
+          ],
         },
       ],
-    },
-    {
-      text: '博客',
-      links: [
+      actions: [
         {
-          text: '文章列表',
-          href: getBlogPermalink(),
-        },
-        {
-          text: '分类检索',
-          href: getPermalink(cleanSlug('公告'), 'category'),
-        },
-        {
-          text: '标签检索',
-          href: getPermalink(cleanSlug('团队'), 'tag'),
+          text: 'Source Code',
+          href: 'https://github.com/neflibata-feng/XuanDun',
+          target: '_blank',
         },
       ],
-    },
-  ],
-  actions: [
-    {
-      text: '获取源代码',
-      href: 'https://github.com/neflibata-feng/XuanDun',
-      target: '_blank',
-      'data-star-modal': 'true',
-    },
-  ],
+    };
+  }
+
+  return {
+    links: [
+      { text: '首页', href: getPermalink('/zh') },
+      {
+        text: '文档中心',
+        links: [
+          { text: 'API接口说明', href: '#' },
+          { text: '产品手册', href: '#' },
+          { text: '服务协议', href: getPermalink('/terms') },
+          { text: '隐私政策', href: getPermalink('/privacy') },
+          { text: '联系方式', href: getPermalink('/contact') },
+        ],
+      },
+      {
+        text: '博客',
+        links: [
+          { text: '文章列表', href: getBlogPermalink() },
+          { text: '分类检索', href: getPermalink(cleanSlug('公告'), 'category') },
+          { text: '标签检索', href: getPermalink(cleanSlug('团队'), 'tag') },
+        ],
+      },
+    ],
+    actions: [
+      {
+        text: '获取源代码',
+        href: 'https://github.com/neflibata-feng/XuanDun',
+        target: '_blank',
+        'data-star-modal': 'true',
+      },
+    ],
+  };
 };
 
-export const footerData = {
-  links: [
-    {
-      title: '产品',
+export const getFooterData = (locale: SiteLocale = 'zh') => {
+  if (locale === 'en') {
+    return {
       links: [
-        { text: '介绍', href: '#' },
-        { text: '体验', href: '#' },
-        { text: '定价', href: '#' },
-        { text: '资源', href: '#' },
+        {
+          title: 'Product',
+          links: [
+            { text: 'Overview', href: '#' },
+            { text: 'Experience', href: '#' },
+            { text: 'Pricing', href: '#' },
+            { text: 'Resources', href: '#' },
+          ],
+        },
+        {
+          title: 'Support',
+          links: [
+            { text: 'API Reference', href: '#' },
+            { text: 'Product Guide', href: '#' },
+            { text: 'Contact', href: getPermalink('/contact') },
+          ],
+        },
+        {
+          title: 'Policies',
+          links: [
+            { text: 'Terms', href: getPermalink('/terms') },
+            { text: 'Privacy', href: getPermalink('/privacy') },
+          ],
+        },
+        {
+          title: 'Team',
+          links: [
+            { text: 'Blog', href: getBlogPermalink() },
+            { text: 'Join Us', href: '#' },
+          ],
+        },
       ],
-    },
-    {
-      title: '支持',
-      links: [
-        { text: 'API接口说明', href: '#' },
-        { text: '产品手册', href: '#' },
-        { text: '联系方式', href: getPermalink('/contact') },
+      secondaryLinks: [
+        { text: 'Terms', href: getPermalink('/terms') },
+        { text: 'Privacy', href: getPermalink('/privacy') },
       ],
-    },
-    {
-      title: '协议',
-      links: [
-        { text: '服务协议', href: getPermalink('/terms') },
-        { text: '隐私政策', href: getPermalink('/privacy') },
-      ],
-    },
-    {
-      title: '团队',
-      links: [
-        { text: '博客', href: getBlogPermalink() },
-        { text: '加入我们', href: '#' },
-      ],
-    },
-  ],
-  secondaryLinks: [
-    { text: '服务协议', href: getPermalink('/terms') },
-    { text: '隐私政策', href: getPermalink('/privacy') },
-  ],
-  socialLinks: [
-    { ariaLabel: 'Mail', icon: 'tabler:brand-gmail', href: 'mailto:neflibatafeng@gmail.com' },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/neflibata-feng/XuanDun' },
-  ],
-  footNote: `
-    感谢开源组织 <a class="text-blue-600 underline dark:text-muted" href="https://github.com/withastro/astro"> astro</a> 基于astrowind创建·玄盾团队版权所有。
-  `,
+      socialLinks,
+      footNote: `
+        Built on <a class="text-blue-600 underline dark:text-muted" href="https://github.com/withastro/astro">Astro</a> and AstroWind · XuanDun Developer Team.
+      `,
+    };
+  }
+
+  return {
+    links: [
+      {
+        title: '产品',
+        links: [
+          { text: '介绍', href: '#' },
+          { text: '体验', href: '#' },
+          { text: '定价', href: '#' },
+          { text: '资源', href: '#' },
+        ],
+      },
+      {
+        title: '支持',
+        links: [
+          { text: 'API接口说明', href: '#' },
+          { text: '产品手册', href: '#' },
+          { text: '联系方式', href: getPermalink('/contact') },
+        ],
+      },
+      {
+        title: '协议',
+        links: [
+          { text: '服务协议', href: getPermalink('/terms') },
+          { text: '隐私政策', href: getPermalink('/privacy') },
+        ],
+      },
+      {
+        title: '团队',
+        links: [
+          { text: '博客', href: getBlogPermalink() },
+          { text: '加入我们', href: '#' },
+        ],
+      },
+    ],
+    secondaryLinks: [
+      { text: '服务协议', href: getPermalink('/terms') },
+      { text: '隐私政策', href: getPermalink('/privacy') },
+    ],
+    socialLinks,
+    footNote: `
+      感谢开源组织 <a class="text-blue-600 underline dark:text-muted" href="https://github.com/withastro/astro">Astro</a>，基于 AstroWind 创建 · 玄盾团队版权所有。
+    `,
+  };
 };
+
+export const headerData = getHeaderData();
+export const footerData = getFooterData();

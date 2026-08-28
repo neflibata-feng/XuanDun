@@ -4,28 +4,45 @@ import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import Announcement from '~/components/widgets/Announcement.astro';
 
-import { headerData, footerData } from '~/navigation';
+import { getHeaderData, getFooterData, type SiteLocale } from '~/navigation';
 
 import type { MetaData } from '~/types';
 
 export interface Props {
   metadata?: MetaData;
+  locale?: SiteLocale;
+  showLanguageSwitch?: boolean;
+  headerIsDark?: boolean;
 }
 
-const { metadata } = Astro.props;
+const { metadata, locale = 'zh', showLanguageSwitch = false, headerIsDark = false } = Astro.props;
+const headerData = getHeaderData(locale);
+const footerData = getFooterData(locale);
+const homeHref = locale === 'en' ? '/' : '/zh';
+const languageHref = locale === 'en' ? '/zh' : '/';
+const siteName = locale === 'en' ? 'XuanDun Developer Team' : '玄盾开发者团队';
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} language={locale === 'en' ? 'en' : 'zh-CN'}>
   <slot name="announcement">
     <Announcement />
   </slot>
   <slot name="header">
-    <Header {...headerData} isSticky showToggleTheme />
+    <Header
+      {...headerData}
+      isSticky
+      isDark={headerIsDark}
+      showToggleLanguage={showLanguageSwitch}
+      {locale}
+      {languageHref}
+      {homeHref}
+      {siteName}
+    />
   </slot>
   <main>
     <slot />
   </main>
   <slot name="footer">
-    <Footer {...footerData} />
+    <Footer {...footerData} {homeHref} {siteName} />
   </slot>
 </Layout>

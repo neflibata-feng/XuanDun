@@ -1,0 +1,33 @@
+---
+export interface Props {
+  locale?: 'zh' | 'en';
+  href?: string;
+}
+
+const { locale = 'en', href = locale === 'en' ? '/zh' : '/' } = Astro.props;
+const targetLocale = locale === 'zh' ? 'en' : 'zh-CN';
+const label = locale === 'zh' ? 'Switch to English' : '切换到中文';
+---
+
+<a
+  href={href}
+  lang={targetLocale}
+  hreflang={targetLocale}
+  rel="alternate"
+  aria-label={label}
+  title={label}
+  class="group inline-flex h-9 items-center rounded-full border border-slate-300/80 bg-white/70 p-1 text-[11px] font-semibold tracking-wide text-slate-500 shadow-sm backdrop-blur transition hover:border-primary/40 hover:text-primary focus:outline-none focus:ring-4 focus:ring-primary/15 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-400 dark:hover:border-blue-400/50 dark:hover:text-blue-300"
+>
+  <span
+    class:list={[
+      'grid min-w-7 place-items-center rounded-full px-1.5 py-1 transition',
+      locale === 'zh' ? 'bg-slate-900 text-white shadow-sm dark:bg-white dark:text-slate-950' : '',
+    ]}>中</span
+  >
+  <span
+    class:list={[
+      'grid min-w-7 place-items-center rounded-full px-1.5 py-1 transition',
+      locale === 'en' ? 'bg-slate-900 text-white shadow-sm dark:bg-white dark:text-slate-950' : '',
+    ]}>EN</span
+  >
+</a>

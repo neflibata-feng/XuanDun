@@ -1,0 +1,115 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import FutureParticles from '~/components/widgets/FutureParticles.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import ProjectShowcase from '~/components/widgets/ProjectShowcase.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Team from '~/components/widgets/Team.astro';
+
+import { homeCopy } from '~/i18n/home';
+import type { SiteLocale } from '~/navigation';
+import type { MetaData } from '~/types';
+import { getCanonical } from '~/utils/permalinks';
+
+export interface Props {
+  locale: SiteLocale;
+}
+
+const { locale } = Astro.props;
+const copy = homeCopy[locale];
+const canonicalPath = locale === 'en' ? '/' : '/zh';
+
+const metadata: MetaData = {
+  title: copy.metadata.title,
+  description: copy.metadata.description,
+  ignoreTitleTemplate: true,
+  canonical: String(getCanonical(canonicalPath)),
+  openGraph: {
+    locale: copy.metadata.openGraphLocale,
+    type: 'website',
+  },
+  languageAlternates: [
+    { hreflang: 'zh-CN', href: String(getCanonical('/zh')) },
+    { hreflang: 'en', href: String(getCanonical('/')) },
+    { hreflang: 'x-default', href: String(getCanonical('/')) },
+  ],
+};
+
+const teamMembers = [
+  {
+    src: 'https://github.com/neflibata-feng.png',
+    alt: 'neflibata-feng',
+    link: 'https://github.com/neflibata-feng',
+  },
+  {
+    src: 'https://github.com/sheepxf.png',
+    alt: 'sheepxf',
+    link: 'https://github.com/sheepxf',
+  },
+  {
+    src: 'https://github.com/CHARON-Silver.png',
+    alt: 'CHARON-Silver',
+    link: 'https://github.com/CHARON-Silver',
+  },
+  {
+    src: 'https://github.com/kirito167.png',
+    alt: 'kirito167',
+    link: 'https://github.com/kirito167',
+  },
+];
+---
+
+<PageLayout {metadata} {locale} showLanguageSwitch headerIsDark>
+  <Fragment slot="announcement"></Fragment>
+
+  <Hero
+    id="home-hero"
+    title={copy.hero.title}
+    subtitle={copy.hero.subtitle}
+    actions={[...copy.hero.actions]}
+    isFullHeight
+    isDark
+  >
+    <Fragment slot="bg">
+      <FutureParticles />
+    </Fragment>
+  </Hero>
+
+  <Note title={copy.note.title} description={copy.note.description} />
+
+  <Features
+    id="features"
+    tagline={copy.origin.tagline}
+    title={copy.origin.title}
+    subtitle={copy.origin.subtitle}
+    items={[...copy.origin.items]}
+  />
+
+  <Steps
+    title={copy.steps.title}
+    items={[...copy.steps.items]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
+      alt: copy.steps.imageAlt,
+    }}
+  />
+
+  <Features2
+    title={copy.capabilities.title}
+    subtitle={copy.capabilities.subtitle}
+    tagline={copy.capabilities.tagline}
+    items={[...copy.capabilities.items]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <Team title={copy.team.title} subtitle={copy.team.subtitle} images={teamMembers} />
+
+  <ProjectShowcase title={copy.projectsTitle} ariaLabel={copy.projectsAriaLabel} />
+</PageLayout>

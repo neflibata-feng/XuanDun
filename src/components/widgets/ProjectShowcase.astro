@@ -1,0 +1,381 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  title?: string;
+  ariaLabel?: string;
+}
+
+const { id = 'projects', class: className = '', title, ariaLabel = 'Project ecosystem' } = Astro.props;
+---
+
+<section
+  {id}
+  class:list={['project-showcase relative overflow-hidden px-4 py-14 sm:px-6 md:py-20', className]}
+  aria-label={ariaLabel}
+>
+  <div class="showcase-ambient" aria-hidden="true"></div>
+
+  {
+    title && (
+      <div class="relative mx-auto mb-7 flex max-w-7xl items-center gap-4 md:mb-9">
+        <span class="h-2.5 w-2.5 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 shadow-[0_0_18px_rgba(56,189,248,0.7)]" />
+        <h2 class="font-heading text-sm font-bold tracking-[0.24em] text-slate-700 uppercase dark:text-slate-200 md:text-base">
+          {title}
+        </h2>
+        <span
+          class="h-px flex-1 bg-gradient-to-r from-blue-400/40 via-violet-400/20 to-transparent"
+          aria-hidden="true"
+        />
+      </div>
+    )
+  }
+
+  <div class="showcase-window relative mx-auto max-w-7xl">
+    <span class="corner corner-left" aria-hidden="true"></span>
+    <span class="corner corner-right" aria-hidden="true"></span>
+
+    <svg class="matrix-network" viewBox="0 0 1200 240" preserveAspectRatio="none" aria-hidden="true">
+      <path class="network-line network-line-muted" d="M44 120H1156"></path>
+      <path class="network-line network-line-live" d="M44 120H1156"></path>
+      <path class="network-branch" d="M202 120V74M600 120V42M998 120V74"></path>
+      <circle cx="202" cy="120" r="5"></circle>
+      <circle cx="600" cy="120" r="5"></circle>
+      <circle cx="998" cy="120" r="5"></circle>
+    </svg>
+
+    <ul class="project-grid relative z-10" role="list">
+      <li class="project-card brand-finance">
+        <div class="icon-stage">
+          <img
+            src="/XuanDun%20Finance.png"
+            width="96"
+            height="96"
+            loading="lazy"
+            decoding="async"
+            alt=""
+            aria-hidden="true"
+          />
+        </div>
+        <h3 class="project-name" aria-label="XuanDun Finance">
+          <span class="name-primary">XuanDun</span>
+          <span class="name-secondary">Finance</span>
+        </h3>
+      </li>
+
+      <li class="project-card brand-tracemovie">
+        <div class="icon-stage">
+          <img src="/tracemovie.png" width="96" height="96" loading="lazy" decoding="async" alt="" aria-hidden="true" />
+        </div>
+        <h3 class="project-name" aria-label="TraceMovie">
+          <span class="name-primary">Trace</span>
+          <span class="name-secondary">Movie</span>
+        </h3>
+      </li>
+
+      <li class="project-card brand-sciclaw">
+        <div class="icon-stage">
+          <img src="/SciClaw.png" width="96" height="96" loading="lazy" decoding="async" alt="" aria-hidden="true" />
+        </div>
+        <h3 class="project-name" aria-label="SciClaw">
+          <span class="name-primary">Sci</span>
+          <span class="name-secondary">Claw</span>
+        </h3>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .project-showcase {
+    --showcase-surface: rgba(255, 255, 255, 0.72);
+    --showcase-card: rgba(255, 255, 255, 0.84);
+    --showcase-card-hover: rgba(255, 255, 255, 0.96);
+    --showcase-border: rgba(30, 64, 175, 0.14);
+    --showcase-line: rgba(59, 130, 246, 0.22);
+    --showcase-ink: #0f172a;
+    --showcase-shadow: 0 24px 70px -42px rgba(30, 64, 175, 0.55);
+    isolation: isolate;
+  }
+
+  :global(.dark) .project-showcase {
+    --showcase-surface: rgba(10, 16, 32, 0.72);
+    --showcase-card: rgba(15, 23, 42, 0.78);
+    --showcase-card-hover: rgba(19, 30, 55, 0.94);
+    --showcase-border: rgba(125, 211, 252, 0.15);
+    --showcase-line: rgba(103, 232, 249, 0.22);
+    --showcase-ink: #f8fafc;
+    --showcase-shadow: 0 28px 80px -38px rgba(56, 189, 248, 0.28);
+  }
+
+  .showcase-ambient {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 18% 50%, rgba(56, 189, 248, 0.11), transparent 27rem),
+      radial-gradient(circle at 82% 46%, rgba(139, 92, 246, 0.1), transparent 26rem);
+  }
+
+  .showcase-window {
+    padding: clamp(1.1rem, 3vw, 2.25rem);
+    border: 1px solid var(--showcase-border);
+    border-radius: 1.75rem;
+    background:
+      linear-gradient(var(--showcase-surface), var(--showcase-surface)) padding-box,
+      linear-gradient(120deg, rgba(56, 189, 248, 0.28), transparent 34%, rgba(139, 92, 246, 0.24)) border-box;
+    box-shadow: var(--showcase-shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .showcase-window::before {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image:
+      linear-gradient(var(--showcase-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--showcase-line) 1px, transparent 1px);
+    background-size: 44px 44px;
+    content: '';
+    opacity: 0.13;
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, black, transparent 88%);
+  }
+
+  .corner {
+    position: absolute;
+    top: -1px;
+    width: 4.5rem;
+    height: 1rem;
+    border-top: 2px solid rgba(56, 189, 248, 0.72);
+    pointer-events: none;
+  }
+
+  .corner-left {
+    left: 2.25rem;
+    border-left: 2px solid rgba(56, 189, 248, 0.72);
+    border-radius: 0.45rem 0 0;
+  }
+
+  .corner-right {
+    right: 2.25rem;
+    border-right: 2px solid rgba(139, 92, 246, 0.68);
+    border-color: rgba(139, 92, 246, 0.68);
+    border-radius: 0 0.45rem 0 0;
+  }
+
+  .matrix-network {
+    position: absolute;
+    inset: 50% 2rem auto;
+    width: calc(100% - 4rem);
+    height: 12rem;
+    color: var(--showcase-line);
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .matrix-network path {
+    fill: none;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .network-line,
+  .network-branch {
+    stroke: currentColor;
+    stroke-width: 1;
+  }
+
+  .network-line-live {
+    stroke: rgba(56, 189, 248, 0.72);
+    stroke-dasharray: 7 54;
+    animation: network-flow 7s linear infinite;
+  }
+
+  .matrix-network circle {
+    fill: var(--showcase-card);
+    stroke: rgba(129, 140, 248, 0.7);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .project-grid {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-card {
+    --brand-a: 56, 189, 248;
+    --brand-b: 99, 102, 241;
+    position: relative;
+    display: flex;
+    min-width: 0;
+    min-height: 9.5rem;
+    align-items: center;
+    gap: clamp(0.9rem, 2vw, 1.25rem);
+    overflow: hidden;
+    padding: 1.15rem;
+    border: 1px solid rgba(var(--brand-a), 0.18);
+    border-radius: 1.25rem;
+    background: radial-gradient(circle at 0 0, rgba(var(--brand-a), 0.1), transparent 58%), var(--showcase-card);
+    box-shadow: 0 18px 36px -34px rgba(var(--brand-a), 0.75);
+    transition:
+      transform 300ms ease,
+      border-color 300ms ease,
+      background-color 300ms ease,
+      box-shadow 300ms ease;
+  }
+
+  .project-card::after {
+    position: absolute;
+    inset: auto 1.25rem 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--brand-a), 0.7), transparent);
+    content: '';
+    opacity: 0.58;
+    transform: scaleX(0.5);
+    transition:
+      opacity 300ms ease,
+      transform 300ms ease;
+  }
+
+  .brand-finance {
+    --brand-a: 202, 154, 58;
+    --brand-b: 30, 64, 175;
+  }
+
+  .brand-tracemovie {
+    --brand-a: 34, 211, 238;
+    --brand-b: 59, 130, 246;
+  }
+
+  .brand-sciclaw {
+    --brand-a: 129, 140, 248;
+    --brand-b: 192, 132, 252;
+  }
+
+  .icon-stage {
+    position: relative;
+    width: 5.25rem;
+    height: 5.25rem;
+    flex: 0 0 5.25rem;
+    overflow: hidden;
+    border: 1px solid rgba(var(--brand-a), 0.3);
+    border-radius: 1.3rem;
+    background: rgba(var(--brand-a), 0.08);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 16px 34px -22px rgba(var(--brand-a), 0.9);
+  }
+
+  .icon-stage::after {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    content: '';
+    pointer-events: none;
+  }
+
+  .icon-stage img,
+  .icon-stage svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-name {
+    min-width: 0;
+    margin: 0;
+    color: var(--showcase-ink);
+    font-family: var(--aw-font-heading, var(--aw-font-sans, ui-sans-serif)), ui-sans-serif, sans-serif;
+    font-size: clamp(1.18rem, 2.1vw, 1.52rem);
+    font-weight: 720;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+
+  .project-name span {
+    display: block;
+  }
+
+  .name-secondary {
+    margin-top: 0.34rem;
+    color: rgb(var(--brand-a));
+    font-size: 0.66em;
+    font-weight: 650;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .brand-tracemovie .project-name,
+  .brand-sciclaw .project-name {
+    font-style: oblique 7deg;
+  }
+
+  .brand-tracemovie .name-secondary,
+  .brand-sciclaw .name-secondary {
+    margin-top: 0.28rem;
+    font-size: 0.78em;
+    letter-spacing: 0.09em;
+  }
+
+  @media (min-width: 640px) {
+    .project-grid {
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      padding: 1.35rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .project-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover {
+      border-color: rgba(var(--brand-a), 0.42);
+      background-color: var(--showcase-card-hover);
+      box-shadow: 0 24px 52px -34px rgba(var(--brand-a), 0.88);
+      transform: translateY(-4px);
+    }
+
+    .project-card:hover::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .matrix-network {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .network-line-live {
+      animation: none;
+    }
+
+    .project-card,
+    .project-card::after {
+      transition: none;
+    }
+  }
+
+  @keyframes network-flow {
+    to {
+      stroke-dashoffset: -61;
+    }
+  }
+</style>
