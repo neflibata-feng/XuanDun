@@ -7,6 +7,7 @@ import Announcement from '~/components/widgets/Announcement.astro';
 import { getHeaderData, getFooterData, type SiteLocale } from '~/navigation';
 
 import type { MetaData } from '~/types';
+import { getCanonical } from '~/utils/permalinks';
 
 export interface Props {
   metadata?: MetaData;
@@ -15,17 +16,34 @@ export interface Props {
   headerIsDark?: boolean;
 }
 
-const { metadata, locale = 'zh', showLanguageSwitch = false, headerIsDark = false } = Astro.props;
+const { metadata, locale = 'zh', showLanguageSwitch = true, headerIsDark = false } = Astro.props;
 const headerData = getHeaderData(locale);
 const footerData = getFooterData(locale);
 const homeHref = locale === 'en' ? '/' : '/zh';
-const languageHref = locale === 'en' ? '/zh' : '/';
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const languageHref =
+  locale === 'en' ? `/zh${currentPath === '/' ? '' : currentPath}` : currentPath.replace(/^\/zh(?=\/|$)/, '') || '/';
+const localizedMetadata: MetaData = {
+  ...metadata,
+  ignoreTitleTemplate: metadata?.ignoreTitleTemplate ?? true,
+  description:
+    metadata?.description ??
+    (locale === 'zh'
+      ? '玄盾开发者团队来自电子科技大学，专注于多领域智能体的研发与应用。'
+      : 'XuanDun Developer Team at UESTC builds multi-domain AI agents and applications.'),
+  openGraph: { locale: locale === 'zh' ? 'zh_CN' : 'en', ...metadata?.openGraph },
+  languageAlternates: metadata?.languageAlternates ?? [
+    { hreflang: 'en', href: String(getCanonical(locale === 'en' ? currentPath : languageHref)) },
+    { hreflang: 'zh-CN', href: String(getCanonical(locale === 'zh' ? currentPath : languageHref)) },
+    { hreflang: 'x-default', href: String(getCanonical(locale === 'en' ? currentPath : languageHref)) },
+  ],
+};
 const siteName = locale === 'en' ? 'XuanDun Developer Team' : '玄盾开发者团队';
 ---
 
-<Layout metadata={metadata} language={locale === 'en' ? 'en' : 'zh-CN'}>
+<Layout metadata={localizedMetadata} language={locale === 'en' ? 'en' : 'zh-CN'}>
   <slot name="announcement">
-    <Announcement />
+    <Announcement {locale} />
   </slot>
   <slot name="header">
     <Header
@@ -43,6 +61,6 @@ const siteName = locale === 'en' ? 'XuanDun Developer Team' : '玄盾开发者�
     <slot />
   </main>
   <slot name="footer">
-    <Footer {...footerData} {homeHref} {siteName} />
+    <Footer {...footerData} {homeHref} {siteName} {locale} />
   </slot>
 </Layout>

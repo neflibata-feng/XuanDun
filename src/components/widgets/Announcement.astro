@@ -1,5 +1,10 @@
 ---
+export interface Props {
+  locale?: 'zh' | 'en';
+}
 
+const { locale = 'zh' } = Astro.props;
+const message = locale === 'zh' ? '玄盾开发者团队新一代官网上线！' : 'The new XuanDun Developer Team website is live!';
 ---
 
 <div
@@ -10,7 +15,6 @@
     >NEW</span
   >
   <a href="https://github.com/neflibata-feng/XuanDun" class="text-muted hover:underline dark:text-slate-400 font-medium"
-    >玄盾开发者团队新一代官网上线！ »</a
+    >{message} »</a
   >
-  </a>
 </div>

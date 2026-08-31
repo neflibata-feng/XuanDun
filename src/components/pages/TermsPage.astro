@@ -1,0 +1,133 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import type { SiteLocale } from '~/navigation';
+
+export interface Props {
+  locale: SiteLocale;
+}
+const { locale } = Astro.props;
+const isChinese = locale === 'zh';
+---
+
+<Layout metadata={{ title: isChinese ? '服务协议' : 'Terms of Service' }} {locale}>
+  <section class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+    <h1 class="font-heading text-4xl font-bold leading-tighter tracking-tighter md:text-5xl">
+      {isChinese ? '服务协议' : 'Terms of Service'}
+    </h1>
+    <div
+      class="prose-md mx-auto mt-8 max-w-4xl prose prose-lg prose-headings:font-heading prose-headings:font-bold prose-headings:leading-tighter prose-headings:tracking-tighter prose-a:text-blue-600 dark:prose-invert dark:prose-headings:text-slate-300 dark:prose-a:text-blue-400"
+    >
+      {
+        isChinese ? (
+          <>
+            <p>更新日期：2026 年 8 月 31 日</p>
+            <p>
+              欢迎访问“玄盾开发者团队”网站（下称“本网站”）。您在访问或使用本网站前，请仔细阅读本协议。继续使用即表示您同意受本协议约束。
+            </p>
+            <>
+              <h2>1. 协议范围</h2>
+              <p>本协议适用于您对本网站的访问与使用，包括页面浏览、内容阅读、链接跳转以及通过联系表单与我们沟通。</p>
+            </>
+            <>
+              <h2>2. 使用规则</h2>
+              <ul>
+                <>
+                  <li>您应遵守适用的法律法规，不得利用本网站侵害他人合法权益。</li>
+                  <li>您不得反向工程、滥用爬虫、干扰或破坏站点正常运行。</li>
+                  <li>访问第三方链接时，您应自行判断并承担相关风险。</li>
+                </>
+              </ul>
+            </>
+            <>
+              <h2>3. 内容与知识产权</h2>
+              <p>
+                除非另有说明，本网站页面结构、视觉设计、文本、图片和图标等内容的相关权利归权利人所有。未经授权不得复制、传播、展示或用于商业用途。
+              </p>
+            </>
+            <>
+              <h2>4. 免责声明</h2>
+              <ul>
+                <>
+                  <li>本网站内容仅供参考，我们不保证其完整性、准确性或及时性。</li>
+                  <li>对于网络、设备或不可抗力导致的服务中断或数据丢失，我们不承担由此产生的直接或间接损失。</li>
+                  <li>您因使用或依赖本网站内容产生的后果由您自行承担。</li>
+                </>
+              </ul>
+            </>
+            <>
+              <h2>5. 协议变更</h2>
+              <p>我们可能不时更新本协议。更新内容在本页面发布后生效。</p>
+            </>
+            <>
+              <h2>6. 联系我们</h2>
+              <p>
+                如有疑问，请发送邮件至 <a href="mailto:neflibatafeng@gmail.com">neflibatafeng@gmail.com</a>。
+              </p>
+            </>
+          </>
+        ) : (
+          <>
+            <p>Last updated: August 31, 2026</p>
+            <p>
+              Welcome to the XuanDun Developer Team website (the “Website”). Please read these terms before accessing or
+              using the Website. By continuing, you agree to these terms.
+            </p>
+            <>
+              <h2>1. Scope</h2>
+              <p>
+                These terms apply to your use of the Website, including browsing pages, reading content, following
+                links, and contacting us through the provided forms.
+              </p>
+            </>
+            <>
+              <h2>2. Acceptable use</h2>
+              <ul>
+                <>
+                  <li>You must follow applicable law and must not use the Website to infringe the rights of others.</li>
+                  <li>
+                    You must not reverse engineer, abuse automated crawlers, interfere with, or disrupt the Website.
+                  </li>
+                  <li>You are responsible for evaluating the risks of visiting third-party links.</li>
+                </>
+              </ul>
+            </>
+            <>
+              <h2>3. Content and intellectual property</h2>
+              <p>
+                Unless stated otherwise, rights in the Website's structure, visual design, text, images, and icons
+                belong to their respective owners. Unauthorized copying, distribution, display, or commercial use is
+                prohibited.
+              </p>
+            </>
+            <>
+              <h2>4. Disclaimer</h2>
+              <ul>
+                <>
+                  <li>
+                    Website content is provided for general information without guarantees of completeness, accuracy, or
+                    timeliness.
+                  </li>
+                  <li>
+                    We are not liable for direct or indirect losses caused by outages or data loss resulting from
+                    networks, devices, or events beyond reasonable control.
+                  </li>
+                  <li>You are responsible for consequences arising from your use of or reliance on Website content.</li>
+                </>
+              </ul>
+            </>
+            <>
+              <h2>5. Changes</h2>
+              <p>We may revise these terms periodically. Updated terms take effect when published on this page.</p>
+            </>
+            <>
+              <h2>6. Contact us</h2>
+              <p>
+                For questions, email <a href="mailto:neflibatafeng@gmail.com">neflibatafeng@gmail.com</a>.
+              </p>
+            </>
+          </>
+        )
+      }
+    </div>
+  </section>
+</Layout>

@@ -49,17 +49,17 @@ export const getHeaderData = (locale: SiteLocale = 'zh') => {
         links: [
           { text: 'API接口说明', href: '#' },
           { text: '产品手册', href: '#' },
-          { text: '服务协议', href: getPermalink('/terms') },
-          { text: '隐私政策', href: getPermalink('/privacy') },
-          { text: '联系方式', href: getPermalink('/contact') },
+          { text: '服务协议', href: getPermalink('/zh/terms') },
+          { text: '隐私政策', href: getPermalink('/zh/privacy') },
+          { text: '联系方式', href: getPermalink('/zh/contact') },
         ],
       },
       {
         text: '博客',
         links: [
-          { text: '文章列表', href: getBlogPermalink() },
-          { text: '分类检索', href: getPermalink(cleanSlug('公告'), 'category') },
-          { text: '标签检索', href: getPermalink(cleanSlug('团队'), 'tag') },
+          { text: '文章列表', href: getPermalink('/zh/articles') },
+          { text: '分类检索', href: getPermalink(`/zh/category/${cleanSlug('公告')}`) },
+          { text: '标签检索', href: getPermalink(`/zh/tag/${cleanSlug('团队')}`) },
         ],
       },
     ],
@@ -137,27 +137,27 @@ export const getFooterData = (locale: SiteLocale = 'zh') => {
         links: [
           { text: 'API接口说明', href: '#' },
           { text: '产品手册', href: '#' },
-          { text: '联系方式', href: getPermalink('/contact') },
+          { text: '联系方式', href: getPermalink('/zh/contact') },
         ],
       },
       {
         title: '协议',
         links: [
-          { text: '服务协议', href: getPermalink('/terms') },
-          { text: '隐私政策', href: getPermalink('/privacy') },
+          { text: '服务协议', href: getPermalink('/zh/terms') },
+          { text: '隐私政策', href: getPermalink('/zh/privacy') },
         ],
       },
       {
         title: '团队',
         links: [
-          { text: '博客', href: getBlogPermalink() },
+          { text: '博客', href: getPermalink('/zh/articles') },
           { text: '加入我们', href: '#' },
         ],
       },
     ],
     secondaryLinks: [
-      { text: '服务协议', href: getPermalink('/terms') },
-      { text: '隐私政策', href: getPermalink('/privacy') },
+      { text: '服务协议', href: getPermalink('/zh/terms') },
+      { text: '隐私政策', href: getPermalink('/zh/privacy') },
     ],
     socialLinks,
     footNote: `

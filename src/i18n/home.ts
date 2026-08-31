@@ -77,12 +77,12 @@ export const homeCopy = {
     },
     note: {
       title: '玄盾开发者团队',
-      description: ' XuanDun ',
+      description: 'XuanDun',
     },
     origin: {
-      tagline: 'Name',
+      tagline: '团队名称',
       title: '为什么命名为玄盾开发者团队？',
-      subtitle: 'Why is it named XuanDun Developer Team?',
+      subtitle: '玄盾名称的由来',
       items: [
         {
           title: '玄',
@@ -122,8 +122,8 @@ export const homeCopy = {
     },
     capabilities: {
       title: '智能体工程能力',
-      subtitle: 'Agent Engineering Capabilities',
-      tagline: 'Components',
+      subtitle: '从编排到部署的完整能力',
+      tagline: '技术栈',
       items: [
         { title: '智能体编排', icon: 'tabler:route' },
         { title: '工具调用', icon: 'tabler:tools' },
@@ -136,7 +136,7 @@ export const homeCopy = {
     },
     team: {
       title: '团队核心成员',
-      subtitle: 'Meet Our Team',
+      subtitle: '认识玄盾团队成员',
     },
     projectsTitle: '团队项目',
     projectsAriaLabel: '项目展示：XuanDun Finance、TraceMovie 与 SciClaw',
@@ -165,12 +165,12 @@ export const homeCopy = {
     },
     note: {
       title: 'XuanDun Developer Team',
-      description: ' 玄盾 ',
+      description: 'XuanDun',
     },
     origin: {
       tagline: 'Name',
       title: 'Why is it named XuanDun Developer Team?',
-      subtitle: '为什么命名为玄盾开发者团队？',
+      subtitle: 'The story behind our name',
       items: [
         {
           title: '玄 · Xuan',
@@ -210,7 +210,7 @@ export const homeCopy = {
     },
     capabilities: {
       title: 'Agent Engineering Capabilities',
-      subtitle: '智能体工程能力',
+      subtitle: 'From orchestration to deployment',
       tagline: 'Components',
       items: [
         { title: 'Agent Orchestration', icon: 'tabler:route' },
@@ -224,7 +224,7 @@ export const homeCopy = {
     },
     team: {
       title: 'Meet Our Team',
-      subtitle: '团队核心成员',
+      subtitle: 'The people behind XuanDun',
     },
     projectsTitle: 'TEAM PROJECTS',
     projectsAriaLabel: 'Projects: XuanDun Finance, TraceMovie, and SciClaw',

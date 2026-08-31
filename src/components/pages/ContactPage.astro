@@ -1,0 +1,70 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import type { SiteLocale } from '~/navigation';
+
+export interface Props {
+  locale: SiteLocale;
+}
+const { locale } = Astro.props;
+const isChinese = locale === 'zh';
+const copy = isChinese
+  ? {
+      metadata: '联系我们',
+      hero: '欢迎联系我们',
+      title: '给我们留言',
+      subtitle: '对于简单的问题，您可以浏览常见问题；如果依然未能解决，团队很高兴为您服务。',
+      name: '姓名',
+      email: '电子邮箱',
+      message: '消息',
+      disclaimer: '提交这份表单前，请确认您已阅读隐私政策并同意我们处理回复所需的信息。',
+      button: '提交',
+      description: '留言将发送给团队；我们可能需要一些时间回复，敬请谅解。',
+      help: '随时为您提供帮助！',
+      more: '更多联系方式',
+      soon: '敬请期待',
+    }
+  : {
+      metadata: 'Contact Us',
+      hero: 'Get in touch',
+      title: 'Send us a message',
+      subtitle: 'For quick answers, browse our FAQs. If you still need help, our team will be happy to assist.',
+      name: 'Name',
+      email: 'Email address',
+      message: 'Message',
+      disclaimer:
+        'Before submitting, please confirm that you have read the Privacy Policy and consent to the processing needed to reply.',
+      button: 'Submit',
+      description: 'Your message will be sent to the team. Please allow us some time to respond.',
+      help: 'We are here to help!',
+      more: 'More ways to reach us',
+      soon: 'Coming soon',
+    };
+---
+
+<Layout metadata={{ title: copy.metadata }} {locale}>
+  <HeroText tagline="Contact" title={copy.hero} />
+  <ContactUs
+    id="form"
+    title={copy.title}
+    subtitle={copy.subtitle}
+    inputs={[
+      { type: 'text', name: 'name', label: copy.name },
+      { type: 'email', name: 'email', label: copy.email },
+    ]}
+    textarea={{ label: copy.message }}
+    disclaimer={{ label: copy.disclaimer }}
+    button={copy.button}
+    description={copy.description}
+    successRedirect={isChinese ? '/zh/contact/thanks' : '/contact/thanks'}
+  />
+  <Features2
+    title={copy.help}
+    items={[
+      { title: copy.email, description: 'neflibatafeng@gmail.com', icon: 'tabler:mail' },
+      { title: copy.more, description: copy.soon, icon: 'tabler:dots' },
+    ]}
+  />
+</Layout>
