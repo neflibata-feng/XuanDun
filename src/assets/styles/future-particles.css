@@ -1,0 +1,47 @@
+future-particles {
+  --pointer-x: 72%;
+  --pointer-y: 38%;
+  contain: strict;
+  isolation: isolate;
+  background:
+    radial-gradient(circle 18rem at var(--pointer-x) var(--pointer-y), rgba(126, 183, 244, 0.24), transparent 72%),
+    radial-gradient(circle at 74% 32%, rgba(231, 214, 176, 0.19), transparent 14rem),
+    radial-gradient(ellipse at 69% 38%, rgba(43, 96, 159, 0.43), transparent 35rem),
+    radial-gradient(circle at 17% 68%, rgba(22, 61, 117, 0.36), transparent 30rem),
+    linear-gradient(135deg, #010204 0%, #050b19 30%, #081a36 60%, #02050b 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+}
+
+future-particles::before {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 67% 42%, rgba(79, 128, 190, 0.17), transparent 42%),
+    radial-gradient(circle at 83% 28%, rgba(232, 215, 178, 0.1), transparent 20%);
+  content: '';
+  filter: blur(32px);
+  transform: scale(1.05);
+}
+
+future-particles canvas {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  future-particles {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 76%, transparent 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  future-particles {
+    --pointer-x: 72%;
+    --pointer-y: 38%;
+  }
+}
