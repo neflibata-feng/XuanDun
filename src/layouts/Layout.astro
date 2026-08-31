@@ -12,6 +12,7 @@ import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
 import StarModal from '~/components/common/StarModal.astro';
+import CookieConsent from '~/components/common/CookieConsent.astro';
 
 // Comment the line below to disable View Transitions
 import { ClientRouter } from 'astro:transitions';
@@ -41,30 +42,13 @@ const { metadata = {}, language = defaultLanguage } = Astro.props;
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
 
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
-      if (window.netlifyIdentity) {
-        const hash = window.location.hash || '';
-        const hasToken = /invite_token|recovery_token|confirmation_token|email_change_token/.test(hash);
+      const hash = window.location.hash || '';
+      const hasIdentityToken = /invite_token|recovery_token|confirmation_token|email_change_token/.test(hash);
 
-        // Netlify's default Identity emails often send users to the site root with a token in the hash.
-        // Redirect into the CMS so the widget flow runs in the intended admin context.
-        if (hasToken && !window.location.pathname.startsWith('/admin')) {
-          window.location.replace('/admin' + hash);
-        }
-
-        window.netlifyIdentity.init();
-        window.netlifyIdentity.on('init', (user) => {
-          if (hasToken) {
-            window.netlifyIdentity.open();
-          }
-
-          if (!user) {
-            window.netlifyIdentity.on('login', () => {
-              document.location.href = '/admin/#/';
-            });
-          }
-        });
+      // The CMS loads Netlify Identity itself. Public pages only perform this first-party redirect.
+      if (hasIdentityToken && !window.location.pathname.startsWith('/admin')) {
+        window.location.replace('/admin' + hash);
       }
     </script>
   </head>
@@ -72,7 +56,8 @@ const { metadata = {}, language = defaultLanguage } = Astro.props;
   <body class="antialiased text-default bg-page tracking-tight">
     <slot />
 
-    <StarModal />
+    <StarModal {language} />
+    <CookieConsent {language} />
 
     <BasicScripts />
   </body>

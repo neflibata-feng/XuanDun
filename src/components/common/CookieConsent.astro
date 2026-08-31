@@ -1,0 +1,155 @@
+---
+export interface Props {
+  language?: string;
+}
+
+const { language = 'zh-CN' } = Astro.props;
+const isChinese = language.toLowerCase().startsWith('zh');
+const copy = isChinese
+  ? {
+      label: 'Cookie 偏好设置',
+      title: '我们尊重您的隐私',
+      description: '我们仅在您同意后使用第三方 Cookie 进行访问统计。拒绝不会影响网站的基本功能。',
+      privacy: '查看隐私政策',
+      accept: '接受',
+      reject: '拒绝',
+    }
+  : {
+      label: 'Cookie preferences',
+      title: 'We respect your privacy',
+      description:
+        'We use third-party cookies for traffic analytics only with your consent. Declining will not affect essential site features.',
+      privacy: 'View Privacy Policy',
+      accept: 'Accept',
+      reject: 'Decline',
+    };
+const privacyHref = isChinese ? '/zh/privacy' : '/privacy';
+---
+
+<aside
+  data-cookie-consent
+  class="fixed inset-x-4 bottom-4 z-[100] mx-auto hidden max-w-3xl rounded-2xl border border-slate-200 bg-white/95 p-5 shadow-2xl shadow-slate-900/15 backdrop-blur-md sm:bottom-6 sm:p-6 dark:border-slate-700 dark:bg-slate-900/95"
+  role="dialog"
+  aria-modal="false"
+  aria-label={copy.label}
+>
+  <div class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+    <div class="max-w-xl">
+      <h2 class="font-heading text-lg font-bold text-slate-900 dark:text-white">{copy.title}</h2>
+      <p class="mt-1.5 text-sm leading-6 text-slate-600 dark:text-slate-300">
+        {copy.description}
+        <a
+          href={privacyHref}
+          class="whitespace-nowrap font-medium text-blue-600 underline underline-offset-2 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-blue-400"
+        >
+          {copy.privacy}
+        </a>
+      </p>
+    </div>
+    <div class="flex shrink-0 flex-row-reverse gap-2 sm:flex-row">
+      <button
+        type="button"
+        data-cookie-reject
+        class="inline-flex flex-1 items-center justify-center rounded-full border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 focus:outline-none focus:ring-4 focus:ring-slate-300/40 sm:flex-none dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
+      >
+        {copy.reject}
+      </button>
+      <button
+        type="button"
+        data-cookie-accept
+        class="inline-flex flex-1 items-center justify-center rounded-full border border-primary bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:border-secondary hover:bg-secondary focus:outline-none focus:ring-4 focus:ring-primary/25 sm:flex-none"
+      >
+        {copy.accept}
+      </button>
+    </div>
+  </div>
+</aside>
+
+<script is:inline>
+  (() => {
+    const storageKey = 'xuandun-cookie-consent';
+
+    const readConsent = () => {
+      try {
+        return window.localStorage.getItem(storageKey);
+      } catch {
+        return null;
+      }
+    };
+
+    const writeConsent = (value) => {
+      try {
+        window.localStorage.setItem(storageKey, value);
+      } catch {
+        // The preference still applies for the current page when storage is unavailable.
+      }
+    };
+
+    const clearAnalyticsCookies = () => {
+      const hostParts = window.location.hostname.split('.');
+      const domains = ['', window.location.hostname];
+
+      for (let index = 0; index < hostParts.length - 1; index += 1) {
+        domains.push(`.${hostParts.slice(index).join('.')}`);
+      }
+
+      document.cookie.split(';').forEach((item) => {
+        const name = item.split('=')[0]?.trim();
+        if (!name || !/^_ga(?:_|$)|^_gid$|^_gat/.test(name)) return;
+
+        domains.forEach((domain) => {
+          const domainPart = domain ? `; domain=${domain}` : '';
+          document.cookie = `${name}=; Max-Age=0; path=/${domainPart}; SameSite=Lax`;
+        });
+      });
+    };
+
+    const initializeConsent = () => {
+      const banner = document.querySelector('[data-cookie-consent]');
+      if (!(banner instanceof HTMLElement)) return;
+
+      const consent = readConsent();
+      banner.classList.toggle('hidden', consent === 'accepted' || consent === 'rejected');
+
+      banner.querySelector('[data-cookie-accept]')?.addEventListener(
+        'click',
+        () => {
+          writeConsent('accepted');
+          banner.classList.add('hidden');
+          window.dispatchEvent(new CustomEvent('xuandun:cookie-consent', { detail: 'accepted' }));
+        },
+        { once: true }
+      );
+
+      banner.querySelector('[data-cookie-reject]')?.addEventListener(
+        'click',
+        () => {
+          const hadAccepted = readConsent() === 'accepted' || banner.dataset.previousConsent === 'accepted';
+          writeConsent('rejected');
+          clearAnalyticsCookies();
+          banner.classList.add('hidden');
+          window.dispatchEvent(new CustomEvent('xuandun:cookie-consent', { detail: 'rejected' }));
+          if (hadAccepted) window.location.reload();
+        },
+        { once: true }
+      );
+
+      document.querySelectorAll('[data-cookie-settings]').forEach((button) => {
+        button.addEventListener('click', () => {
+          banner.dataset.previousConsent = readConsent() || '';
+          try {
+            window.localStorage.removeItem(storageKey);
+          } catch {
+            // Keep the banner available even when storage access is blocked.
+          }
+          banner.classList.remove('hidden');
+          const rejectButton = banner.querySelector('[data-cookie-reject]');
+          if (rejectButton instanceof HTMLElement) rejectButton.focus();
+        });
+      });
+    };
+
+    initializeConsent();
+    document.addEventListener('astro:after-swap', initializeConsent);
+  })();
+</script>

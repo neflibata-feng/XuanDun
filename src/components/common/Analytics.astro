@@ -1,13 +1,47 @@
 ---
-import { GoogleAnalytics } from '@astrolib/analytics';
 import { ANALYTICS } from 'astrowind:config';
+
+const googleAnalyticsId = ANALYTICS?.vendors?.googleAnalytics?.id ? String(ANALYTICS.vendors.googleAnalytics.id) : '';
 ---
 
-{
-  ANALYTICS?.vendors?.googleAnalytics?.id ? (
-    <GoogleAnalytics
-      id={String(ANALYTICS.vendors.googleAnalytics.id)}
-      partytown={ANALYTICS?.vendors?.googleAnalytics?.partytown}
-    />
-  ) : null
-}
+<script is:inline define:vars={{ googleAnalyticsId }}>
+  (() => {
+    if (!googleAnalyticsId) return;
+
+    const storageKey = 'xuandun-cookie-consent';
+
+    const hasConsent = () => {
+      try {
+        return window.localStorage.getItem(storageKey) === 'accepted';
+      } catch {
+        return false;
+      }
+    };
+
+    const loadAnalytics = () => {
+      if (!hasConsent() || document.querySelector('script[data-xuandun-google-analytics]')) return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag =
+        window.gtag ||
+        function (...args) {
+          window.dataLayer.push(args);
+        };
+      window.gtag('js', new Date());
+      window.gtag('config', googleAnalyticsId, { anonymize_ip: true });
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(googleAnalyticsId)}`;
+      script.dataset.xuandunGoogleAnalytics = 'true';
+      document.head.appendChild(script);
+    };
+
+    loadAnalytics();
+    window.addEventListener('xuandun:cookie-consent', (event) => {
+      if (event.detail === 'accepted') loadAnalytics();
+      if (event.detail === 'rejected') window[`ga-disable-${googleAnalyticsId}`] = true;
+    });
+    document.addEventListener('astro:after-swap', loadAnalytics);
+  })();
+</script>

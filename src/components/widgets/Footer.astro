@@ -23,6 +23,7 @@ export interface Props {
   theme?: string;
   homeHref?: string;
   siteName?: string;
+  locale?: 'zh' | 'en';
 }
 
 const {
@@ -33,6 +34,7 @@ const {
   theme = 'light',
   homeHref = getHomePermalink(),
   siteName = SITE?.name,
+  locale = 'zh',
 } = Astro.props;
 ---
 
@@ -59,6 +61,14 @@ const {
               </>
             ))
           }
+          {secondaryLinks.length ? ' · ' : ''}
+          <button
+            type="button"
+            data-cookie-settings
+            class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400"
+          >
+            {locale === 'zh' ? 'Cookie 设置' : 'Cookie settings'}
+          </button>
         </div>
       </div>
       {

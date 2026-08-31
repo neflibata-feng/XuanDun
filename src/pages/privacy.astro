@@ -1,71 +1,65 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-const metadata = {
-  title: '隐私政策',
-};
+const metadata = { title: 'Privacy Policy' };
 ---
 
-<Layout metadata={metadata}>
-  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
-    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter">隐私政策</h1>
-
+<Layout metadata={metadata} locale="en">
+  <section class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+    <h1 class="font-heading text-4xl font-bold leading-tighter tracking-tighter md:text-5xl">Privacy Policy</h1>
     <div
-      class="mx-auto prose prose-lg max-w-4xl dark:prose-invert dark:prose-headings:text-slate-300 prose-md prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8"
+      class="prose-md mx-auto mt-8 max-w-4xl prose prose-lg prose-headings:font-heading prose-headings:font-bold prose-headings:leading-tighter prose-headings:tracking-tighter prose-a:text-blue-600 dark:prose-invert dark:prose-headings:text-slate-300 dark:prose-a:text-blue-400"
     >
-      <p>更新日期：2026 年 1 月 26 日</p>
-
+      <p>Last updated: August 31, 2026</p>
       <p>
-        本政策用于说明“玄盾开发者团队”网站（下称“本网站”）在您访问与使用过程中，可能收集的个人信息类型、使用目的以及您的相关权利。
+        This policy explains what personal information the XuanDun Developer Team website (the “Website”) may collect,
+        why we use it, and the choices available to you.
       </p>
-
-      <h2>1. 我们可能收集的信息</h2>
+      <h2>1. Information we may collect</h2>
       <ul>
         <li>
-          <strong>您主动提供的信息</strong>：当您通过“联系我们”等表单提交信息时，我们可能收集您填写的姓名、邮箱、留言内容等。
+          <strong>Information you provide:</strong> such as your name, email address, and message when you contact us.
         </li>
         <li>
-          <strong>访问日志与基础信息</strong>：为保障站点安全与稳定运行，我们可能记录浏览器类型、访问时间、来源页面、访问路径等技术日志信息。
+          <strong>Basic technical logs:</strong> such as browser type, access time, referring page, and requested path, used
+          to keep the Website secure and reliable.
         </li>
       </ul>
-
-      <h2>2. 信息如何使用</h2>
+      <h2>2. Cookies and analytics</h2>
+      <p>
+        We do not load non-essential third-party analytics or allow them to set cookies unless you select “Accept” in
+        the cookie notice. If you decline, those technologies remain disabled. Your choice is stored in your browser's
+        local storage so we can remember it without using a consent cookie.
+      </p>
+      <h2>3. How we use information</h2>
       <ul>
-        <li>用于回应您的咨询与沟通请求。</li>
-        <li>用于站点安全防护、故障排查与性能优化。</li>
-        <li>在符合法律法规的前提下，用于统计分析与改进用户体验。</li>
+        <li>To respond to enquiries and communication requests.</li>
+        <li>To protect the Website, diagnose faults, and improve performance.</li>
+        <li>With your consent and where permitted by law, to understand usage and improve the experience.</li>
       </ul>
-
-      <h2>3. 信息共享与披露</h2>
-      <p>
-        我们不会在未经您同意的情况下向第三方出售您的个人信息。
-        但在以下情形中，可能在必要范围内披露：
-      </p>
+      <h2>4. Sharing and disclosure</h2>
+      <p>We do not sell your personal information. We may disclose information only where necessary:</p>
       <ul>
-        <li>为遵守适用法律法规、司法或行政机关的要求。</li>
-        <li>为保护本网站、用户或公众的合法权益与安全。</li>
+        <li>To comply with applicable law or a valid request from a judicial or administrative authority.</li>
+        <li>To protect the lawful rights and safety of the Website, its users, or the public.</li>
       </ul>
-
-      <h2>4. 信息保存</h2>
+      <h2>5. Retention</h2>
       <p>
-        我们将在实现本政策所述目的所需的最短期限内保存您的信息，超出期限后将采取删除或匿名化等处理方式（法律法规另有要求的除外）。
+        We retain information only for as long as needed for the purposes described here, then delete or anonymize it
+        unless a longer period is required by law.
       </p>
-
-      <h2>5. 您的权利</h2>
+      <h2>6. Your rights</h2>
       <p>
-        您可以就您提交的信息向我们提出查询、更正或删除等请求。我们会在合理范围内核验并处理。
+        You may ask us to access, correct, or delete information you have submitted, subject to reasonable verification.
       </p>
-
-      <h2>6. 政策更新</h2>
+      <h2>7. Policy updates</h2>
       <p>
-        我们可能不时更新本政策。更新后的政策一经在本页面发布即生效。
-        建议您定期查看以了解最新内容。
+        We may update this policy periodically. Changes take effect when the revised policy is published on this page.
       </p>
-
-      <h2>7. 联系我们</h2>
+      <h2>8. Contact us</h2>
       <p>
-        如您对本政策有任何疑问，可通过邮箱联系我们：
-        <a href="mailto:neflibatafeng@gmail.com">neflibatafeng@gmail.com</a>
+        For questions about this policy, email us at <a href="mailto:neflibatafeng@gmail.com">neflibatafeng@gmail.com</a
+        >.
       </p>
     </div>
   </section>
