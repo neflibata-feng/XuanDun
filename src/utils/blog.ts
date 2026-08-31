@@ -207,21 +207,25 @@ export const findTags = async (): Promise<Array<Taxonomy>> => {
 /** */
 export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateFunction }) => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
-  return paginate(await fetchPosts(), {
-    params: { blog: BLOG_BASE || undefined },
-    pageSize: blogPostsPerPage,
-  });
+  const posts = await fetchPosts();
+  return (['en', 'zh'] as const).flatMap((locale) =>
+    paginate(posts, {
+      params: { blog: `${locale === 'zh' ? 'zh/' : ''}${BLOG_BASE}` || undefined },
+      pageSize: blogPostsPerPage,
+      props: { locale },
+    })
+  );
 };
 
 /** */
 export const getStaticPathsBlogPost = async () => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
-  return (await fetchPosts()).flatMap((post) => ({
-    params: {
-      blog: post.permalink,
-    },
-    props: { post },
-  }));
+  return (await fetchPosts()).flatMap((post) =>
+    (['en', 'zh'] as const).map((locale) => ({
+      params: { blog: `${locale === 'zh' ? 'zh/' : ''}${post.permalink}` },
+      props: { post, locale },
+    }))
+  );
 };
 
 /** */
@@ -237,13 +241,15 @@ export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: Pagin
   });
 
   return Array.from(Object.keys(categories)).flatMap((categorySlug) =>
-    paginate(
-      posts.filter((post) => post.category?.slug && categorySlug === post.category?.slug),
-      {
-        params: { category: categorySlug, blog: CATEGORY_BASE || undefined },
-        pageSize: blogPostsPerPage,
-        props: { category: categories[categorySlug] },
-      }
+    (['en', 'zh'] as const).flatMap((locale) =>
+      paginate(
+        posts.filter((post) => post.category?.slug && categorySlug === post.category?.slug),
+        {
+          params: { category: categorySlug, blog: `${locale === 'zh' ? 'zh/' : ''}${CATEGORY_BASE}` || undefined },
+          pageSize: blogPostsPerPage,
+          props: { category: categories[categorySlug], locale },
+        }
+      )
     )
   );
 };
@@ -263,13 +269,15 @@ export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFu
   });
 
   return Array.from(Object.keys(tags)).flatMap((tagSlug) =>
-    paginate(
-      posts.filter((post) => Array.isArray(post.tags) && post.tags.find((elem) => elem.slug === tagSlug)),
-      {
-        params: { tag: tagSlug, blog: TAG_BASE || undefined },
-        pageSize: blogPostsPerPage,
-        props: { tag: tags[tagSlug] },
-      }
+    (['en', 'zh'] as const).flatMap((locale) =>
+      paginate(
+        posts.filter((post) => Array.isArray(post.tags) && post.tags.find((elem) => elem.slug === tagSlug)),
+        {
+          params: { tag: tagSlug, blog: `${locale === 'zh' ? 'zh/' : ''}${TAG_BASE}` || undefined },
+          pageSize: blogPostsPerPage,
+          props: { tag: tags[tagSlug], locale },
+        }
+      )
     )
   );
 };

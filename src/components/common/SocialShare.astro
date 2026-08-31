@@ -5,16 +5,17 @@ export interface Props {
   text: string;
   url: string | URL;
   class?: string;
+  locale?: 'zh' | 'en';
 }
 
-const { text, url, class: className = 'inline-block' } = Astro.props;
+const { text, url, class: className = 'inline-block', locale = 'en' } = Astro.props;
 ---
 
 <div class={className}>
-  <span class="align-super font-bold text-slate-500 dark:text-slate-400">Share:</span>
+  <span class="align-super font-bold text-slate-500 dark:text-slate-400">{locale === 'zh' ? '分享：' : 'Share:'}</span>
   <button
     class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="Twitter Share"
+    title={locale === 'zh' ? '分享到 X' : 'Share on X'}
     data-aw-social-share="twitter"
     data-aw-url={url}
     data-aw-text={text}
@@ -23,7 +24,11 @@ const { text, url, class: className = 'inline-block' } = Astro.props;
       class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
     />
   </button>
-  <button class="ml-2 rtl:ml-0 rtl:mr-2" title="Facebook Share" data-aw-social-share="facebook" data-aw-url={url}
+  <button
+    class="ml-2 rtl:ml-0 rtl:mr-2"
+    title={locale === 'zh' ? '分享到 Facebook' : 'Share on Facebook'}
+    data-aw-social-share="facebook"
+    data-aw-url={url}
     ><Icon
       name="tabler:brand-facebook"
       class="w-6 h-6 text-gray-400 dark:text-slate-500 hover:text-black dark:hover:text-slate-300"
@@ -31,7 +36,7 @@ const { text, url, class: className = 'inline-block' } = Astro.props;
   </button>
   <button
     class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="微博分享"
+    title={locale === 'zh' ? '分享到微博' : 'Share on Weibo'}
     data-aw-social-share="weibo"
     data-aw-url={url}
     data-aw-text={text}
@@ -42,7 +47,7 @@ const { text, url, class: className = 'inline-block' } = Astro.props;
   </button>
   <button
     class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="微信分享"
+    title={locale === 'zh' ? '分享到微信' : 'Share on WeChat'}
     data-aw-social-share="wechat"
     data-aw-url={url}
     data-aw-text={text}
@@ -53,7 +58,7 @@ const { text, url, class: className = 'inline-block' } = Astro.props;
   </button>
   <button
     class="ml-2 rtl:ml-0 rtl:mr-2"
-    title="QQ 分享"
+    title={locale === 'zh' ? '分享到 QQ' : 'Share on QQ'}
     data-aw-social-share="qq"
     data-aw-url={url}
     data-aw-text={text}

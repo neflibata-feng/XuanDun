@@ -92,6 +92,11 @@ export const getHomePermalink = (): string => getPermalink('/');
 /** */
 export const getBlogPermalink = (): string => getPermalink(BLOG_BASE);
 
+export const getLocalizedPermalink = (slug = '', locale: 'zh' | 'en' = 'en', type = 'page'): string => {
+  const permalink = getPermalink(slug, type);
+  return locale === 'zh' ? createPath('zh', trimSlash(permalink)) : permalink;
+};
+
 /** */
 export const getAsset = (path: string): string =>
   '/' +

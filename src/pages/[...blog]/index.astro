@@ -21,9 +21,9 @@ export const getStaticPaths = (async () => {
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { post } = Astro.props as Props;
+const { post, locale = 'en' } = Astro.props as Props & { locale: 'zh' | 'en' };
 
-const url = getCanonical(getPermalink(post.permalink, 'post'));
+const url = getCanonical(getPermalink(`${locale === 'zh' ? 'zh/' : ''}${post.permalink}`, 'post'));
 const image = (await findImage(post.image)) as ImageMetadata | string | undefined;
 
 const metadata = merge(
@@ -45,10 +45,10 @@ const metadata = merge(
 ) as MetaData;
 ---
 
-<Layout metadata={metadata}>
-  <SinglePost post={{ ...post, image: image }} url={url}>
+<Layout metadata={metadata} {locale}>
+  <SinglePost post={{ ...post, image: image }} url={url} {locale}>
     {post.Content ? <post.Content /> : <Fragment set:html={post.content || ''} />}
   </SinglePost>
-  <ToBlogLink />
-  <RelatedPosts post={post} />
+  <ToBlogLink {locale} />
+  <RelatedPosts post={post} {locale} />
 </Layout>

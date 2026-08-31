@@ -17,14 +17,17 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { page } = Astro.props as Props;
+const { page, locale = 'en' } = Astro.props as Props & { locale: 'zh' | 'en' };
 const currentPage = page.currentPage ?? 1;
+const isChinese = locale === 'zh';
 
 const allCategories = await findCategories();
 const allTags = await findTags();
 
 const metadata = {
-  title: `博客${currentPage > 1 ? ` — 第 ${currentPage} 页` : ''}`,
+  title: isChinese
+    ? `博客${currentPage > 1 ? ` — 第 ${currentPage} 页` : ''}`
+    : `Blog${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
   robots: {
     index: blogListRobots?.index && currentPage === 1,
     follow: blogListRobots?.follow,
@@ -35,18 +38,39 @@ const metadata = {
 };
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} {locale}>
   <section class="px-4 md:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
     <Headline
-      subtitle="记录玄盾团队的公告、技术文章与阶段性总结。"
+      subtitle={isChinese
+        ? '记录玄盾团队的公告、技术文章与阶段性总结。'
+        : 'News, technical articles, and milestones from the XuanDun team.'}
     >
-      博客
+      {isChinese ? '博客' : 'Blog'}
     </Headline>
 
-    {allCategories?.length ? <PostTags tags={allCategories} class="mb-4" title="按分类浏览：" isCategory /> : null}
-    {allTags?.length ? <PostTags tags={allTags} class="mb-6" title="按标签浏览：" /> : null}
+    {
+      allCategories?.length ? (
+        <PostTags
+          tags={allCategories}
+          class="mb-4"
+          title={isChinese ? '按分类浏览：' : 'Browse categories:'}
+          isCategory
+          {locale}
+        />
+      ) : null
+    }
+    {
+      allTags?.length ? (
+        <PostTags tags={allTags} class="mb-6" title={isChinese ? '按标签浏览：' : 'Browse tags:'} {locale} />
+      ) : null
+    }
 
-    <BlogList posts={page.data} />
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+    <BlogList posts={page.data} {locale} />
+    <Pagination
+      prevUrl={page.url.prev}
+      nextUrl={page.url.next}
+      prevText={isChinese ? '较新文章' : 'Newer posts'}
+      nextText={isChinese ? '较早文章' : 'Older posts'}
+    />
   </section>
 </Layout>

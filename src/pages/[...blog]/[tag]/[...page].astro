@@ -15,12 +15,15 @@ export const getStaticPaths = (async ({ paginate }) => {
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
-const { page, tag } = Astro.props as Props;
+const { page, tag, locale = 'en' } = Astro.props as Props & { locale: 'zh' | 'en' };
+const isChinese = locale === 'zh';
 
 const currentPage = page.currentPage ?? 1;
 
 const metadata = {
-  title: `标签：${tag.title}${currentPage > 1 ? ` — 第 ${currentPage} 页` : ''}`,
+  title: isChinese
+    ? `标签：${tag.title}${currentPage > 1 ? ` — 第 ${currentPage} 页` : ''}`
+    : `Tag: ${tag.title}${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
   robots: {
     index: blogTagRobots?.index,
     follow: blogTagRobots?.follow,
@@ -31,10 +34,15 @@ const metadata = {
 };
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} {locale}>
   <section class="px-4 md:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
-    <Headline subtitle="按标签浏览">{tag.title}</Headline>
-    <BlogList posts={page.data} />
-    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+    <Headline subtitle={isChinese ? '按标签浏览' : 'Browse by tag'}>{tag.title}</Headline>
+    <BlogList posts={page.data} {locale} />
+    <Pagination
+      prevUrl={page.url.prev}
+      nextUrl={page.url.next}
+      prevText={isChinese ? '较新文章' : 'Newer posts'}
+      nextText={isChinese ? '较早文章' : 'Older posts'}
+    />
   </section>
 </Layout>

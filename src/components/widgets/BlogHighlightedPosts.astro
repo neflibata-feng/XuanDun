@@ -14,6 +14,7 @@ export interface Props extends Widget {
   linkUrl?: string | URL;
   information?: string;
   postIds: string[];
+  locale?: 'zh' | 'en';
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   linkUrl = getBlogPermalink(),
   information = await Astro.slots.render('information'),
   postIds = [],
+  locale = 'en',
 
   id,
   isDark = false,
@@ -56,7 +58,7 @@ const posts = APP_BLOG.isEnabled ? await findPostsByIds(postIds) : [];
         {information && <p class="text-muted dark:text-slate-400 lg:text-sm lg:max-w-md" set:html={information} />}
       </div>
 
-      <Grid posts={posts} />
+      <Grid posts={posts} {locale} />
     </WidgetWrapper>
   ) : (
     <Fragment />

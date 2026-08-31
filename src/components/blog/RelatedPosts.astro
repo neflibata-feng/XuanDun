@@ -4,13 +4,14 @@ import { APP_BLOG } from 'astrowind:config';
 import { getRelatedPosts } from '~/utils/blog';
 import BlogHighlightedPosts from '../widgets/BlogHighlightedPosts.astro';
 import type { Post } from '~/types';
-import { getBlogPermalink } from '~/utils/permalinks';
+import { BLOG_BASE, getLocalizedPermalink } from '~/utils/permalinks';
 
 export interface Props {
   post: Post;
+  locale?: 'zh' | 'en';
 }
 
-const { post } = Astro.props;
+const { post, locale = 'en' } = Astro.props;
 
 const relatedPosts = post.tags ? await getRelatedPosts(post, 4) : [];
 ---
@@ -22,10 +23,11 @@ const relatedPosts = post.tags ? await getRelatedPosts(post, 4) : [];
         container:
           'pt-0 lg:pt-0 md:pt-0 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
       }}
-      title="相关文章"
-      linkText="查看所有文章列表"
-      linkUrl={getBlogPermalink()}
+      title={locale === 'zh' ? '相关文章' : 'Related posts'}
+      linkText={locale === 'zh' ? '查看所有文章' : 'View all posts'}
+      linkUrl={getLocalizedPermalink(BLOG_BASE, locale)}
       postIds={relatedPosts.map((post) => post.id)}
+      {locale}
     />
   ) : null
 }

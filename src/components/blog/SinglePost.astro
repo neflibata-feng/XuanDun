@@ -5,7 +5,7 @@ import Image from '~/components/common/Image.astro';
 import PostTags from '~/components/blog/Tags.astro';
 import SocialShare from '~/components/common/SocialShare.astro';
 
-import { getPermalink } from '~/utils/permalinks';
+import { getLocalizedPermalink } from '~/utils/permalinks';
 import { getFormattedDate } from '~/utils/utils';
 
 import type { Post } from '~/types';
@@ -13,9 +13,10 @@ import type { Post } from '~/types';
 export interface Props {
   post: Post;
   url: string | URL;
+  locale?: 'zh' | 'en';
 }
 
-const { post, url } = Astro.props;
+const { post, url, locale = 'en' } = Astro.props;
 ---
 
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
@@ -28,7 +29,9 @@ const { post, url } = Astro.props;
       <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
         <p>
           <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
-          <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time>
+          <time datetime={String(post.publishDate)} class="inline-block"
+            >{getFormattedDate(post.publishDate, locale)}</time
+          >
           {
             post.author && (
               <>
@@ -43,7 +46,10 @@ const { post, url } = Astro.props;
               <>
                 {' '}
                 ·{' '}
-                <a class="hover:underline inline-block" href={getPermalink(post.category.slug, 'category')}>
+                <a
+                  class="hover:underline inline-block"
+                  href={getLocalizedPermalink(post.category.slug, locale, 'category')}
+                >
                   {post.category.title}
                 </a>
               </>
@@ -52,7 +58,7 @@ const { post, url } = Astro.props;
           {
             post.readingTime && (
               <>
-                &nbsp;· <span>{post.readingTime}</span> 分钟阅读
+                &nbsp;· <span>{post.readingTime}</span> {locale === 'zh' ? '分钟阅读' : 'min read'}
               </>
             )
           }
@@ -96,8 +102,13 @@ const { post, url } = Astro.props;
       <slot />
     </div>
     <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-8 flex justify-between flex-col sm:flex-row">
-      <PostTags tags={post.tags} class="mr-5 rtl:mr-0 rtl:ml-5" />
-      <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" />
+      <PostTags tags={post.tags} class="mr-5 rtl:mr-0 rtl:ml-5" {locale} />
+      <SocialShare
+        url={url}
+        text={post.title}
+        class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600"
+        {locale}
+      />
     </div>
   </article>
 </section>

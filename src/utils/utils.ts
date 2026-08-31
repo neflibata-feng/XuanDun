@@ -7,7 +7,15 @@ export const formatter: Intl.DateTimeFormat = new Intl.DateTimeFormat(I18N?.lang
   timeZone: 'UTC',
 });
 
-export const getFormattedDate = (date: Date): string => (date ? formatter.format(date) : '');
+export const getFormattedDate = (date: Date, locale?: 'zh' | 'en'): string =>
+  date
+    ? new Intl.DateTimeFormat(locale === 'zh' ? 'zh-CN' : locale === 'en' ? 'en' : I18N?.language, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC',
+      }).format(date)
+    : '';
 
 export const trim = (str = '', ch?: string) => {
   let start = 0,
